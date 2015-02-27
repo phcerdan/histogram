@@ -22,7 +22,7 @@ set_target_properties(histo-header PROPERTIES LINKER_LANGUAGE CXX)
 ### Google TEST AND MOCK
 # There must be an environment variable (in .bashrc or profile.d)
 # export GMOCK_HOME=/path/to/gmock-1.7.0
-set(ENABLE_GOOGLE_TEST "ON" CACHE BOOL "Requires ENV variable GMOCK_HOME pointing to gmock parent folder")
+set(ENABLE_GOOGLE_TEST "OFF" CACHE BOOL "Requires ENV variable GMOCK_HOME pointing to gmock parent folder")
 
 IF(ENABLE_GOOGLE_TEST)
     add_subdirectory(test)
