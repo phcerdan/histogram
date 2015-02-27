@@ -1,28 +1,39 @@
+#GitHub C++ gitignore
 # Compiled Object files
 *.slo
 *.lo
 *.o
 *.obj
-
 # Precompiled Headers
 *.gch
 *.pch
-
 # Compiled Dynamic libraries
 *.so
 *.dylib
 *.dll
-
 # Fortran module files
 *.mod
-
 # Compiled Static libraries
 *.lai
 *.la
 *.a
 *.lib
-
 # Executables
 *.exe
 *.out
 *.app
+##########
+#Project#
+
+*.project
+*.cproject
+/build*/*
+*~
+*.orig
+!/build/output_files
+!/build/output_files/*
+*.swp
+*.swo
+Session.vim
+.eclimrc
+/C\:*
