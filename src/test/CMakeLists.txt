@@ -41,12 +41,10 @@ find_library(GMOCK_LIBRARY_MAIN
                   ${GMOCK_HOME})
 
 include_directories("..")
-
+find_package(Threads)
 set_source_files_properties (test_histo.cpp PROPERTIES COMPILE_FLAGS "-Wno-sign-compare")
 add_executable(test_histo.exe test_histo.cpp)
-# target_link_libraries(test_histo.exe histo)
-target_link_libraries(test_histo.exe pthread histo-header)
-target_link_libraries(test_histo.exe histo-header)
-# target_link_libraries(gmock-test pthread gmock_main gtest_main)
 target_link_libraries(test_histo.exe ${GMOCK_LIBRARY_MAIN} ${GTEST_LIBRARY_MAIN})
-target_link_libraries(test_histo.exe ${OpenCV_LIBS} )
+target_link_libraries(test_histo.exe ${CMAKE_THREAD_LIBS_INIT})
+# target_link_libraries(test_histo.exe pthread )
+target_link_libraries(test_histo.exe histo-header)
