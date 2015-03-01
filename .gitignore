@@ -28,6 +28,7 @@
 *.project
 *.cproject
 /build*/*
+/docs/*
 *~
 *.orig
 !/build/output_files
@@ -36,4 +37,4 @@
 *.swo
 Session.vim
 .eclimrc
-/C\:*
+/C:\nppdf32Log*
