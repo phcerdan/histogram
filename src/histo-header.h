@@ -1,6 +1,7 @@
-/*
+/**
+@file histo-header.h
 Histogram in C++11, 1D, simple header-only, inspired by R, calculate and optimize breaks automatically. Accepts different precissions.
-Copyright (C) 2015 Pablo Hernandez
+Copyright (C) 2015 Pablo Hernandez. github/phcerdan/histo-header.
 
 This library is free software; you can redistribute it and/or modify
 it under the terms of the GNU Lesser General Public License as published
@@ -16,22 +17,29 @@ You should have received a copy of the GNU Lesser General Public License
 along with this library; if not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef HISTO_H_
-#define HISTO_H_
+#ifndef HISTO_HEADER_H_
+#define HISTO_HEADER_H_
 #include <vector>
 #include <algorithm>
 #include <utility>
 #include <stdexcept>
 #include <cmath>
 #include <iostream>
+/** histo namespace in histo-header.h*/
 namespace histo {
-/**
+/** \defgroup breaks_methods breaks_methods */
+/**@{
  * @brief Breaks method to optimal calculation of breaks based on input data and range.
  * Scott = 0.
  */
-enum breaks_method {Scott = 0};
+enum breaks_method {
+    /** Scott Method*/
+    Scott = 0
+};
+/** @} */
 
-/**
+/** \defgroup GenerateBreaks Generate breaks from data, range, and/or bins. */
+/** @{
  * @brief Help functions to manually creating breaks from input range
  * (low, upper) and desired number of bins.
  *
@@ -53,15 +61,24 @@ std::vector<T> GenerateBreaksFromRangeAndBins(const T& low, const T& upper, cons
     return breaks;
 };
 
+/** @brief @sa GenerateBreaksFromRangeAndBins() */
 template<typename T, typename PRECI = double>
 std::vector<T> GenerateBreaksFromRangeAndBins(const std::pair<T,T> &range_low_upper, const unsigned long int &bins){
    T low   = range_low_upper.first;
    T upper = range_low_upper.second;
    return GenerateBreaksFromRangeAndBins<T, PRECI>(low, upper, bins);
 };
+/** @} */
 
-/**
- * @brief Variance calculation from Container with data.
+/** Exception class for  Histo */
+class histo_error : public std::runtime_error {
+public:
+    /** Error constructor from runtime_error*/
+    histo_error(const std::string & s) : std::runtime_error(s){ };
+};
+
+
+/** @brief Variance calculation from Container with data.
  *
  * @tparam T Type of data.
  * @tparam Container std:: type containing data (vector, array,...)
@@ -83,10 +100,6 @@ T variance_welford(const Container& xs)
     return S / (N-1);
 }
 
-/********PRECISE COMPARISONS TEMPLATE UTILITIES************/
-/**@addtogroup PreciseComparisson
- * PreciseComparisson Template utilities
- * @{ */
 /** Precise comparison: equal than.
 * @param v1 type T, variable 1 to compare
 * @param v2 type T, variable 2 to compare
@@ -97,17 +110,8 @@ bool isequalthan(const T& v1, const T& v2)
 {
     return std::abs(v1-v2)<= std::numeric_limits<T>::epsilon();
 }
-/** @} */
 
-class histo_error : public std::runtime_error {
-public:
-    histo_error(const std::string & s) : std::runtime_error(s){ };
 
-};
-
-/** Simple Histogram. PRECI is the precission of stored non-int values. PRECI_INTEGER is the preci for integer values. T is the data type. PRECI should be the same type as T, except when T is int.
- *
-*/
 /**
  * @brief Histogram inspired by R.
  * Simple, no dependancies, header-only.
@@ -138,7 +142,7 @@ struct Histo {
      * @brief Constructor that takes range as the min, and max values of data.
      *
      * @param data
-     * @param method Method to calculate breaks from @histo::breaks_method
+     * @param method Method to calculate breaks from @sa histo::breaks_method
      */
     Histo( const std::vector<T> &data, histo::breaks_method method = Scott )
     {
@@ -154,7 +158,7 @@ struct Histo {
      * @brief Constructor with fixed input range.
      * @param data
      * @param input_range low and upper value
-     * @param method Method to calculate breaks from @histo::breaks_method
+     * @param method Method to calculate breaks from @sa histo::breaks_method
      */
     Histo(const std::vector<T> &data, const std::pair<T,T> &input_range, histo::breaks_method method = Scott ){
         range     = input_range;
@@ -165,7 +169,7 @@ struct Histo {
     };
     /**
      * @brief Constructor that accepts a vector of breaks.
-     * You can use @histo::GenerateBreaksFromRangeAndBins
+     * You can use @sa histo::GenerateBreaksFromRangeAndBins
      * to help you creating the vector from specific number of bins and range.
      *
      * @param data
@@ -181,10 +185,9 @@ struct Histo {
 
 /********* PUBLIC METHODS ***********/
     /**
-     * @brief Return the index of @counts associated to the input value
+     * @brief Return the index of @sa counts associated to the input value
      *
      * @param value Ranging from range.first to range.second
-     *
      * @return Index of counts
      */
     unsigned long int IndexFromValue(const T &value){
@@ -202,29 +205,33 @@ struct Histo {
         return lo;
     };
 
+    /** @brief Resize counts and reset value to zero. */
     void ResetCounts(){
         counts.resize(bins);
-        std::for_each(std::begin(counts), std::end(counts),
-                [](PRECI_INTEGER & vh){ vh = 0; });
+        for (auto &c : counts){
+            c = 0;
+        }
     };
-
     /**
      * @brief Fill counts from data.
      * Breaks must have been set-up before calling this method.
      *
      * @param data
      *
-     * @return Reference to the data member @counts
+     * @return Reference to the data member @sa counts
      */
     std::vector<PRECI_INTEGER>& FillCounts(const std::vector<T> &data){
-        std::for_each(std::begin(data),std::end(data),
-                [this](const T & v){
-                    auto i   = IndexFromValue(v);
-                    counts[i]++;
-                });
+        for (auto &v : data){
+            counts[IndexFromValue(v)] ++ ;
+        }
         return counts;
     };
 
+    /** \defgroup CountsManipulation Counts Safe Manipulation */
+    /** @{
+     * @brief Increase count by one, checking if exceeds max_integer_.
+     * @param index of counts
+     */
     void Increase(const unsigned long int & index){
         if (counts[index] == max_integer_)
             throw histo_error("Increase has exceded PRECI_INTEGER."
@@ -232,6 +239,9 @@ struct Histo {
         counts[index]++;
     };
 
+    /** @brief Decrease count by one, checking if it goes negative.
+     * @param index of counts.
+     */
     void Decrease(const unsigned long int & index){
         if (counts[index] <= 0 )
             throw histo_error("Decrease has reached negative value."
@@ -239,13 +249,18 @@ struct Histo {
         counts[index]--;
     };
 
+    /** @brief Set count value. Checks for negative or greater than max_integer_.
+     * @param index of counts.
+     * @param v value to set.
+     */
     void SetCount(const unsigned long int & index, const long double & v ){
         if (v < 0 || v > max_integer_)
-            throw histo_error("Decrease has reached negative value."
+            throw histo_error("SetCount to a negative value, or greater than allowed"
                     " Index: " + std::to_string(index) + " Value: " + std::to_string(counts[index]) );
         counts[index] = static_cast<PRECI_INTEGER>(v);
     };
 
+    /** @} */
 
 private:
     /** Max integer for the current PRECI_INTEGER type*/
@@ -347,18 +362,16 @@ private:
         diff_isZero = isequalthan<T>(diff, 0);
     };
     void ShiftBreaks(std::vector<T> &input_breaks, const T & d){
-        std::for_each(std::begin(input_breaks), std::end(input_breaks),
-                [&d]( T & v){
-                    v = v + d;
-                });
+        for (auto &v : input_breaks){
+            v = v + d;
+        }
     };
     void ShrinkOrExpandBreaks(std::vector<T> &input_breaks, const T & d){
         unsigned long int i{0} ;
-        std::for_each(std::begin(input_breaks), std::end(input_breaks),
-                [&i, &d]( T & v){
-                    v = v + i*d;
-                    i++;
-                });
+        for (auto &v : input_breaks){
+            v = v + i*d;
+            i++;
+        }
     };
     /**
      * @brief Scott Method to calculate optimal breaks.

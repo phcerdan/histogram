@@ -16,8 +16,9 @@ SET(ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/lib)
 #         REQUIRED)
 # include_directories(SYSTEM ${Boost_INCLUDE_DIRS})
 
-add_library(histo-header histo.h)
+add_library(histo-header histo-header.h)
 set_target_properties(histo-header PROPERTIES LINKER_LANGUAGE CXX)
+FILE(COPY histo-header.h DESTINATION include)
 # TEST
 ### Google TEST AND MOCK
 # There must be an environment variable (in .bashrc or profile.d)

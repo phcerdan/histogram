@@ -1,5 +1,5 @@
 #include "gmock/gmock.h"
-#include "histo.h"
+#include "histo-header.h"
 #include <memory>
 #include <iostream>
 #include <random>
