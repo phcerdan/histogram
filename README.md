@@ -1,13 +1,20 @@
 # histo-header
 Histogram in C++11, 1D, simple header-only, inspired by R, calculate and optimize breaks automatically. Accepts different precissions.
+# Documentation
+
+[Doxygen generated Docs](http://phcerdan.github.io/histo-header/docs/html/index.html)
+
+Warning, docs are not generated automatically and might be outdated.
+
 # Downloading
 You can use the header as is, just downloading it, and including it in your project.
 It has a LGPL3.0 license, so you might be interested in compiling it.
 
 # Compile the library.
 git clone https://github.com/phcerdan/histo-header.git
-mkdir histo-header/build
-cd histo-header/build
+
+mkdir histo-header/build && cd histo-header/build
+
 cmake ../src
 
 If you want the shared library:
