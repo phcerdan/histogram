@@ -1,0 +1,116 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.6.1">
+  <compounddef id="group___generate_breaks" kind="group">
+    <compoundname>GenerateBreaks</compoundname>
+    <title>Generate breaks from data, range, and/or bins.</title>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group___generate_breaks_1ga853c19bd3a41d2c20e32828507ab04eb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+          <param>
+            <type>typename PRECI</type>
+            <defval>double</defval>
+          </param>
+        </templateparamlist>
+        <type>std::vector&lt; T &gt;</type>
+        <definition>std::vector&lt;T&gt; histo::GenerateBreaksFromRangeAndBins</definition>
+        <argsstring>(const T &amp;low, const T &amp;upper, const unsigned long int &amp;bins)</argsstring>
+        <name>GenerateBreaksFromRangeAndBins</name>
+        <param>
+          <type>const T &amp;</type>
+          <declname>low</declname>
+        </param>
+        <param>
+          <type>const T &amp;</type>
+          <declname>upper</declname>
+        </param>
+        <param>
+          <type>const unsigned long int &amp;</type>
+          <declname>bins</declname>
+        </param>
+        <briefdescription>
+<para>Help functions to manually creating breaks from input range (low, upper) and desired number of bins. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input data type. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>PRECI</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>It should be equal to T, except when T is int. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>low</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>first value of breaks. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>upper</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>last value of breaks. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>bins</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of divisions.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>breaks vector with the frontier values of each bin. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/phc/repository_local/histo-header/src/histo-header.h" line="55" bodyfile="/home/phc/repository_local/histo-header/src/histo-header.h" bodystart="55" bodyend="62"/>
+      </memberdef>
+      <memberdef kind="function" id="group___generate_breaks_1gaf937f2bdf0ef388ea4a3aeb6e29effb2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+          <param>
+            <type>typename PRECI</type>
+            <defval>double</defval>
+          </param>
+        </templateparamlist>
+        <type>std::vector&lt; T &gt;</type>
+        <definition>std::vector&lt;T&gt; histo::GenerateBreaksFromRangeAndBins</definition>
+        <argsstring>(const std::pair&lt; T, T &gt; &amp;range_low_upper, const unsigned long int &amp;bins)</argsstring>
+        <name>GenerateBreaksFromRangeAndBins</name>
+        <param>
+          <type>const std::pair&lt; T, T &gt; &amp;</type>
+          <declname>range_low_upper</declname>
+        </param>
+        <param>
+          <type>const unsigned long int &amp;</type>
+          <declname>bins</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="see"><para><ref refid="group___generate_breaks_1ga853c19bd3a41d2c20e32828507ab04eb" kindref="member">GenerateBreaksFromRangeAndBins()</ref> </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/phc/repository_local/histo-header/src/histo-header.h" line="66" bodyfile="/home/phc/repository_local/histo-header/src/histo-header.h" bodystart="66" bodyend="70"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,229 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.6.1">
+  <compounddef id="namespacehisto" kind="namespace">
+    <compoundname>histo</compoundname>
+    <innerclass refid="classhisto_1_1histo__error" prot="public">histo::histo_error</innerclass>
+    <innerclass refid="structhisto_1_1_histo" prot="public">histo::Histo</innerclass>
+      <sectiondef kind="enum">
+      <memberdef kind="enum" id="group__breaks__methods_1ga132dcd8240c4bb268ed00b1e4fa3ebab" prot="public" static="no">
+        <name>breaks_method</name>
+        <enumvalue id="group__breaks__methods_1gga132dcd8240c4bb268ed00b1e4fa3ebabae05f2a05e4a163aac88bf64dc92cb36e" prot="public">
+          <name>Scott</name>
+          <initializer> 0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Scott Method </para>          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>Breaks method to optimal calculation of breaks based on input data and range. Scott = 0. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/phc/repository_local/histo-header/src/histo-header.h" line="35" bodyfile="/home/phc/repository_local/histo-header/src/histo-header.h" bodystart="35" bodyend="38"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group___generate_breaks_1ga853c19bd3a41d2c20e32828507ab04eb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+          <param>
+            <type>typename PRECI</type>
+            <defval>double</defval>
+          </param>
+        </templateparamlist>
+        <type>std::vector&lt; T &gt;</type>
+        <definition>std::vector&lt;T&gt; histo::GenerateBreaksFromRangeAndBins</definition>
+        <argsstring>(const T &amp;low, const T &amp;upper, const unsigned long int &amp;bins)</argsstring>
+        <name>GenerateBreaksFromRangeAndBins</name>
+        <param>
+          <type>const T &amp;</type>
+          <declname>low</declname>
+        </param>
+        <param>
+          <type>const T &amp;</type>
+          <declname>upper</declname>
+        </param>
+        <param>
+          <type>const unsigned long int &amp;</type>
+          <declname>bins</declname>
+        </param>
+        <briefdescription>
+<para>Help functions to manually creating breaks from input range (low, upper) and desired number of bins. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Input data type. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>PRECI</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>It should be equal to T, except when T is int. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>low</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>first value of breaks. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>upper</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>last value of breaks. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>bins</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number of divisions.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>breaks vector with the frontier values of each bin. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/phc/repository_local/histo-header/src/histo-header.h" line="55" bodyfile="/home/phc/repository_local/histo-header/src/histo-header.h" bodystart="55" bodyend="62"/>
+      </memberdef>
+      <memberdef kind="function" id="group___generate_breaks_1gaf937f2bdf0ef388ea4a3aeb6e29effb2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+          <param>
+            <type>typename PRECI</type>
+            <defval>double</defval>
+          </param>
+        </templateparamlist>
+        <type>std::vector&lt; T &gt;</type>
+        <definition>std::vector&lt;T&gt; histo::GenerateBreaksFromRangeAndBins</definition>
+        <argsstring>(const std::pair&lt; T, T &gt; &amp;range_low_upper, const unsigned long int &amp;bins)</argsstring>
+        <name>GenerateBreaksFromRangeAndBins</name>
+        <param>
+          <type>const std::pair&lt; T, T &gt; &amp;</type>
+          <declname>range_low_upper</declname>
+        </param>
+        <param>
+          <type>const unsigned long int &amp;</type>
+          <declname>bins</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="see"><para><ref refid="group___generate_breaks_1ga853c19bd3a41d2c20e32828507ab04eb" kindref="member">GenerateBreaksFromRangeAndBins()</ref> </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/phc/repository_local/histo-header/src/histo-header.h" line="66" bodyfile="/home/phc/repository_local/histo-header/src/histo-header.h" bodystart="66" bodyend="70"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacehisto_1a6fdcb336cae7bfe66ad7963f3ce49c66" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+          <param>
+            <type>typename Container</type>
+          </param>
+        </templateparamlist>
+        <type>T</type>
+        <definition>T histo::variance_welford</definition>
+        <argsstring>(const Container &amp;xs)</argsstring>
+        <name>variance_welford</name>
+        <param>
+          <type>const Container &amp;</type>
+          <declname>xs</declname>
+        </param>
+        <briefdescription>
+<para>Variance calculation from Container with data. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Type of data. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>Container</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>std:: type containing data (vector, array,...) </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>xs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The container.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Variance of type T. </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/phc/repository_local/histo-header/src/histo-header.h" line="91" bodyfile="/home/phc/repository_local/histo-header/src/histo-header.h" bodystart="90" bodyend="101"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacehisto_1aa9dc1974bd94dd4af223b30e7c1c33b1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>bool</type>
+        <definition>bool histo::isequalthan</definition>
+        <argsstring>(const T &amp;v1, const T &amp;v2)</argsstring>
+        <name>isequalthan</name>
+        <param>
+          <type>const T &amp;</type>
+          <declname>v1</declname>
+        </param>
+        <param>
+          <type>const T &amp;</type>
+          <declname>v2</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Precise comparison: equal than. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>v1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>type T, variable 1 to compare </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>v2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>type T, variable 2 to compare </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>bool </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/phc/repository_local/histo-header/src/histo-header.h" line="110" bodyfile="/home/phc/repository_local/histo-header/src/histo-header.h" bodystart="109" bodyend="112"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><ref refid="namespacehisto" kindref="compound">histo</ref> namespace in <ref refid="histo-header_8h" kindref="compound">histo-header.h</ref> </para>    </detaileddescription>
+    <location file="/home/phc/repository_local/histo-header/src/histo-header.h" line="29"/>
+  </compounddef>
+</doxygen>

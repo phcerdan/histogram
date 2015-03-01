@@ -20,14 +20,14 @@
 
           <h1 id="project_title">Histo-header</h1>
           <h2 id="project_tagline">Histogram in C++11, 1D, simple header-only, inspired by R, calculate and optimize breaks automatically. Accepts different precissions.</h2>
-
             <section id="downloads">
               <a class="zip_download_link" href="https://github.com/phcerdan/histo-header/zipball/master">Download this project as a .zip file</a>
               <a class="tar_download_link" href="https://github.com/phcerdan/histo-header/tarball/master">Download this project as a tar.gz file</a>
             </section>
         </header>
     </div>
-
+    <!-- <div> -->
+    <!-- </div> -->
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
@@ -43,17 +43,22 @@
 It has a LGPL3.0 license, so you might be interested in compiling it.</p>
 
 <h1>
+<a id="documentation" class="anchor" href="#documentation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Documentation</h1>
+<a href="docs/html/index.html"> Doxygen generated <strong>Docs</strong></a>
+<p> Warning, docs are not generated automatically and might be outdated. </p>
+
+<h1>
 <a id="compile-the-library" class="anchor" href="#compile-the-library" aria-hidden="true"><span class="octicon octicon-link"></span></a>Compile the library.</h1>
 
-<p>git clone <a href="https://github.com/phcerdan/histo-header.git">https://github.com/phcerdan/histo-header.git</a> 
-mkdir histo-header/build 
-cd histo-header/build 
-cmake ../src</p>
+<p>git clone <a href="https://github.com/phcerdan/histo-header.git">https://github.com/phcerdan/histo-header.git</a></p> 
+<p>mkdir histo-header/build && cd histo-header/build</p>
+
+<p>cmake ../src</p>
 
 <p>If you want the shared library:
 cmake ../src -DBUILD_SHARED_LIBS=1</p>
 
-<p>The library will be generated in build/lib</p>
+<p>The library will be generated in build/lib, and the source will be copied into build/include</p>
 
 <p>You need a compiler with support for -std=c++11, and probably a modern cmake.</p>
 

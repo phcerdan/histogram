@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.6.1">
+  <compounddef id="classhisto_1_1histo__error" kind="class" prot="public">
+    <compoundname>histo::histo_error</compoundname>
+    <includes refid="histo-header_8h" local="no">histo-header.h</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classhisto_1_1histo__error_1ae4a9c52c6c031ea03210e9e585778827" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>histo::histo_error::histo_error</definition>
+        <argsstring>(const std::string &amp;s)</argsstring>
+        <name>histo_error</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>s</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Error constructor from runtime_error </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/phc/repository_local/histo-header/src/histo-header.h" line="77" bodyfile="/home/phc/repository_local/histo-header/src/histo-header.h" bodystart="77" bodyend="77"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Exception class for <ref refid="structhisto_1_1_histo" kindref="compound">Histo</ref> </para>    </detaileddescription>
+    <location file="/home/phc/repository_local/histo-header/src/histo-header.h" line="74" bodyfile="/home/phc/repository_local/histo-header/src/histo-header.h" bodystart="74" bodyend="78"/>
+    <listofallmembers>
+      <member refid="classhisto_1_1histo__error_1ae4a9c52c6c031ea03210e9e585778827" prot="public" virt="non-virtual"><scope>histo::histo_error</scope><name>histo_error</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

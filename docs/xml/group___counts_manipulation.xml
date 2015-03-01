@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.6.1">
+  <compounddef id="group___counts_manipulation" kind="group">
+    <compoundname>CountsManipulation</compoundname>
+    <title>Counts Safe Manipulation</title>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="group___counts_manipulation_1ga61ba4ed541dbfedfce4c20b7895e8303" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void histo::Histo&lt; T, PRECI, PRECI_INTEGER &gt;::Increase</definition>
+        <argsstring>(const unsigned long int &amp;index)</argsstring>
+        <name>Increase</name>
+        <param>
+          <type>const unsigned long int &amp;</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+<para>Increase count by one, checking if exceeds max_integer_. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>of counts </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/phc/repository_local/histo-header/src/histo-header.h" line="235" bodyfile="/home/phc/repository_local/histo-header/src/histo-header.h" bodystart="235" bodyend="240"/>
+      </memberdef>
+      <memberdef kind="function" id="group___counts_manipulation_1gadd9866333da884f97a91ff1bc28ee834" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void histo::Histo&lt; T, PRECI, PRECI_INTEGER &gt;::Decrease</definition>
+        <argsstring>(const unsigned long int &amp;index)</argsstring>
+        <name>Decrease</name>
+        <param>
+          <type>const unsigned long int &amp;</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+<para>Decrease count by one, checking if it goes negative. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>of counts. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/phc/repository_local/histo-header/src/histo-header.h" line="245" bodyfile="/home/phc/repository_local/histo-header/src/histo-header.h" bodystart="245" bodyend="250"/>
+      </memberdef>
+      <memberdef kind="function" id="group___counts_manipulation_1gaae55ca251a6c64f214ce6bd0a1772d44" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void histo::Histo&lt; T, PRECI, PRECI_INTEGER &gt;::SetCount</definition>
+        <argsstring>(const unsigned long int &amp;index, const long double &amp;v)</argsstring>
+        <name>SetCount</name>
+        <param>
+          <type>const unsigned long int &amp;</type>
+          <declname>index</declname>
+        </param>
+        <param>
+          <type>const long double &amp;</type>
+          <declname>v</declname>
+        </param>
+        <briefdescription>
+<para>Set count value. Checks for negative or greater than max_integer_. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>index</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>of counts. </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>v</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>value to set. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/phc/repository_local/histo-header/src/histo-header.h" line="256" bodyfile="/home/phc/repository_local/histo-header/src/histo-header.h" bodystart="256" bodyend="261"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+  </compounddef>
+</doxygen>
