@@ -25,6 +25,10 @@ along with this library; if not, see <http://www.gnu.org/licenses/>.
 #include <stdexcept>
 #include <cmath>
 #include <iostream>
+#ifdef WITH_BOOST
+#include <fstream>
+#include <boost/filesystem.hpp>
+#endif
 /** histo namespace in histo-header.h*/
 namespace histo {
 /** \defgroup breaks_methods breaks_methods */
@@ -105,10 +109,10 @@ T variance_welford(const Container& xs)
 * @param v2 type T, variable 2 to compare
 * @return bool
 */
-template<typename T>
+template<typename T, unsigned int N = 1>
 bool isequalthan(const T& v1, const T& v2)
 {
-    return std::abs(v1-v2)<= std::numeric_limits<T>::epsilon();
+    return std::abs(v1-v2)<= N * std::numeric_limits<T>::epsilon();
 }
 
 
@@ -165,7 +169,7 @@ struct Histo {
         breaks    = CalculateBreaks(data, range, method);
         bins      = static_cast<decltype(bins)>( breaks.size() - 1 );
         ResetCounts();
-        // FillCounts(data);
+        FillCounts(data);
     };
     /**
      * @brief Constructor that accepts a vector of breaks.
@@ -177,6 +181,8 @@ struct Histo {
      */
     Histo(const std::vector<T> &data, const std::vector<T> &input_breaks) {
         breaks = input_breaks;
+        if(!CheckIfMonotonicallyIncreasing(breaks)) throw
+            histo_error("input_breaks are not monotocally increasing");
         range  = std::make_pair(breaks[0], breaks[breaks.size() - 1]);
         bins    = static_cast<decltype(bins)>( breaks.size() - 1 );
         ResetCounts();
@@ -194,8 +200,8 @@ struct Histo {
         unsigned long int lo{0},hi{bins}, newb; // include right border in the last bin.
         if(value >= breaks[lo] && (value < breaks[hi] || histo::isequalthan<T>(value,breaks[hi]) )){
             while( hi - lo >= 2){
-                newb = (hi-lo)/2;
-                if (value >= breaks[newb]) lo = newb;
+                newb = (hi+lo)/2;
+                if ( (value > breaks[newb]) || (value == breaks[newb])) lo = newb;
                 else hi = newb;
             }
         } else {
@@ -261,8 +267,7 @@ struct Histo {
     };
 
     /** @} */
-
-private:
+protected:
     /** Max integer for the current PRECI_INTEGER type*/
     PRECI_INTEGER max_integer_{std::numeric_limits<PRECI_INTEGER>::max()};
 
@@ -301,7 +306,9 @@ private:
         for( auto it = input_breaks.begin() + 1, it_end = input_breaks.end();
                 it!=it_end; it++)
         {
-            if(!isequalthan<T>(*it - *(it-1), diff)) return false;
+            // T new_diff = *it - *(it -1);
+            // std::cout<<  new_diff <<" " << diff << std::endl;
+            if(!isequalthan<T, 25>(*it - *(it-1), diff)) return false;
         }
         return true;
     };

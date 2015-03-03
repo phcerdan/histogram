@@ -7,6 +7,57 @@ using namespace testing;
 using namespace std;
 using namespace histo;
 
+TEST(HistoConstructor, withJustData){
+
+    vector<double> data{1.0,1.0,2.0, 3.0, 19.0};
+    Histo<double> h(data); // Default method to calculate Breaks.
+    pair<double, double> expected_range = make_pair(1.0, 19.0);
+    EXPECT_EQ(expected_range, h.range);
+    double sum_counts{0};
+    for(auto &c : h.counts){
+        sum_counts +=c;
+    }
+    EXPECT_EQ(5, sum_counts);
+}
+
+TEST(HistoConstructor, withInputRange){
+    vector<double> data{1.0,1.0,2.0, 3.0, 19.0};
+    std::pair<double,double> input_range = make_pair(-5,24.0);
+    Histo<double> h(data, input_range); // Default method to calculate Breaks.
+    double sum_counts{0};
+    for(auto &c : h.counts){
+        sum_counts +=c;
+    }
+    EXPECT_EQ(5, sum_counts);
+}
+
+TEST(HistoConstructor, withBreaks){
+    vector<double> data{1.0,1.0,2.0, 3.0, 19.0};
+    vector<double> br{1.0, 2.0, 15.0, 20.0};
+    Histo<double> h(data, br);
+    EXPECT_EQ(3, h.bins );
+    EXPECT_EQ(2, h.counts[0]);
+    EXPECT_EQ(2, h.counts[1]);
+    EXPECT_EQ(1, h.counts[2]);
+    data = {20.0, 20.0, 20.0, 20.0, 20.0};
+    h.FillCounts(data);
+    EXPECT_EQ(6, h.counts[2]);
+    data = {-1.0};
+    EXPECT_THROW(h.FillCounts(data),histo_error);
+}
+
+TEST(HistoConstructor, withBreaksWithGenerator){
+    vector<double> data{1.0,1.0,2.0, 3.0, 19.0};
+    unsigned int input_bins = 10;
+    Histo<double> h(data, histo::GenerateBreaksFromRangeAndBins<double>(0.0,20.0, input_bins));
+    vector<double> expected_breaks;
+    double expected_width = 2.0;
+    for(unsigned int i = 0; i!=input_bins + 1; i++){
+        expected_breaks.push_back(expected_width * i);
+    }
+    EXPECT_EQ(expected_breaks, h.breaks);
+}
+
 /**
  * @brief Test the constructor with int data and input_breaks.
  */
