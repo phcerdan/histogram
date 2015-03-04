@@ -201,7 +201,7 @@ struct Histo {
         if(value >= breaks[lo] && (value < breaks[hi] || histo::isequalthan<T>(value,breaks[hi]) )){
             while( hi - lo >= 2){
                 newb = (hi+lo)/2;
-                if ( (value > breaks[newb]) || (value == breaks[newb])) lo = newb;
+                if ( (value >= breaks[newb]) ) lo = newb;
                 else hi = newb;
             }
         } else {
@@ -308,6 +308,7 @@ protected:
         {
             // T new_diff = *it - *(it -1);
             // std::cout<<  new_diff <<" " << diff << std::endl;
+            // Soft comparisson, high number of epsilons.
             if(!isequalthan<T, 25>(*it - *(it-1), diff)) return false;
         }
         return true;
