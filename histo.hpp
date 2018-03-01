@@ -187,6 +187,25 @@ struct Histo {
 
 /********* PUBLIC METHODS ***********/
     /**
+     * @brief print to input std::ostream breaks and counts
+     *
+     * @param os input ostream, std::cout, std::ofstream, etc.
+     */
+    void Print( std::ostream & os ){
+       for (unsigned long long i = 0; i < this->counts.size(); i++ ){
+          os << "[";
+          os << std::setw(4) << this->breaks[i] << "," <<
+                std::setw(4) << this->breaks[i+1];
+          if (i == counts.size() - 1)
+             os << "]";
+          else
+             os << ")";
+          os << std::setw(4) << " " << this->counts[i] << std::endl;
+          // double break_width = (this->breaks[i + 1] - this->breaks[i]) / 2.0;
+          // os << this->breaks[i] + break_width << " " << this->counts[i] << std::endl;
+       }
+    }
+    /**
      * @brief Return the index of @sa counts associated to the input value
      *
      * @param value Ranging from range.first to range.second
