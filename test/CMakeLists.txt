@@ -1,5 +1,4 @@
 set(GMOCK_HOME "$ENV{GMOCK_HOME}" CACHE PATH "Set this to gmock parent folder")
-SET( Boost_LIBRARIES ${Boost_LIBRARIES} PARENT_SCOPE )
 #FIND GMOCK
 find_path(GTEST_INCLUDE_DIR
          gtest/gtest.h
@@ -48,10 +47,3 @@ add_executable(test_histo.exe test_histo.cpp)
 target_link_libraries(test_histo.exe ${GMOCK_LIBRARY_MAIN} ${GTEST_LIBRARY_MAIN})
 target_link_libraries(test_histo.exe ${CMAKE_THREAD_LIBS_INIT})
 target_link_libraries(test_histo.exe histo-header)
-
-if(WITH_BOOST)
-add_executable(test_histo-boost.exe test_histo-boost.cpp )
-target_link_libraries(test_histo-boost.exe ${GMOCK_LIBRARY_MAIN} ${GTEST_LIBRARY_MAIN})
-target_link_libraries(test_histo-boost.exe ${CMAKE_THREAD_LIBS_INIT})
-target_link_libraries(test_histo-boost.exe histo-header-boost)
-endif()
