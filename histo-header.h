@@ -197,20 +197,20 @@ struct Histo {
      * @return Index of counts
      */
     unsigned long int IndexFromValue(const T &value){
-        std::vector<float>::iterator low = std::lower_bound(breaks.begin(), breaks.end(), value);
-        return low - breaks.begin();
-        //unsigned long int lo{0},hi{bins}, newb; // include right border in the last bin.
-        //if(value >= breaks[lo] && (value < breaks[hi] || histo::isequalthan<T>(value,breaks[hi]) )){
-        //    while( hi - lo >= 2){
-        //        newb = (hi+lo)/2;
-        //        if ( (value >= breaks[newb]) ) lo = newb;
-        //        else hi = newb;
-        //    }
-        //} else {
-        //    throw histo_error(" IndexFromValue: "+ std::to_string(value) +  " is out of bonds");
-        //}
-        //
-        //return lo;
+       // We could use this with a custom comparator:
+       // typename std::vector<T>::iterator low = std::lower_bound(breaks.begin(), breaks.end(), value);
+        unsigned long int lo{0},hi{bins}, newb; // include right border in the last bin.
+        if(value >= breaks[lo] && (value < breaks[hi] || histo::isequalthan<T>(value,breaks[hi]) )){
+           while( hi - lo >= 2){
+               newb = (hi+lo)/2;
+               if ( (value >= breaks[newb]) ) lo = newb;
+               else hi = newb;
+           }
+        } else {
+           throw histo_error(" IndexFromValue: "+ std::to_string(value) +  " is out of bonds");
+        }
+
+        return lo;
     };
 
     /** @brief Resize counts and reset value to zero. */
