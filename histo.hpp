@@ -1,5 +1,5 @@
 /**
-@file histo-header.h
+@file histo.hpp
 Histogram in C++11, 1D, simple header-only, inspired by R, calculate and optimize breaks automatically. Accepts different precissions.
 Copyright (C) 2015 Pablo Hernandez. github/phcerdan/histo-header.
 
@@ -17,15 +17,15 @@ You should have received a copy of the GNU Lesser General Public License
 along with this library; if not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef HISTO_HEADER_H_
-#define HISTO_HEADER_H_
+#ifndef HISTO_HPP_
+#define HISTO_HPP_
 #include <vector>
 #include <algorithm>
 #include <utility>
 #include <stdexcept>
 #include <cmath>
 #include <iostream>
-/** histo namespace in histo-header.h*/
+/** histo namespace in histo.h*/
 namespace histo {
 /** \defgroup breaks_methods breaks_methods */
 /**@{
