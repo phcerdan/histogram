@@ -19,6 +19,7 @@ TEST(HistoConstructor, withJustData){
     }
     EXPECT_EQ(5, sum_counts);
     h.Print(std::cout);
+    h.PrintCenters(std::cout);
 }
 
 TEST(HistoConstructor, withInputRange){

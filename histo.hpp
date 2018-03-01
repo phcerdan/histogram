@@ -205,6 +205,18 @@ struct Histo {
           // os << this->breaks[i] + break_width << " " << this->counts[i] << std::endl;
        }
     }
+
+    /**
+     * @brief print to input std::ostream center of bins and counts
+     *
+     * @param os input ostream, std::cout, std::ofstream, etc.
+     */
+    void PrintCenters( std::ostream & os ){
+       for (unsigned long long i = 0; i < this->counts.size(); i++ ){
+          double break_width = (this->breaks[i + 1] - this->breaks[i]) / 2.0;
+          os << this->breaks[i] + break_width << " " << this->counts[i] << std::endl;
+       }
+    }
     /**
      * @brief Return the index of @sa counts associated to the input value
      *
