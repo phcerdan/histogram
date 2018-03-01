@@ -25,10 +25,6 @@ along with this library; if not, see <http://www.gnu.org/licenses/>.
 #include <stdexcept>
 #include <cmath>
 #include <iostream>
-#ifdef WITH_BOOST
-#include <fstream>
-#include <boost/filesystem.hpp>
-#endif
 /** histo namespace in histo-header.h*/
 namespace histo {
 /** \defgroup breaks_methods breaks_methods */
@@ -134,7 +130,7 @@ struct Histo {
     /** Value of the breaks between bins, [low,...,upper].
      *  size.breaks = size.counts + 1. */
     std::vector<T> breaks;
-    /** breaks.size() */
+    /** breaks.size() - 1 */
     unsigned long int bins{0};
     /** int vector holding the counts for each breaks interval.*/
     std::vector<PRECI_INTEGER> counts;
@@ -261,11 +257,11 @@ struct Histo {
      * @param index of counts.
      * @param v value to set.
      */
-    void SetCount(const unsigned long int & index, const long double & v ){
-        if (v < 0 || v > max_integer_)
-            throw histo_error("SetCount to a negative value, or greater than allowed"
-                    " Index: " + std::to_string(index) + " Value: " + std::to_string(counts[index]) );
-        counts[index] = static_cast<PRECI_INTEGER>(v);
+    void SetCount(const unsigned long int & index, const PRECI_INTEGER & v ){
+        if (index > bins)
+            throw histo_error("Index is out of bounds in SetCount"
+                    " Index: " + std::to_string(index) + " Max Bins: " + std::to_string(bins) );
+        counts[index] = v;
     };
 
     /** @} */

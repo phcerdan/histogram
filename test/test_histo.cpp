@@ -100,8 +100,7 @@ TEST_F(HistoIntInputBreaks, ModifyCountsManuallyOrMethods){
     h.counts[0] = numeric_limits<unsigned long int>::max();
     EXPECT_THROW(h.Increase(0), histo_error) << h.counts[0];
     // SetCount throws errors.
-    EXPECT_THROW(h.SetCount(0, -2), histo_error) ;
-    EXPECT_THROW(h.SetCount(0, numeric_limits<long double>::max()), histo_error) ;
+    EXPECT_THROW(h.SetCount(100, 2), histo_error) ;
 }
 /**
  * @brief Test the constructor with just double data and Scott method to generate breaks.
