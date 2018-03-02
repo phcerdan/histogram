@@ -124,23 +124,19 @@ Histo<double> HistoDoubleScott::h(data, breaks_method::Scott);
 TEST_F(HistoDoubleScott, MembersAreCorrect) {
     EXPECT_FLOAT_EQ(1.0, h.range.first);
     EXPECT_FLOAT_EQ(5.0, h.range.second);
-    EXPECT_EQ(2, h.bins);
-    EXPECT_EQ(2, (int)h.counts.size());
-    vector<double> expected_breaks{1.0, 3.0,5.0};
+    EXPECT_EQ(1, h.bins);
+    EXPECT_EQ(1, (int)h.counts.size());
+    vector<double> expected_breaks{1.0, 5.0};
     EXPECT_TRUE(expected_breaks == h.breaks);
-    EXPECT_EQ(1, h.counts[0]);
-    EXPECT_EQ(2, h.counts[1]);
+    EXPECT_EQ(3, h.counts[0]);
+    // EXPECT_EQ(2, h.counts[1]);
 
 }
 TEST_F(HistoDoubleScott, IndexFromValueWorks) {
     ASSERT_THROW( h.IndexFromValue(1.0 - numeric_limits<double>::epsilon()), histo_error);
     EXPECT_EQ(0, h.IndexFromValue(1.0));
     EXPECT_EQ(0, h.IndexFromValue(h.breaks[1] - 2*numeric_limits<double>::epsilon())) << h.breaks[1];
-    EXPECT_EQ(1, h.IndexFromValue(h.breaks[1])) << h.breaks[1];
-    EXPECT_EQ(1, h.IndexFromValue(h.breaks[2]));
-    EXPECT_EQ(1, h.IndexFromValue(h.breaks[2] + numeric_limits<double>::epsilon()) );
-    EXPECT_EQ(1, h.IndexFromValue(h.breaks[2] + 2*numeric_limits<double>::epsilon()) );
-    ASSERT_THROW(h.IndexFromValue(h.breaks[2] + 3*numeric_limits<double>::epsilon()), histo_error);
+    EXPECT_EQ(0, h.IndexFromValue(h.breaks[1])) << h.breaks[1];
     ASSERT_THROW(h.IndexFromValue(10), histo_error);
 }
 /**
@@ -154,7 +150,8 @@ vector< long double> HistoLongDoubleInputRange::data{-0.8,0.1,0.9};
 Histo< long double > HistoLongDoubleInputRange::h(data,std::make_pair(-1.0, 1.0), breaks_method::Scott);
 
 TEST_F(HistoLongDoubleInputRange, BalanceBreaksWorks) {
-    std::vector<long double> balanced_breaks{-1.0,0.0,1.0};
+    std::vector<long double> balanced_breaks{-1.0,1.0};
+    EXPECT_EQ(balanced_breaks.size(), h.breaks.size());
     EXPECT_TRUE(balanced_breaks == h.breaks);
 }
 

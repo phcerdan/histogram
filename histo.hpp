@@ -99,7 +99,7 @@ TData variance_welford(const Container& xs)
 {
     unsigned long long N = 0;
     TData M = 0, S = 0, Mprev = 0;
-    for(auto x : xs) {
+    for(const auto & x : xs) {
         ++N;
         Mprev = M;
         M += (x - Mprev) / N;
@@ -158,9 +158,8 @@ struct Histo {
     Histo( const std::vector<TData> &data, histo::breaks_method method = Scott )
     {
         auto range_ptr = std::minmax_element(data.begin(), data.end());
-        range     = std::make_pair(
-              static_cast<PRECI>(*range_ptr.first),
-              static_cast<PRECI>(*range_ptr.second));
+        range     = std::make_pair( static_cast<PRECI>(*range_ptr.first),
+                                    static_cast<PRECI>(*range_ptr.second));
         breaks    = CalculateBreaks(data, range, method);
         bins      = static_cast<decltype(bins)>( breaks.size() - 1);
         ResetCounts();
@@ -390,8 +389,11 @@ protected:
     };
 
     bool BalanceBreaksWithRange(std::vector<PRECI> &input_breaks, std::pair<PRECI,PRECI> input_range){
-        if (!CheckBreaksAreEquidistant(input_breaks))
-            throw histo_error("BalanceBreaksWithRange cannot be applied in NON Equidistant breaks");
+        if (!CheckBreaksAreEquidistant(input_breaks)){
+           std::ostream_iterator<PRECI> out_it (std::cerr,", ");
+           std::copy ( input_breaks.begin(), input_breaks.end(), out_it );
+           throw histo_error("BalanceBreaksWithRange cannot be applied in NON Equidistant breaks");
+        }
 
         unsigned long int nbins = input_breaks.size() - 1;
         PRECI width                 = input_breaks[1] - input_breaks[0];
@@ -469,8 +471,8 @@ protected:
     template<typename TData>
     std::vector<PRECI>& ScottMethod(const std::vector<TData> &data,
           const std::pair<PRECI,PRECI> &rang){
-        PRECI sigma = variance_welford<PRECI,std::vector<TData>>(data);
-        PRECI width  = 3.5 * sqrt(sigma) / static_cast<PRECI>( data.size() );
+        PRECI sigma = variance_welford<PRECI>(data);
+        PRECI width  = 3.5 * sqrt(sigma) / std::cbrt(static_cast<PRECI>( data.size() ) );
         bins    = std::ceil( (rang.second - rang.first) / width);
         breaks.resize(bins + 1 );
         for (unsigned long int i = 0; i!=bins + 1; i++){
