@@ -65,16 +65,16 @@ TEST(HistoConstructor, withBreaksWithGenerator){
  */
 struct HistoIntInputBreaks : public ::testing::Test{
     static vector<int> data;
-    static Histo<int>   h;
+    static Histo<double>   h;
 };
 vector<int> HistoIntInputBreaks::data{-2,-1,0,1,2};
-Histo<int> HistoIntInputBreaks::h(data, histo::GenerateBreaksFromRangeAndBins<int>(-2,2,2));
+Histo<double> HistoIntInputBreaks::h(data, histo::GenerateBreaksFromRangeAndBins<double>(-2,2,2));
 
 TEST_F(HistoIntInputBreaks, MembersAreCorrect) {
     EXPECT_EQ(2, (int)h.bins);
-    std::vector<int> gen_breaks{-2,0,2};
+    std::vector<double> gen_breaks{-2,0,2};
     EXPECT_TRUE(gen_breaks == h.breaks) ;
-    EXPECT_TRUE(std::make_pair(-2,2) == h.range);
+    EXPECT_TRUE(std::make_pair(-2.0,2.0) == h.range);
     EXPECT_EQ(2, (int)h.counts[0]);
     EXPECT_EQ(3, (int)h.counts[1]);
 }
@@ -145,10 +145,10 @@ TEST_F(HistoDoubleScott, IndexFromValueWorks) {
  */
 struct HistoLongDoubleInputRange : public ::testing::Test{
     static vector<long double> data;
-    static Histo< long double, long double>   h;
+    static Histo< long double >   h;
 };
 vector< long double> HistoLongDoubleInputRange::data{-0.8,0.1,0.9};
-Histo< long double, long double> HistoLongDoubleInputRange::h(data,std::make_pair(-1.0, 1.0), breaks_method::Scott);
+Histo< long double > HistoLongDoubleInputRange::h(data,std::make_pair(-1.0, 1.0), breaks_method::Scott);
 
 TEST_F(HistoLongDoubleInputRange, BalanceBreaksWorks) {
     std::vector<long double> balanced_breaks{-1.0,0.0,1.0};
@@ -168,7 +168,7 @@ TEST(HistoLotsOfDataInputRange, BalanceBreaksWorks) {
         x = cosined(generator);
     }
     std::pair<long double, long double> input_pair = std::make_pair(-1.0, 1.0);
-    Histo< long double, long double, unsigned long long> h(data, input_pair, breaks_method::Scott);
+    Histo< long double, unsigned long long> h(data, input_pair, breaks_method::Scott);
     EXPECT_FLOAT_EQ(input_pair.first , h.breaks[0]);
     EXPECT_FLOAT_EQ(input_pair.second , h.breaks[h.bins]);
 }

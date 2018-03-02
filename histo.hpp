@@ -43,18 +43,18 @@ enum breaks_method {
  * @brief Help functions to manually creating breaks from input range
  * (low, upper) and desired number of bins.
  *
- * @tparam T Input data type.
- * @tparam PRECI It should be equal to T, except when T is int.
+ * @tparam PRECI is the type of the breaks, should be greater or as precise as T.
  * @param low first value of breaks.
  * @param upper last value of breaks.
  * @param bins number of divisions.
  *
  * @return breaks vector with the frontier values of each bin.
  */
-template<typename T, typename PRECI = double>
-std::vector<T> GenerateBreaksFromRangeAndBins(const T& low, const T& upper, const unsigned long int &bins){
-    std::vector<T> breaks(bins+1);
-    T width = (upper - low)/ static_cast<PRECI>(bins);
+template<typename PRECI = double>
+std::vector<PRECI> GenerateBreaksFromRangeAndBins(
+      const PRECI& low, const PRECI& upper, const unsigned long int &bins){
+    std::vector<PRECI> breaks(bins+1);
+    PRECI width = (upper - low)/ static_cast<PRECI>(bins);
     for (unsigned long int i = 0; i!=bins+1; i++){
         breaks[i] = low + i*width;
     }
@@ -62,11 +62,12 @@ std::vector<T> GenerateBreaksFromRangeAndBins(const T& low, const T& upper, cons
 };
 
 /** @brief @sa GenerateBreaksFromRangeAndBins() */
-template<typename T, typename PRECI = double>
-std::vector<T> GenerateBreaksFromRangeAndBins(const std::pair<T,T> &range_low_upper, const unsigned long int &bins){
-   T low   = range_low_upper.first;
-   T upper = range_low_upper.second;
-   return GenerateBreaksFromRangeAndBins<T, PRECI>(low, upper, bins);
+template<typename PRECI = double>
+std::vector<PRECI> GenerateBreaksFromRangeAndBins(
+      const std::pair<PRECI,PRECI> &range_low_upper, const unsigned long int &bins){
+   auto low   = range_low_upper.first;
+   auto upper = range_low_upper.second;
+   return GenerateBreaksFromRangeAndBins<PRECI>(low, upper, bins);
 };
 /** @} */
 
@@ -80,17 +81,17 @@ public:
 
 /** @brief Variance calculation from Container with data.
  *
- * @tparam T Type of data.
+ * @tparam TData Type of data.
  * @tparam Container std:: type containing data (vector, array,...)
  * @param xs The container.
  *
- * @return Variance of type T.
+ * @return Variance of type TData
  */
-template <typename T, typename Container>
-T variance_welford(const Container& xs)
+template <typename TData, typename Container>
+TData variance_welford(const Container& xs)
 {
     unsigned long long N = 0;
-    T M = 0, S = 0, Mprev = 0;
+    TData M = 0, S = 0, Mprev = 0;
     for(auto x : xs) {
         ++N;
         Mprev = M;
@@ -101,14 +102,14 @@ T variance_welford(const Container& xs)
 }
 
 /** Precise comparison: equal than.
-* @param v1 type T, variable 1 to compare
-* @param v2 type T, variable 2 to compare
+* @param v1 type TData, variable 1 to compare
+* @param v2 type TData, variable 2 to compare
 * @return bool
 */
-template<typename T, unsigned int N = 1>
-bool isequalthan(const T& v1, const T& v2)
+template<typename TData, unsigned int N = 1>
+bool isequalthan(const TData& v1, const TData& v2)
 {
-    return std::abs(v1-v2)<= N * std::numeric_limits<T>::epsilon();
+    return std::abs(v1-v2)<= N * std::numeric_limits<TData>::epsilon();
 }
 
 
@@ -117,23 +118,25 @@ bool isequalthan(const T& v1, const T& v2)
  * Simple, no dependancies, header-only.
  * It accepts different data values and precission.
  *
- * @tparam T Input data type.
+//  * @tparam T Input data type.
  * @tparam PRECI It should be equal to T, except when T is int.
  * @tparam PRECI_INTEGER int type for counts data member.
  */
-template <typename T, typename PRECI = double, typename PRECI_INTEGER = unsigned long int>
+template <typename PRECI = double, typename PRECI_INTEGER = unsigned long int>
 struct Histo {
 
 /************* DATA *****************/
     /** Low and upper limit for breaks. */
-    std::pair<T,T> range;
+    std::pair<PRECI,PRECI> range;
     /** Value of the breaks between bins, [low,...,upper].
      *  size.breaks = size.counts + 1. */
-    std::vector<T> breaks;
+    std::vector<PRECI> breaks;
     /** breaks.size() - 1 */
     unsigned long int bins{0};
     /** int vector holding the counts for each breaks interval.*/
     std::vector<PRECI_INTEGER> counts;
+    /** name/description of the histogram */
+    std::string name;
 
 /********** CONSTRUCTORS ************/
     Histo() = default;
@@ -144,10 +147,13 @@ struct Histo {
      * @param data
      * @param method Method to calculate breaks from @sa histo::breaks_method
      */
-    Histo( const std::vector<T> &data, histo::breaks_method method = Scott )
+    template<typename TData>
+    Histo( const std::vector<TData> &data, histo::breaks_method method = Scott )
     {
         auto range_ptr = std::minmax_element(data.begin(), data.end());
-        range     = std::make_pair(*range_ptr.first, *range_ptr.second);
+        range     = std::make_pair(
+              static_cast<PRECI>(*range_ptr.first),
+              static_cast<PRECI>(*range_ptr.second));
         breaks    = CalculateBreaks(data, range, method);
         bins      = static_cast<decltype(bins)>( breaks.size() - 1);
         ResetCounts();
@@ -160,7 +166,9 @@ struct Histo {
      * @param input_range low and upper value
      * @param method Method to calculate breaks from @sa histo::breaks_method
      */
-    Histo(const std::vector<T> &data, const std::pair<T,T> &input_range, histo::breaks_method method = Scott ){
+    template<typename TData>
+    Histo(const std::vector<TData> &data, const std::pair<PRECI,PRECI> &input_range,
+          histo::breaks_method method = Scott ){
         range     = input_range;
         breaks    = CalculateBreaks(data, range, method);
         bins      = static_cast<decltype(bins)>( breaks.size() - 1 );
@@ -175,7 +183,8 @@ struct Histo {
      * @param data
      * @param input_breaks
      */
-    Histo(const std::vector<T> &data, const std::vector<T> &input_breaks) {
+    template<typename TData>
+    Histo(const std::vector<TData> &data, const std::vector<PRECI> &input_breaks) {
         breaks = input_breaks;
         if(!CheckIfMonotonicallyIncreasing(breaks)) throw
             histo_error("input_breaks are not monotocally increasing");
@@ -223,11 +232,13 @@ struct Histo {
      * @param value Ranging from range.first to range.second
      * @return Index of counts
      */
-    unsigned long int IndexFromValue(const T &value){
+    template<typename TData>
+    unsigned long int IndexFromValue(const TData &value){
        // We could use this with a custom comparator:
        // typename std::vector<T>::iterator low = std::lower_bound(breaks.begin(), breaks.end(), value);
         unsigned long int lo{0},hi{bins}, newb; // include right border in the last bin.
-        if(value >= breaks[lo] && (value < breaks[hi] || histo::isequalthan<T>(value,breaks[hi]) )){
+        if(value >= breaks[lo] && (value < breaks[hi] ||
+                 histo::isequalthan<TData>(value,breaks[hi]) )){
            while( hi - lo >= 2){
                newb = (hi+lo)/2;
                if ( (value >= breaks[newb]) ) lo = newb;
@@ -255,7 +266,8 @@ struct Histo {
      *
      * @return Reference to the data member @sa counts
      */
-    std::vector<PRECI_INTEGER>& FillCounts(const std::vector<T> &data){
+    template<typename TData>
+    std::vector<PRECI_INTEGER>& FillCounts(const std::vector<TData> &data){
         for (auto &v : data){
             counts[IndexFromValue(v)] ++ ;
         }
@@ -300,8 +312,8 @@ protected:
     /** Max integer for the current PRECI_INTEGER type*/
     PRECI_INTEGER max_integer_{std::numeric_limits<PRECI_INTEGER>::max()};
 
-    bool CheckIfMonotonicallyIncreasing(const std::vector<T> &input_breaks){
-        T prev_value = input_breaks[0];
+    bool CheckIfMonotonicallyIncreasing(const std::vector<PRECI> &input_breaks){
+        auto prev_value = input_breaks[0];
         for( auto it = input_breaks.begin() + 1, it_end = input_breaks.end();
                 it!=it_end; it++)
         {
@@ -320,7 +332,9 @@ protected:
      *
      * @return Reference to data member: breaks.
      */
-    std::vector<T>& CalculateBreaks(const std::vector<T> & data, const std::pair<T,T> & rang, histo::breaks_method method ){
+    template<typename TData>
+    std::vector<PRECI>& CalculateBreaks(const std::vector<TData> & data,
+          const std::pair<PRECI,PRECI> & rang, histo::breaks_method method ){
         switch(method) {
         case Scott:
              return ScottMethod(data,rang);
@@ -330,31 +344,31 @@ protected:
         }
     };
 
-    bool CheckBreaksAreEquidistant(const std::vector<T> & input_breaks){
-        T diff = input_breaks[1] - input_breaks[0];
+    bool CheckBreaksAreEquidistant(const std::vector<PRECI> & input_breaks){
+        PRECI diff = input_breaks[1] - input_breaks[0];
         for( auto it = input_breaks.begin() + 1, it_end = input_breaks.end();
                 it!=it_end; it++)
         {
-            // T new_diff = *it - *(it -1);
+            // auto new_diff = *it - *(it -1);
             // std::cout<<  new_diff <<" " << diff << std::endl;
             // Soft comparisson, high number of epsilons.
-            if(!isequalthan<T, 25>(*it - *(it-1), diff)) return false;
+            if(!isequalthan<PRECI, 25>(*it - *(it-1), diff)) return false;
         }
         return true;
     };
 
-    bool BalanceBreaksWithRange(std::vector<T> &input_breaks, std::pair<T,T> input_range){
+    bool BalanceBreaksWithRange(std::vector<PRECI> &input_breaks, std::pair<PRECI,PRECI> input_range){
         if (!CheckBreaksAreEquidistant(input_breaks))
             throw histo_error("BalanceBreaksWithRange cannot be applied in NON Equidistant breaks");
 
         unsigned long int nbins = input_breaks.size() - 1;
-        T width                 = input_breaks[1] - input_breaks[0];
+        PRECI width                 = input_breaks[1] - input_breaks[0];
         // diff_low is > 0 when it does not reach range, and < 0 when it goes beyond.
-        T diff_low              = input_breaks[0] - input_range.first;
+        PRECI diff_low              = input_breaks[0] - input_range.first;
         // diff_upper is < 0 when it does not reach range, and >0 when it goes beyond.
-        T diff_upper            = input_breaks[nbins] - input_range.second;
-        bool diff_low_isZero   = isequalthan<T>(diff_low, 0);
-        bool diff_upper_isZero = isequalthan<T>(diff_upper, 0);
+        PRECI diff_upper            = input_breaks[nbins] - input_range.second;
+        bool diff_low_isZero   = isequalthan<PRECI>(diff_low, 0);
+        bool diff_upper_isZero = isequalthan<PRECI>(diff_upper, 0);
 
         if (diff_low_isZero && diff_upper_isZero) return false;
 
@@ -366,13 +380,13 @@ protected:
         // Check if it is better to remove the last break than to add more.
         // Biased to add more (1 is no bias).
         double bias_to_add_bin = 0.8;
-        T diff_upper_before = input_breaks[nbins - 1] - input_range.second;
+        PRECI diff_upper_before = input_breaks[nbins - 1] - input_range.second;
         if ((diff_upper_before < 0) && (diff_upper > 0 )
                 && ( fabs(diff_upper_before) < bias_to_add_bin * fabs(diff_upper) ))
         {
             nbins--;
             input_breaks.pop_back();
-            T width_to_expand = diff_upper_before/nbins;
+            PRECI width_to_expand = diff_upper_before/nbins;
             ShrinkOrExpandBreaks(input_breaks, -width_to_expand);
         }
         CheckAndUpdateDiff(diff_upper, diff_upper_isZero, input_breaks[nbins], input_range.second);
@@ -384,26 +398,27 @@ protected:
             input_breaks.push_back(input_range.first + nbins * width);
             diff_upper  = input_breaks[nbins] - input_range.second;
         }
-        diff_upper_isZero = isequalthan<T>(diff_upper, 0);
+        diff_upper_isZero = isequalthan<PRECI>(diff_upper, 0);
         if (diff_upper_isZero) return true;
 
         // If diff_upper > 0.
         // Shrink the width of the breaks, and calculate the new positions.
-        T width_to_shrink = diff_upper / nbins;
+        PRECI width_to_shrink = diff_upper / nbins;
         ShrinkOrExpandBreaks(input_breaks, - width_to_shrink);
         return true;
     };
 
-    void CheckAndUpdateDiff(T & diff, bool & diff_isZero, const T & rhs, const T & lhs){
+    void CheckAndUpdateDiff(PRECI & diff, bool & diff_isZero, const PRECI & rhs,
+          const PRECI & lhs){
         diff = rhs - lhs;
-        diff_isZero = isequalthan<T>(diff, 0);
+        diff_isZero = isequalthan<PRECI>(diff, 0);
     };
-    void ShiftBreaks(std::vector<T> &input_breaks, const T & d){
+    void ShiftBreaks(std::vector<PRECI> &input_breaks, const PRECI & d){
         for (auto &v : input_breaks){
             v = v + d;
         }
     };
-    void ShrinkOrExpandBreaks(std::vector<T> &input_breaks, const T & d){
+    void ShrinkOrExpandBreaks(std::vector<PRECI> &input_breaks, const PRECI & d){
         unsigned long int i{0} ;
         for (auto &v : input_breaks){
             v = v + i*d;
@@ -419,8 +434,10 @@ protected:
      *
      * @return Reference to data member: breaks.
      */
-    std::vector<T>& ScottMethod(const std::vector<T> &data, const std::pair<T,T> &rang){
-        PRECI sigma = variance_welford<PRECI,std::vector<T>>(data);
+    template<typename TData>
+    std::vector<PRECI>& ScottMethod(const std::vector<TData> &data,
+          const std::pair<PRECI,PRECI> &rang){
+        PRECI sigma = variance_welford<PRECI,std::vector<TData>>(data);
         PRECI width  = 3.5 * sqrt(sigma) / static_cast<PRECI>( data.size() );
         bins    = std::ceil( (rang.second - rang.first) / width);
         breaks.resize(bins + 1 );
