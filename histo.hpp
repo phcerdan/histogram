@@ -43,6 +43,13 @@ enum breaks_method {
  * @brief Help functions to manually creating breaks from input range
  * (low, upper) and desired number of bins.
  *
+ * You can use this function to force breaks in the place you want.
+ * It is specially useful if you want to store integers.
+ * For example, image your data is unsigned, [0,...,10]
+ * You can choose breaks in a way that the middle of the bins are unsigned:
+ * GenerateBreaksFromRangeAndBins( min - 0.5, max + 0.5, max + 1)
+ * If you use PrintCenter, you will the expected histo.
+ *
  * @tparam PRECI is the type of the breaks, should be greater or as precise as T.
  * @param low first value of breaks.
  * @param upper last value of breaks.
@@ -238,7 +245,7 @@ struct Histo {
        // typename std::vector<T>::iterator low = std::lower_bound(breaks.begin(), breaks.end(), value);
         unsigned long int lo{0},hi{bins}, newb; // include right border in the last bin.
         if(value >= breaks[lo] && (value < breaks[hi] ||
-                 histo::isequalthan<TData>(value,breaks[hi]) )){
+                 histo::isequalthan<PRECI>(value,breaks[hi]) )){
            while( hi - lo >= 2){
                newb = (hi+lo)/2;
                if ( (value >= breaks[newb]) ) lo = newb;
@@ -276,11 +283,13 @@ struct Histo {
 
     /** \defgroup CountsManipulation Counts Safe Manipulation */
     /** @{
-     * @brief Increase count by one, checking if exceeds max_integer_.
+     * @brief Increase count by one, checking if exceeds
+     * std::numeric_limits<PRECI_INTEGER>::max().
+     *
      * @param index of counts
      */
     void Increase(const unsigned long int & index){
-        if (counts[index] == max_integer_)
+        if (counts[index] == std::numeric_limits<PRECI_INTEGER>::max())
             throw histo_error("Increase has exceded PRECI_INTEGER."
                     " Index: " + std::to_string(index) + " Value: " + std::to_string(counts[index]) );
         counts[index]++;
@@ -296,7 +305,7 @@ struct Histo {
         counts[index]--;
     };
 
-    /** @brief Set count value. Checks for negative or greater than max_integer_.
+    /** @brief Set count value. Checks for index being out of bounds.
      * @param index of counts.
      * @param v value to set.
      */
@@ -309,9 +318,6 @@ struct Histo {
 
     /** @} */
 protected:
-    /** Max integer for the current PRECI_INTEGER type*/
-    PRECI_INTEGER max_integer_{std::numeric_limits<PRECI_INTEGER>::max()};
-
     bool CheckIfMonotonicallyIncreasing(const std::vector<PRECI> &input_breaks){
         auto prev_value = input_breaks[0];
         for( auto it = input_breaks.begin() + 1, it_end = input_breaks.end();
