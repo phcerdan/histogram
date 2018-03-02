@@ -207,7 +207,7 @@ struct Histo {
      *
      * @param os input ostream, std::cout, std::ofstream, etc.
      */
-    void Print( std::ostream & os ){
+    void PrintBreaksAndCounts( std::ostream & os ){
        for (unsigned long long i = 0; i < this->counts.size(); i++ ){
           os << "[";
           os << std::setw(4) << this->breaks[i] << "," <<
@@ -217,8 +217,6 @@ struct Histo {
           else
              os << ")";
           os << std::setw(4) << " " << this->counts[i] << std::endl;
-          // double break_width = (this->breaks[i + 1] - this->breaks[i]) / 2.0;
-          // os << this->breaks[i] + break_width << " " << this->counts[i] << std::endl;
        }
     }
 
@@ -227,11 +225,39 @@ struct Histo {
      *
      * @param os input ostream, std::cout, std::ofstream, etc.
      */
-    void PrintCenters( std::ostream & os ){
+    void PrintCentersAndCounts( std::ostream & os ){
        for (unsigned long long i = 0; i < this->counts.size(); i++ ){
           double break_width = (this->breaks[i + 1] - this->breaks[i]) / 2.0;
           os << this->breaks[i] + break_width << " " << this->counts[i] << std::endl;
        }
+    }
+
+    void PrintCenters( std::ostream & os ){
+       for (size_t i = 0; i < this->counts.size(); i++ ){
+          double break_width = (this->breaks[i + 1] - this->breaks[i]) / 2.0;
+          os << this->breaks[i] + break_width;
+          if (i != this->counts.size() - 1)
+             os << " ";
+       }
+       os << std::endl;
+    }
+
+    void PrintBreaks( std::ostream & os ){
+       for (size_t i = 0; i < this->breaks.size(); i++ ){
+          os << this->breaks[i];
+          if (i != this->breaks.size() - 1)
+             os << " ";
+       }
+       os << std::endl;
+    }
+
+    void PrintCounts( std::ostream & os ){
+       for (size_t i = 0; i < this->counts.size(); i++ ){
+          os << this->counts[i];
+          if (i != this->counts.size() - 1)
+             os << " ";
+       }
+       os << std::endl;
     }
     /**
      * @brief Return the index of @sa counts associated to the input value

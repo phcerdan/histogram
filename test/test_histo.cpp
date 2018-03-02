@@ -18,7 +18,13 @@ TEST(HistoConstructor, withJustData){
         sum_counts +=c;
     }
     EXPECT_EQ(5, sum_counts);
-    h.Print(std::cout);
+    h.PrintBreaksAndCounts(std::cout);
+    h.PrintCentersAndCounts(std::cout);
+    std::cout << "breaks: ";
+    h.PrintBreaks(std::cout);
+    std::cout << "counts: ";
+    h.PrintCounts(std::cout);
+    std::cout << "centers: ";
     h.PrintCenters(std::cout);
 }
 
@@ -105,9 +111,6 @@ TEST_F(HistoIntInputBreaks, ModifyCountsManuallyOrMethods){
     EXPECT_THROW(h.SetCount(100, 2), histo_error) ;
 }
 
-TEST_F(HistoIntInputBreaks, PrintData){
-    h.Print(std::cout);
-}
 /**
  * @brief Test the constructor with just double data and Scott method to generate breaks.
  */
