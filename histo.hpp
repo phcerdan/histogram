@@ -207,15 +207,17 @@ struct Histo {
      * @param os input ostream, std::cout, std::ofstream, etc.
      */
     void PrintBreaksAndCounts( std::ostream & os ){
+       os.setf(std::ios_base::fixed, std::ios_base::floatfield);
+       os.precision(9);
        for (unsigned long long i = 0; i < this->counts.size(); i++ ){
           os << "[";
-          os << std::setw(4) << this->breaks[i] << "," <<
-                std::setw(4) << this->breaks[i+1];
+          os << std::setw(18) << this->breaks[i] << "," <<
+                std::setw(18) << this->breaks[i+1];
           if (i == counts.size() - 1)
              os << "]";
           else
              os << ")";
-          os << std::setw(4) << " " << this->counts[i] << std::endl;
+          os << " " << std::setw(18) << this->counts[i] << std::endl;
        }
     }
 
@@ -225,16 +227,21 @@ struct Histo {
      * @param os input ostream, std::cout, std::ofstream, etc.
      */
     void PrintCentersAndCounts( std::ostream & os ){
+       os.setf(std::ios_base::fixed, std::ios_base::floatfield);
+       os.precision(9);
        for (unsigned long long i = 0; i < this->counts.size(); i++ ){
           double break_width = (this->breaks[i + 1] - this->breaks[i]) / 2.0;
-          os << this->breaks[i] + break_width << " " << this->counts[i] << std::endl;
+          os << std::setw(18) << this->breaks[i] + break_width <<
+             " " << std::setw(18) << this->counts[i] << std::endl;
        }
     }
 
     void PrintCenters( std::ostream & os ){
+       os.setf(std::ios_base::fixed, std::ios_base::floatfield);
+       os.precision(9);
        for (size_t i = 0; i < this->counts.size(); i++ ){
           double break_width = (this->breaks[i + 1] - this->breaks[i]) / 2.0;
-          os << this->breaks[i] + break_width;
+          os << std::setw(18) << this->breaks[i] + break_width;
           if (i != this->counts.size() - 1)
              os << " ";
        }
@@ -243,7 +250,7 @@ struct Histo {
 
     void PrintBreaks( std::ostream & os ){
        for (size_t i = 0; i < this->breaks.size(); i++ ){
-          os << this->breaks[i];
+          os << std::setw(18) << std::setprecision(9) << this->breaks[i];
           if (i != this->breaks.size() - 1)
              os << " ";
        }
@@ -252,7 +259,7 @@ struct Histo {
 
     void PrintCounts( std::ostream & os ){
        for (size_t i = 0; i < this->counts.size(); i++ ){
-          os << this->counts[i];
+          os << std::setw(18) << this->counts[i];
           if (i != this->counts.size() - 1)
              os << " ";
        }
@@ -472,6 +479,7 @@ protected:
     std::vector<PRECI>& ScottMethod(const std::vector<TData> &data,
           const std::pair<PRECI,PRECI> &rang){
         PRECI sigma = variance_welford<PRECI>(data);
+        // cbrt is cubic root
         PRECI width  = 3.5 * sqrt(sigma) / std::cbrt(static_cast<PRECI>( data.size() ) );
         bins    = std::ceil( (rang.second - rang.first) / width);
         breaks.resize(bins + 1 );
