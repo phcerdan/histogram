@@ -390,7 +390,7 @@ protected:
             // auto new_diff = *it - *(it -1);
             // std::cout<<  new_diff <<" " << diff << std::endl;
             // Soft comparisson, high number of epsilons.
-            if(!isequalthan<PRECI, 25>(*it - *(it-1), diff)) return false;
+            if(!isequalthan<PRECI, 100>(*it - *(it-1), diff)) return false;
         }
         return true;
     };
