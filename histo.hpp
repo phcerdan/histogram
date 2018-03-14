@@ -25,6 +25,7 @@ along with this library; if not, see <http://www.gnu.org/licenses/>.
 #include <stdexcept>
 #include <cmath>
 #include <iostream>
+#include <iomanip> // std::setw
 /** histo namespace in histo.h*/
 namespace histo {
 /** \defgroup breaks_methods breaks_methods */
