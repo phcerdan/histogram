@@ -216,7 +216,7 @@ struct Histo {
      *
      * @param os input ostream, std::cout, std::ofstream, etc.
      */
-    void PrintBreaksAndCounts( std::ostream & os ){
+    void PrintBreaksAndCounts( std::ostream & os ) const {
        os.setf(std::ios_base::fixed, std::ios_base::floatfield);
        os.precision(9);
        for (unsigned long long i = 0; i < this->counts.size(); i++ ){
@@ -236,7 +236,7 @@ struct Histo {
      *
      * @param os input ostream, std::cout, std::ofstream, etc.
      */
-    void PrintCentersAndCounts( std::ostream & os ){
+    void PrintCentersAndCounts( std::ostream & os ) const {
        os.setf(std::ios_base::fixed, std::ios_base::floatfield);
        os.precision(9);
        auto centers = this->ComputeBinCenters();
@@ -246,7 +246,7 @@ struct Histo {
        }
     }
 
-    void PrintCenters( std::ostream & os ){
+    void PrintCenters( std::ostream & os ) const {
        os.setf(std::ios_base::fixed, std::ios_base::floatfield);
        os.precision(9);
        auto centers = this->ComputeBinCenters();
@@ -258,7 +258,7 @@ struct Histo {
        os << std::endl;
     }
 
-    void PrintBreaks( std::ostream & os ){
+    void PrintBreaks( std::ostream & os ) const {
        for (size_t i = 0; i < this->breaks.size(); i++ ){
           os << std::setw(18) << std::setprecision(9) << this->breaks[i];
           if (i != this->breaks.size() - 1)
@@ -267,7 +267,7 @@ struct Histo {
        os << std::endl;
     }
 
-    void PrintCounts( std::ostream & os ){
+    void PrintCounts( std::ostream & os ) const {
        for (size_t i = 0; i < this->counts.size(); i++ ){
           os << std::setw(18) << this->counts[i];
           if (i != this->counts.size() - 1)
@@ -282,7 +282,7 @@ struct Histo {
      * @return Index of counts
      */
     template<typename TData>
-    unsigned long int IndexFromValue(const TData &value){
+    unsigned long int IndexFromValue(const TData &value) const {
        // We could use this with a custom comparator:
        // typename std::vector<T>::iterator low = std::lower_bound(breaks.begin(), breaks.end(), value);
         unsigned long int lo{0},hi{bins}, newb; // include right border in the last bin.
@@ -360,7 +360,7 @@ struct Histo {
 
     /** @} */
 protected:
-    bool CheckIfMonotonicallyIncreasing(const std::vector<PRECI> &input_breaks){
+    bool CheckIfMonotonicallyIncreasing(const std::vector<PRECI> &input_breaks) const {
         auto prev_value = input_breaks[0];
         for( auto it = input_breaks.begin() + 1, it_end = input_breaks.end();
                 it!=it_end; it++)
@@ -392,7 +392,7 @@ protected:
         }
     };
 
-    bool CheckBreaksAreEquidistant(const std::vector<PRECI> & input_breaks){
+    bool CheckBreaksAreEquidistant(const std::vector<PRECI> & input_breaks) const {
         PRECI diff = input_breaks[1] - input_breaks[0];
         for( auto it = input_breaks.begin() + 1, it_end = input_breaks.end();
                 it!=it_end; it++)
@@ -460,16 +460,16 @@ protected:
     };
 
     void CheckAndUpdateDiff(PRECI & diff, bool & diff_isZero, const PRECI & rhs,
-          const PRECI & lhs){
+          const PRECI & lhs) const {
         diff = rhs - lhs;
         diff_isZero = isequalthan<PRECI>(diff, 0);
     };
-    void ShiftBreaks(std::vector<PRECI> &input_breaks, const PRECI & d){
+    void ShiftBreaks(std::vector<PRECI> &input_breaks, const PRECI & d) const {
         for (auto &v : input_breaks){
             v = v + d;
         }
     };
-    void ShrinkOrExpandBreaks(std::vector<PRECI> &input_breaks, const PRECI & d){
+    void ShrinkOrExpandBreaks(std::vector<PRECI> &input_breaks, const PRECI & d) const {
         unsigned long int i{0} ;
         for (auto &v : input_breaks){
             v = v + i*d;
@@ -491,23 +491,23 @@ protected:
         PRECI sigma = variance_welford<PRECI>(data);
         // cbrt is cubic root
         PRECI width  = 3.5 * sqrt(sigma) / std::cbrt(static_cast<PRECI>( data.size() ) );
-        bins    = std::ceil( (rang.second - rang.first) / width);
-        breaks.resize(bins + 1 );
+        this->bins    = std::ceil( (rang.second - rang.first) / width);
+        this->breaks.resize(bins + 1 );
         for (unsigned long int i = 0; i!=bins + 1; i++){
-            breaks[i] = range.first + i*width;
+            this->breaks[i] = this->range.first + i*width;
         }
         // std::cout << "Non balanced breaks" << std::endl;
         // std::cout<< "bins is: " << bins <<" width is: "<< width << " sigma is: " << sigma  <<std::endl;
         // std::cout << "first break" << breaks[0] << " Second Break" << breaks[bins]  << std::endl;
         // std::for_each(std::begin(breaks), std::end(breaks), [](const T& v) {std::cout<<v <<std::endl;});
 
-        BalanceBreaksWithRange(breaks, range);
-        bins = breaks.size() - 1;
+        BalanceBreaksWithRange(this->breaks, this->range);
+        this->bins = this->breaks.size() - 1;
         // std::cout << "Balanced new breaks" << std::endl;
         // std::cout<< "bins is: " << bins <<" width is: "<< breaks[1]-breaks[0]  <<std::endl;
         // std::cout << "first break" << breaks[0] << " Second Break" << breaks[bins]  << std::endl;
         // std::for_each(std::begin(breaks), std::end(breaks), [](const T& v) {std::cout<<v <<std::endl;});
-        return breaks;
+        return this->breaks;
     };
 };
 
