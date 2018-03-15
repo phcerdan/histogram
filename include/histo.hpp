@@ -26,6 +26,7 @@ along with this library; if not, see <http://www.gnu.org/licenses/>.
 #include <cmath>
 #include <iostream>
 #include <iomanip> // std::setw
+#include <iterator> //iostream_iterator
 /** histo namespace in histo.h*/
 namespace histo {
 /** \defgroup breaks_methods breaks_methods */
