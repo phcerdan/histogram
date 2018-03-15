@@ -61,14 +61,17 @@ vtkSmartPointer<vtkChartXY> chart_from_histogram(
     * @param input histo
     */
 template<typename THisto>
-void visualize_histo(const THisto & input_histo, vtkIdType chart_type = vtkChart::LINE )
+void visualize_histo(const THisto & input_histo,
+        vtkIdType chart_type = vtkChart::LINE,
+        size_t size_x = 640,
+        size_t size_y = 480)
 {
     auto chart = chart_from_histogram(input_histo, chart_type);
     // Set up the view
     auto view = vtkSmartPointer<vtkContextView>::New();
     view->GetScene()->AddItem(chart);
     view->GetRenderer()->SetBackground(1.0, 1.0, 1.0);
-    view->GetRenderWindow()->SetSize( 640, 480 );
+    view->GetRenderWindow()->SetSize( size_x, size_y );
     view->GetInteractor()->Initialize();
     view->GetInteractor()->Start();
 }
