@@ -69,7 +69,6 @@ std::vector<PRECI> GenerateBreaksFromRangeAndBins(
     }
     return breaks;
 };
-
 /** @brief @sa GenerateBreaksFromRangeAndBins() */
 template<typename PRECI = double>
 std::vector<PRECI> GenerateBreaksFromRangeAndBins(
@@ -77,6 +76,41 @@ std::vector<PRECI> GenerateBreaksFromRangeAndBins(
    auto low   = range_low_upper.first;
    auto upper = range_low_upper.second;
    return GenerateBreaksFromRangeAndBins<PRECI>(low, upper, bins);
+};
+
+/**
+ *
+ * breaks with a fixed width covering [low, upper + width] range
+ *
+ * Note that breaks.back() can be greater than upper.
+ * upper <= breaks.back() < upper + width
+ * @tparam PRECI precision for breaks.
+ * @param low lower range: breaks[0] = low
+ * @param upper upper range: upper <= breaks.back() < upper + width
+ * @param width between breaks --fixed--.
+ *
+ * @return breaks with a fixed width covering [low, upper + width] range
+ */
+template<typename PRECI = double>
+std::vector<PRECI> GenerateBreaksFromRangeAndWidth(
+      const PRECI& low, const PRECI& upper, const PRECI & width){
+   std::vector<PRECI> breaks;
+   PRECI upper_limit = upper + width;
+   PRECI br = low;
+   while(br < upper_limit){
+      breaks.push_back(br);
+      br += width;
+   }
+   return breaks;
+};
+
+/** @brief @sa GenerateBreaksFromRangeAndWidth() */
+template<typename PRECI = double>
+std::vector<PRECI> GenerateBreaksFromRangeAndWidth(
+      const std::pair<PRECI,PRECI> &range_low_upper, const PRECI &width){
+   auto low   = range_low_upper.first;
+   auto upper = range_low_upper.second;
+   return GenerateBreaksFromRangeAndWidth<PRECI>(low, upper, width);
 };
 /** @} */
 
