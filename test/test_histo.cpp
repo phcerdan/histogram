@@ -172,3 +172,30 @@ TEST(HistoLotsOfDataInputRange, BalanceBreaksWorks) {
     EXPECT_FLOAT_EQ(input_pair.first , h.breaks[0]);
     EXPECT_FLOAT_EQ(input_pair.second , h.breaks[h.bins]);
 }
+
+TEST(GenerateBreaksFromRangeAndWidth, withSameUpper) {
+    double low = 0.0;
+    double upper = 4.0;
+    double width = 1.0;
+    auto breaks = histo::GenerateBreaksFromRangeAndWidth<double>(low, upper, width);
+    EXPECT_EQ(breaks.size(), 5);
+    EXPECT_FLOAT_EQ(breaks[0], low);
+    EXPECT_FLOAT_EQ(breaks[1], 1.0);
+    EXPECT_FLOAT_EQ(breaks[2], 2.0);
+    EXPECT_FLOAT_EQ(breaks[3], 3.0);
+    EXPECT_FLOAT_EQ(breaks[4], 4.0);
+}
+
+TEST(GenerateBreaksFromRangeAndWidth, withGreaterUpper) {
+    double low = 0.0;
+    double upper = 4.5;
+    double width = 1.0;
+    auto breaks = histo::GenerateBreaksFromRangeAndWidth<double>(low, upper, width);
+    EXPECT_EQ(breaks.size(), 6);
+    EXPECT_FLOAT_EQ(breaks[0], low);
+    EXPECT_FLOAT_EQ(breaks[1], 1.0);
+    EXPECT_FLOAT_EQ(breaks[2], 2.0);
+    EXPECT_FLOAT_EQ(breaks[3], 3.0);
+    EXPECT_FLOAT_EQ(breaks[4], 4.0);
+    EXPECT_FLOAT_EQ(breaks[5], 5.0);
+}
