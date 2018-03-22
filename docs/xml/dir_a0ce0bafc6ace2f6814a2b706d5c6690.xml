@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="dir_a0ce0bafc6ace2f6814a2b706d5c6690" kind="dir">
+    <compoundname>src/docs/sphinx/_build/html/_static</compoundname>
+    <innerfile refid="doctools_8js">doctools.js</innerfile>
+    <innerfile refid="sphinx_2__build_2html_2__static_2jquery_8js">jquery.js</innerfile>
+    <innerfile refid="searchtools_8js">searchtools.js</innerfile>
+    <innerfile refid="sidebar_8js">sidebar.js</innerfile>
+    <innerfile refid="underscore_8js">underscore.js</innerfile>
+    <innerfile refid="websupport_8js">websupport.js</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="src/docs/sphinx/_build/html/_static/"/>
+  </compounddef>
+</doxygen>

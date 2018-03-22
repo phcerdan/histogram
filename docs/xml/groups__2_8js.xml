@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="groups__2_8js" kind="file" language="C++">
+    <compoundname>groups_2.js</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">var<sp/>searchData=</highlight></codeline>
+<codeline><highlight class="normal">[</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>[&apos;generate_20breaks_20from_20data_2c_20range_2c_20and_2for_20bins_2e&apos;,[&apos;Generate<sp/>breaks<sp/>from<sp/>data,<sp/>range,<sp/>and/or<sp/>bins.&apos;,[&apos;../group___generate_breaks.html&apos;,1,&apos;&apos;]]]</highlight></codeline>
+<codeline><highlight class="normal">];</highlight></codeline>
+    </programlisting>
+    <location file="src/docs/html/search/groups_2.js"/>
+  </compounddef>
+</doxygen>

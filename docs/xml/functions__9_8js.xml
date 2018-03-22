@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="functions__9_8js" kind="file" language="C++">
+    <compoundname>functions_9.js</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">var<sp/>searchData=</highlight></codeline>
+<codeline><highlight class="normal">[</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>[&apos;scottmethod&apos;,[&apos;ScottMethod&apos;,[&apos;../structhisto_1_1_histo.html#afb254f6a501586b63048810c33d889b8&apos;,1,&apos;histo::Histo&apos;]]],</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>[&apos;setcount&apos;,[&apos;SetCount&apos;,[&apos;../group___counts_manipulation.html#gacb5ae1981d575408b39fbf965d9aa9ab&apos;,1,&apos;histo::Histo&apos;]]]</highlight></codeline>
+<codeline><highlight class="normal">];</highlight></codeline>
+    </programlisting>
+    <location file="src/docs/html/search/functions_9.js"/>
+  </compounddef>
+</doxygen>

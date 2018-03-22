@@ -1,14 +1,15 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.6.1">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
   <compounddef id="group__breaks__methods" kind="group">
     <compoundname>breaks_methods</compoundname>
     <title>breaks_methods</title>
       <sectiondef kind="enum">
-      <memberdef kind="enum" id="group__breaks__methods_1ga132dcd8240c4bb268ed00b1e4fa3ebab" prot="public" static="no">
+      <memberdef kind="enum" id="group__breaks__methods_1ga132dcd8240c4bb268ed00b1e4fa3ebab" prot="public" static="no" strong="no">
+        <type></type>
         <name>breaks_method</name>
         <enumvalue id="group__breaks__methods_1gga132dcd8240c4bb268ed00b1e4fa3ebabae05f2a05e4a163aac88bf64dc92cb36e" prot="public">
           <name>Scott</name>
-          <initializer> 0</initializer>
+          <initializer>= 0</initializer>
           <briefdescription>
           </briefdescription>
           <detaileddescription>
@@ -20,7 +21,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/phc/repository_local/histo-header/src/histo-header.h" line="35" bodyfile="/home/phc/repository_local/histo-header/src/histo-header.h" bodystart="35" bodyend="38"/>
+        <location file="src/include/histo.hpp" line="37" column="1" bodyfile="src/include/histo.hpp" bodystart="37" bodyend="40"/>
       </memberdef>
       </sectiondef>
     <briefdescription>

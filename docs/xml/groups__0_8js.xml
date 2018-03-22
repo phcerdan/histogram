@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="groups__0_8js" kind="file" language="C++">
+    <compoundname>groups_0.js</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">var<sp/>searchData=</highlight></codeline>
+<codeline><highlight class="normal">[</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>[&apos;breaks_5fmethods&apos;,[&apos;breaks_methods&apos;,[&apos;../group__breaks__methods.html&apos;,1,&apos;&apos;]]]</highlight></codeline>
+<codeline><highlight class="normal">];</highlight></codeline>
+    </programlisting>
+    <location file="src/docs/html/search/groups_0.js"/>
+  </compounddef>
+</doxygen>

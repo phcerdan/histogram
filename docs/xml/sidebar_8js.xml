@@ -1,0 +1,164 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="sidebar_8js" kind="file" language="C++">
+    <compoundname>sidebar.js</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">/*</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/>sidebar.js</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/>~~~~~~~~~~</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/>This<sp/>script<sp/>makes<sp/>the<sp/>Sphinx<sp/>sidebar<sp/>collapsible.</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/>.sphinxsidebar<sp/>contains<sp/>.sphinxsidebarwrapper.<sp/><sp/>This<sp/>script<sp/>adds</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/>in<sp/>.sphixsidebar,<sp/>after<sp/>.sphinxsidebarwrapper,<sp/>the<sp/>#sidebarbutton</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/>used<sp/>to<sp/>collapse<sp/>and<sp/>expand<sp/>the<sp/>sidebar.</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/>When<sp/>the<sp/>sidebar<sp/>is<sp/>collapsed<sp/>the<sp/>.sphinxsidebarwrapper<sp/>is<sp/>hidden</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/>and<sp/>the<sp/>width<sp/>of<sp/>the<sp/>sidebar<sp/>and<sp/>the<sp/>margin-left<sp/>of<sp/>the<sp/>document</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/>are<sp/>decreased.<sp/>When<sp/>the<sp/>sidebar<sp/>is<sp/>expanded<sp/>the<sp/>opposite<sp/>happens.</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/>This<sp/>script<sp/>saves<sp/>a<sp/>per-browser/per-session<sp/>cookie<sp/>used<sp/>to</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/>remember<sp/>the<sp/>position<sp/>of<sp/>the<sp/>sidebar<sp/>among<sp/>the<sp/>pages.</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/>Once<sp/>the<sp/>browser<sp/>is<sp/>closed<sp/>the<sp/>cookie<sp/>is<sp/>deleted<sp/>and<sp/>the<sp/>position</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/>reset<sp/>to<sp/>the<sp/>default<sp/>(expanded).</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/>:copyright:<sp/>Copyright<sp/>2007-2011<sp/>by<sp/>the<sp/>Sphinx<sp/>team,<sp/>see<sp/>AUTHORS.</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/>:license:<sp/>BSD,<sp/>see<sp/>LICENSE<sp/>for<sp/>details.</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">$(function()<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>//<sp/>global<sp/>elements<sp/>used<sp/>by<sp/>the<sp/>functions.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>//<sp/>the<sp/>&apos;sidebarbutton&apos;<sp/>element<sp/>is<sp/>defined<sp/>as<sp/>global<sp/>after<sp/>its</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>//<sp/>creation,<sp/>in<sp/>the<sp/>add_sidebar_button<sp/>function</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>var<sp/>bodywrapper<sp/>=<sp/>$(&apos;.bodywrapper&apos;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>var<sp/>sidebar<sp/>=<sp/>$(&apos;.sphinxsidebar&apos;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>var<sp/>sidebarwrapper<sp/>=<sp/>$(&apos;.sphinxsidebarwrapper&apos;);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/>//<sp/>for<sp/>some<sp/>reason,<sp/>the<sp/>document<sp/>has<sp/>no<sp/>sidebar;<sp/>do<sp/>not<sp/>run<sp/>into<sp/>errors</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>if<sp/>(!sidebar.length)<sp/>return;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/>//<sp/>original<sp/>margin-left<sp/>of<sp/>the<sp/>bodywrapper<sp/>and<sp/>width<sp/>of<sp/>the<sp/>sidebar</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>//<sp/>with<sp/>the<sp/>sidebar<sp/>expanded</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>var<sp/>bw_margin_expanded<sp/>=<sp/>bodywrapper.css(&apos;margin-left&apos;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>var<sp/>ssb_width_expanded<sp/>=<sp/>sidebar.width();</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/>//<sp/>margin-left<sp/>of<sp/>the<sp/>bodywrapper<sp/>and<sp/>width<sp/>of<sp/>the<sp/>sidebar</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>//<sp/>with<sp/>the<sp/>sidebar<sp/>collapsed</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>var<sp/>bw_margin_collapsed<sp/>=<sp/>&apos;.8em&apos;;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>var<sp/>ssb_width_collapsed<sp/>=<sp/>&apos;.8em&apos;;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/>//<sp/>colors<sp/>used<sp/>by<sp/>the<sp/>current<sp/>theme</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>var<sp/>dark_color<sp/>=<sp/>$(&apos;.related&apos;).css(&apos;background-color&apos;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>var<sp/>light_color<sp/>=<sp/>$(&apos;.document&apos;).css(&apos;background-color&apos;);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/>function<sp/>sidebar_is_collapsed()<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>sidebarwrapper.is(&apos;:not(:visible)&apos;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/>function<sp/>toggle_sidebar()<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(sidebar_is_collapsed())</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>expand_sidebar();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>else</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>collapse_sidebar();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/>function<sp/>collapse_sidebar()<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>sidebarwrapper.hide();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>sidebar.css(&apos;width&apos;,<sp/>ssb_width_collapsed);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>bodywrapper.css(&apos;margin-left&apos;,<sp/>bw_margin_collapsed);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>sidebarbutton.css({</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&apos;margin-left&apos;:<sp/>&apos;0&apos;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&apos;height&apos;:<sp/>bodywrapper.height()</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>});</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>sidebarbutton.find(&apos;span&apos;).text(&apos;»&apos;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>sidebarbutton.attr(&apos;title&apos;,<sp/>_(&apos;Expand<sp/>sidebar&apos;));</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>document.cookie<sp/>=<sp/>&apos;sidebar=collapsed&apos;;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/>function<sp/>expand_sidebar()<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>bodywrapper.css(&apos;margin-left&apos;,<sp/>bw_margin_expanded);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>sidebar.css(&apos;width&apos;,<sp/>ssb_width_expanded);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>sidebarwrapper.show();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>sidebarbutton.css({</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&apos;margin-left&apos;:<sp/>ssb_width_expanded-12,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&apos;height&apos;:<sp/>bodywrapper.height()</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>});</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>sidebarbutton.find(&apos;span&apos;).text(&apos;«&apos;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>sidebarbutton.attr(&apos;title&apos;,<sp/>_(&apos;Collapse<sp/>sidebar&apos;));</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>document.cookie<sp/>=<sp/>&apos;sidebar=expanded&apos;;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/>function<sp/>add_sidebar_button()<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>sidebarwrapper.css({</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&apos;float&apos;:<sp/>&apos;left&apos;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&apos;margin-right&apos;:<sp/>&apos;0&apos;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&apos;width&apos;:<sp/>ssb_width_expanded<sp/>-<sp/>28</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>});</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>create<sp/>the<sp/>button</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>sidebar.append(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&apos;&lt;div<sp/>id=&quot;sidebarbutton&quot;&gt;&lt;span&gt;&amp;laquo;&lt;/span&gt;&lt;/div&gt;&apos;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>var<sp/>sidebarbutton<sp/>=<sp/>$(&apos;#sidebarbutton&apos;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>light_color<sp/>=<sp/>sidebarbutton.css(&apos;background-color&apos;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>find<sp/>the<sp/>height<sp/>of<sp/>the<sp/>viewport<sp/>to<sp/>center<sp/>the<sp/>&apos;&lt;&lt;&apos;<sp/>in<sp/>the<sp/>page</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>var<sp/>viewport_height;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(window.innerHeight)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>viewport_height<sp/>=<sp/>window.innerHeight;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>else</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>viewport_height<sp/>=<sp/>$(window).height();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>sidebarbutton.find(&apos;span&apos;).css({</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&apos;display&apos;:<sp/>&apos;block&apos;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&apos;margin-top&apos;:<sp/>(viewport_height<sp/>-<sp/>sidebar.position().top<sp/>-<sp/>20)<sp/>/<sp/>2</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>});</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>sidebarbutton.click(toggle_sidebar);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>sidebarbutton.attr(&apos;title&apos;,<sp/>_(&apos;Collapse<sp/>sidebar&apos;));</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>sidebarbutton.css({</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&apos;color&apos;:<sp/>&apos;#FFFFFF&apos;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&apos;border-left&apos;:<sp/>&apos;1px<sp/>solid<sp/>&apos;<sp/>+<sp/>dark_color,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&apos;font-size&apos;:<sp/>&apos;1.2em&apos;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&apos;cursor&apos;:<sp/>&apos;pointer&apos;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&apos;height&apos;:<sp/>bodywrapper.height(),</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&apos;padding-top&apos;:<sp/>&apos;1px&apos;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&apos;margin-left&apos;:<sp/>ssb_width_expanded<sp/>-<sp/>12</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>});</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>sidebarbutton.hover(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>function<sp/>()<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>$(this).css(&apos;background-color&apos;,<sp/>dark_color);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>},</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>function<sp/>()<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>$(this).css(&apos;background-color&apos;,<sp/>light_color);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/>function<sp/>set_position_from_cookie()<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(!document.cookie)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>return;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>var<sp/>items<sp/>=<sp/>document.cookie.split(&apos;;&apos;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>for(var<sp/>k=0;<sp/>k&lt;items.length;<sp/>k++)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>var<sp/>key_val<sp/>=<sp/>items[k].split(&apos;=&apos;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>var<sp/>key<sp/>=<sp/>key_val[0];</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(key<sp/>==<sp/>&apos;sidebar&apos;)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>var<sp/>value<sp/>=<sp/>key_val[1];</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>((value<sp/>==<sp/>&apos;collapsed&apos;)<sp/>&amp;&amp;<sp/>(!sidebar_is_collapsed()))</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>collapse_sidebar();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>else<sp/>if<sp/>((value<sp/>==<sp/>&apos;expanded&apos;)<sp/>&amp;&amp;<sp/>(sidebar_is_collapsed()))</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>expand_sidebar();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/>add_sidebar_button();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>var<sp/>sidebarbutton<sp/>=<sp/>$(&apos;#sidebarbutton&apos;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>set_position_from_cookie();</highlight></codeline>
+<codeline><highlight class="normal">});</highlight></codeline>
+    </programlisting>
+    <location file="src/docs/sphinx/_build/html/_static/sidebar.js"/>
+  </compounddef>
+</doxygen>

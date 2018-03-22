@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="dir_120ed4da3e3217b1e7fc0b4f48568e79" kind="dir">
+    <compoundname>src/test</compoundname>
+    <innerfile refid="test__histo_8cpp">test_histo.cpp</innerfile>
+    <innerfile refid="test__visualize__histo_8cpp">test_visualize_histo.cpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="src/test/"/>
+  </compounddef>
+</doxygen>

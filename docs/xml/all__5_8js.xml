@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="all__5_8js" kind="file" language="C++">
+    <compoundname>all_5.js</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">var<sp/>searchData=</highlight></codeline>
+<codeline><highlight class="normal">[</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>[&apos;histo&apos;,[&apos;Histo&apos;,[&apos;../structhisto_1_1_histo.html&apos;,1,&apos;histo::Histo&amp;lt;<sp/>PRECI,<sp/>PRECI_INTEGER<sp/>&amp;gt;&apos;],[&apos;../namespacehisto.html&apos;,1,&apos;histo&apos;],[&apos;../structhisto_1_1_histo.html#afe514992fddc1f5c125a4b4404f652ee&apos;,1,&apos;histo::Histo::Histo(const<sp/>std::vector&amp;lt;<sp/>TData<sp/>&amp;gt;<sp/>&amp;amp;data,<sp/>histo::breaks_method<sp/>method=Scott)&apos;],[&apos;../structhisto_1_1_histo.html#ab8316b6aee95725b5e626bf9df417e25&apos;,1,&apos;histo::Histo::Histo(const<sp/>std::vector&amp;lt;<sp/>TData<sp/>&amp;gt;<sp/>&amp;amp;data,<sp/>const<sp/>std::pair&amp;lt;<sp/>PRECI,<sp/>PRECI<sp/>&amp;gt;<sp/>&amp;amp;input_range,<sp/>histo::breaks_method<sp/>method=Scott)&apos;],[&apos;../structhisto_1_1_histo.html#a7ca35fc27bc1ae74cddfc3312f1d4870&apos;,1,&apos;histo::Histo::Histo(const<sp/>std::vector&amp;lt;<sp/>TData<sp/>&amp;gt;<sp/>&amp;amp;data,<sp/>const<sp/>std::vector&amp;lt;<sp/>PRECI<sp/>&amp;gt;<sp/>&amp;amp;input_breaks)&apos;]]],</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>[&apos;histo_2ehpp&apos;,[&apos;histo.hpp&apos;,[&apos;../histo_8hpp.html&apos;,1,&apos;&apos;]]],</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>[&apos;histo_3c_20double_20_3e&apos;,[&apos;Histo&amp;lt;<sp/>double<sp/>&amp;gt;&apos;,[&apos;../structhisto_1_1_histo.html&apos;,1,&apos;histo&apos;]]],</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>[&apos;histo_3c_20long_20double_20_3e&apos;,[&apos;Histo&amp;lt;<sp/>long<sp/>double<sp/>&amp;gt;&apos;,[&apos;../structhisto_1_1_histo.html&apos;,1,&apos;histo&apos;]]],</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>[&apos;histo_5ferror&apos;,[&apos;histo_error&apos;,[&apos;../classhisto_1_1histo__error.html&apos;,1,&apos;histo::histo_error&apos;],[&apos;../classhisto_1_1histo__error.html#ae4a9c52c6c031ea03210e9e585778827&apos;,1,&apos;histo::histo_error::histo_error()&apos;]]],</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>[&apos;histodoublescott&apos;,[&apos;HistoDoubleScott&apos;,[&apos;../struct_histo_double_scott.html&apos;,1,&apos;&apos;]]],</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>[&apos;histointinputbreaks&apos;,[&apos;HistoIntInputBreaks&apos;,[&apos;../struct_histo_int_input_breaks.html&apos;,1,&apos;&apos;]]],</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>[&apos;histolongdoubleinputrange&apos;,[&apos;HistoLongDoubleInputRange&apos;,[&apos;../struct_histo_long_double_input_range.html&apos;,1,&apos;&apos;]]],</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>[&apos;histogram&apos;,[&apos;Histogram&apos;,[&apos;../md_src__r_e_a_d_m_e.html&apos;,1,&apos;&apos;]]]</highlight></codeline>
+<codeline><highlight class="normal">];</highlight></codeline>
+    </programlisting>
+    <location file="src/docs/html/search/all_5.js"/>
+  </compounddef>
+</doxygen>

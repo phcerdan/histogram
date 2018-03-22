@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="functions__4_8js" kind="file" language="C++">
+    <compoundname>functions_4.js</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">var<sp/>searchData=</highlight></codeline>
+<codeline><highlight class="normal">[</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>[&apos;histo&apos;,[&apos;Histo&apos;,[&apos;../structhisto_1_1_histo.html#afe514992fddc1f5c125a4b4404f652ee&apos;,1,&apos;histo::Histo::Histo(const<sp/>std::vector&amp;lt;<sp/>TData<sp/>&amp;gt;<sp/>&amp;amp;data,<sp/>histo::breaks_method<sp/>method=Scott)&apos;],[&apos;../structhisto_1_1_histo.html#ab8316b6aee95725b5e626bf9df417e25&apos;,1,&apos;histo::Histo::Histo(const<sp/>std::vector&amp;lt;<sp/>TData<sp/>&amp;gt;<sp/>&amp;amp;data,<sp/>const<sp/>std::pair&amp;lt;<sp/>PRECI,<sp/>PRECI<sp/>&amp;gt;<sp/>&amp;amp;input_range,<sp/>histo::breaks_method<sp/>method=Scott)&apos;],[&apos;../structhisto_1_1_histo.html#a7ca35fc27bc1ae74cddfc3312f1d4870&apos;,1,&apos;histo::Histo::Histo(const<sp/>std::vector&amp;lt;<sp/>TData<sp/>&amp;gt;<sp/>&amp;amp;data,<sp/>const<sp/>std::vector&amp;lt;<sp/>PRECI<sp/>&amp;gt;<sp/>&amp;amp;input_breaks)&apos;]]],</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>[&apos;histo_5ferror&apos;,[&apos;histo_error&apos;,[&apos;../classhisto_1_1histo__error.html#ae4a9c52c6c031ea03210e9e585778827&apos;,1,&apos;histo::histo_error&apos;]]]</highlight></codeline>
+<codeline><highlight class="normal">];</highlight></codeline>
+    </programlisting>
+    <location file="src/docs/html/search/functions_4.js"/>
+  </compounddef>
+</doxygen>

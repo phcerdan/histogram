@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="main_8js" kind="file" language="C++">
+    <compoundname>main.js</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">console.log(&apos;This<sp/>would<sp/>be<sp/>the<sp/>main<sp/>JS<sp/>file.&apos;);</highlight></codeline>
+    </programlisting>
+    <location file="src/javascripts/main.js"/>
+  </compounddef>
+</doxygen>

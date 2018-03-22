@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="scale_8fix_8js" kind="file" language="C++">
+    <compoundname>scale.fix.js</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">var<sp/>metas<sp/>=<sp/>document.getElementsByTagName(&apos;meta&apos;);</highlight></codeline>
+<codeline><highlight class="normal">var<sp/>i;</highlight></codeline>
+<codeline><highlight class="normal">if<sp/>(navigator.userAgent.match(/iPhone/i))<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>for<sp/>(i=0;<sp/>i&lt;metas.length;<sp/>i++)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(metas[i].name<sp/>==<sp/>&quot;viewport&quot;)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>metas[i].content<sp/>=<sp/>&quot;width=device-width,<sp/>minimum-scale=1.0,<sp/>maximum-scale=1.0&quot;;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>document.addEventListener(&quot;gesturestart&quot;,<sp/>gestureStart,<sp/>false);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">function<sp/>gestureStart()<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>for<sp/>(i=0;<sp/>i&lt;metas.length;<sp/>i++)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(metas[i].name<sp/>==<sp/>&quot;viewport&quot;)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>metas[i].content<sp/>=<sp/>&quot;width=device-width,<sp/>minimum-scale=0.25,<sp/>maximum-scale=1.6&quot;;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="src/javascripts/scale.fix.js"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="searchdata_8js" kind="file" language="C++">
+    <compoundname>searchdata.js</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">var<sp/>indexSectionsWithContent<sp/>=</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>0:<sp/>&quot;bcdfghinprsv&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>1:<sp/>&quot;h&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>2:<sp/>&quot;h&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>3:<sp/>&quot;h&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>4:<sp/>&quot;cdfghinprsv&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>5:<sp/>&quot;bcnr&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>6:<sp/>&quot;b&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>7:<sp/>&quot;s&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>8:<sp/>&quot;bcg&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>9:<sp/>&quot;h&quot;</highlight></codeline>
+<codeline><highlight class="normal">};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">var<sp/>indexSectionNames<sp/>=</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>0:<sp/>&quot;all&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>1:<sp/>&quot;classes&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>2:<sp/>&quot;namespaces&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>3:<sp/>&quot;files&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>4:<sp/>&quot;functions&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>5:<sp/>&quot;variables&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>6:<sp/>&quot;enums&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>7:<sp/>&quot;enumvalues&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>8:<sp/>&quot;groups&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>9:<sp/>&quot;pages&quot;</highlight></codeline>
+<codeline><highlight class="normal">};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">var<sp/>indexSectionLabels<sp/>=</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>0:<sp/>&quot;All&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>1:<sp/>&quot;Classes&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>2:<sp/>&quot;Namespaces&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>3:<sp/>&quot;Files&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>4:<sp/>&quot;Functions&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>5:<sp/>&quot;Variables&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>6:<sp/>&quot;Enumerations&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>7:<sp/>&quot;Enumerator&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>8:<sp/>&quot;Modules&quot;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>9:<sp/>&quot;Pages&quot;</highlight></codeline>
+<codeline><highlight class="normal">};</highlight></codeline>
+<codeline></codeline>
+    </programlisting>
+    <location file="src/docs/html/search/searchdata.js"/>
+  </compounddef>
+</doxygen>

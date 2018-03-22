@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="dir_e438fc6e171a6690f0a9f310c24f9a60" kind="dir">
+    <compoundname>src/docs/html</compoundname>
+    <innerdir refid="dir_656887fb7280eb2384cfeb7ed74e9b43">src/docs/html/search</innerdir>
+    <innerfile refid="dynsections_8js">dynsections.js</innerfile>
+    <innerfile refid="html_2jquery_8js">jquery.js</innerfile>
+    <innerfile refid="menu_8js">menu.js</innerfile>
+    <innerfile refid="menudata_8js">menudata.js</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="src/docs/html/"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,284 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="namespaceconf" kind="namespace" language="Python">
+    <compoundname>conf</compoundname>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="conf_8py_1ae475e080536acb271a0a0efe56c3ba42" prot="public" static="no" mutable="no">
+        <type>list</type>
+        <definition>list conf.extensions</definition>
+        <argsstring></argsstring>
+        <name>extensions</name>
+        <initializer>=  [&apos;sphinx.ext.autodoc&apos;, &apos;sphinx.ext.viewcode&apos;, &apos;breathe&apos;]</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/docs/sphinx/conf.py" line="29" column="1" bodyfile="src/docs/sphinx/conf.py" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="conf_8py_1acb47d2c0c2904fa7d36b63142533f383" prot="public" static="no" mutable="no">
+        <type>dictionary</type>
+        <definition>dictionary conf.breathe_projects</definition>
+        <argsstring></argsstring>
+        <name>breathe_projects</name>
+        <initializer>=  { &quot;histo-header&quot;: &quot;../xml/&quot; }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/docs/sphinx/conf.py" line="31" column="1" bodyfile="src/docs/sphinx/conf.py" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="conf_8py_1ae850ae634911b713e036b43894fdd525" prot="public" static="no" mutable="no">
+        <type>list</type>
+        <definition>list conf.templates_path</definition>
+        <argsstring></argsstring>
+        <name>templates_path</name>
+        <initializer>=  [&apos;_templates&apos;]</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/docs/sphinx/conf.py" line="33" column="1" bodyfile="src/docs/sphinx/conf.py" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="conf_8py_1a10af2a769eb3bd3322e874f677e435b1" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string conf.source_suffix</definition>
+        <argsstring></argsstring>
+        <name>source_suffix</name>
+        <initializer>=  &apos;.rst&apos;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/docs/sphinx/conf.py" line="36" column="1" bodyfile="src/docs/sphinx/conf.py" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="conf_8py_1a6fcd7e5236f355b1e1a55f9d95988810" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string conf.master_doc</definition>
+        <argsstring></argsstring>
+        <name>master_doc</name>
+        <initializer>=  &apos;index&apos;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/docs/sphinx/conf.py" line="42" column="1" bodyfile="src/docs/sphinx/conf.py" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="conf_8py_1a45653c983098153b78e33600e39230eb" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string conf.project</definition>
+        <argsstring></argsstring>
+        <name>project</name>
+        <initializer>=  u&apos;histo-header&apos;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/docs/sphinx/conf.py" line="45" column="1" bodyfile="src/docs/sphinx/conf.py" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="conf_8py_1a33fa97cf51dcb25970fbf53f10159589" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string conf.copyright</definition>
+        <argsstring></argsstring>
+        <name>copyright</name>
+        <initializer>=  u&apos;2015, Pablo Hernandez&apos;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/docs/sphinx/conf.py" line="46" column="1" bodyfile="src/docs/sphinx/conf.py" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="conf_8py_1ade15c5b54093b64d7c428ec19ca5b1cb" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string conf.version</definition>
+        <argsstring></argsstring>
+        <name>version</name>
+        <initializer>=  &apos;0.1&apos;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/docs/sphinx/conf.py" line="53" column="1" bodyfile="src/docs/sphinx/conf.py" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="conf_8py_1a325dc746d8bf05c54d26351c35a21d90" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string conf.release</definition>
+        <argsstring></argsstring>
+        <name>release</name>
+        <initializer>=  &apos;0.1&apos;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/docs/sphinx/conf.py" line="55" column="1" bodyfile="src/docs/sphinx/conf.py" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="conf_8py_1a7ad48fb6f3e9b129c02346ea0d3527c1" prot="public" static="no" mutable="no">
+        <type>list</type>
+        <definition>list conf.exclude_patterns</definition>
+        <argsstring></argsstring>
+        <name>exclude_patterns</name>
+        <initializer>=  [&apos;_build&apos;]</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/docs/sphinx/conf.py" line="69" column="1" bodyfile="src/docs/sphinx/conf.py" bodystart="69" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="conf_8py_1a641130e096b26cba8a5d63ed38684de7" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string conf.pygments_style</definition>
+        <argsstring></argsstring>
+        <name>pygments_style</name>
+        <initializer>=  &apos;sphinx&apos;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/docs/sphinx/conf.py" line="86" column="1" bodyfile="src/docs/sphinx/conf.py" bodystart="86" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="conf_8py_1a6c3bfcc1a44546c1c75ce20f55bd0fd6" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string conf.html_theme</definition>
+        <argsstring></argsstring>
+        <name>html_theme</name>
+        <initializer>=  &apos;default&apos;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/docs/sphinx/conf.py" line="96" column="1" bodyfile="src/docs/sphinx/conf.py" bodystart="96" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="conf_8py_1af4fb5d8851ccaade135c2668dd3ced41" prot="public" static="no" mutable="no">
+        <type>list</type>
+        <definition>list conf.html_static_path</definition>
+        <argsstring></argsstring>
+        <name>html_static_path</name>
+        <initializer>=  [&apos;_static&apos;]</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/docs/sphinx/conf.py" line="125" column="1" bodyfile="src/docs/sphinx/conf.py" bodystart="125" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="conf_8py_1aab7fddb2766ce3c430d8246fbfdbc7b1" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string conf.htmlhelp_basename</definition>
+        <argsstring></argsstring>
+        <name>htmlhelp_basename</name>
+        <initializer>=  &apos;histo-headerdoc&apos;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/docs/sphinx/conf.py" line="169" column="1" bodyfile="src/docs/sphinx/conf.py" bodystart="169" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="conf_8py_1a33619d385ad23765ac6ebb58bf82d43d" prot="public" static="no" mutable="no">
+        <type>dictionary</type>
+        <definition>dictionary conf.latex_elements</definition>
+        <argsstring></argsstring>
+        <name>latex_elements</name>
+        <initializer>=  {
+# The paper size (&apos;letterpaper&apos; or &apos;a4paper&apos;).
+#&apos;papersize&apos;: &apos;letterpaper&apos;,
+
+# The font size (&apos;10pt&apos;, &apos;11pt&apos; or &apos;12pt&apos;).
+#&apos;pointsize&apos;: &apos;10pt&apos;,
+
+# Additional stuff for the LaTeX preamble.
+#&apos;preamble&apos;: &apos;&apos;,
+}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/docs/sphinx/conf.py" line="174" column="1" bodyfile="src/docs/sphinx/conf.py" bodystart="174" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="conf_8py_1a7812f49970f3de0d15dd7b9b9a10e3a1" prot="public" static="no" mutable="no">
+        <type>list</type>
+        <definition>list conf.latex_documents</definition>
+        <argsstring></argsstring>
+        <name>latex_documents</name>
+        <initializer>=  [
+  (&apos;index&apos;, &apos;histo-header.tex&apos;, u&apos;histo-header Documentation&apos;,
+   u&apos;Pablo Hernandez&apos;, &apos;manual&apos;),
+]</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/docs/sphinx/conf.py" line="187" column="1" bodyfile="src/docs/sphinx/conf.py" bodystart="187" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="conf_8py_1a85efc5fee48a26fa2d651f6eeb38fc2b" prot="public" static="no" mutable="no">
+        <type>list</type>
+        <definition>list conf.man_pages</definition>
+        <argsstring></argsstring>
+        <name>man_pages</name>
+        <initializer>=  [
+    (&apos;index&apos;, &apos;histo-header&apos;, u&apos;histo-header Documentation&apos;,
+     [u&apos;Pablo Hernandez&apos;], 1)
+]</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/docs/sphinx/conf.py" line="217" column="1" bodyfile="src/docs/sphinx/conf.py" bodystart="217" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="conf_8py_1a54b0faed214ac92017d5689efbb10672" prot="public" static="no" mutable="no">
+        <type>list</type>
+        <definition>list conf.texinfo_documents</definition>
+        <argsstring></argsstring>
+        <name>texinfo_documents</name>
+        <initializer>=  [
+  (&apos;index&apos;, &apos;histo-header&apos;, u&apos;histo-header Documentation&apos;,
+   u&apos;Pablo Hernandez&apos;, &apos;histo-header&apos;, &apos;One line description of project.&apos;,
+   &apos;Miscellaneous&apos;),
+]</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/docs/sphinx/conf.py" line="231" column="1" bodyfile="src/docs/sphinx/conf.py" bodystart="231" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="src/docs/sphinx/conf.py" line="1" column="1"/>
+  </compounddef>
+</doxygen>

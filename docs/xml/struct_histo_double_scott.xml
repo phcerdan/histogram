@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="struct_histo_double_scott" kind="struct" language="C++" prot="public">
+    <compoundname>HistoDoubleScott</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">Test</basecompoundref>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="struct_histo_double_scott_1aabfbc45db6cccfc61a487aea369b6055" prot="public" static="yes" mutable="no">
+        <type>vector&lt; double &gt;</type>
+        <definition>vector&lt; double &gt; HistoDoubleScott::data</definition>
+        <argsstring></argsstring>
+        <name>data</name>
+        <initializer>{1.0,3.0,5.0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/test/test_histo.cpp" line="118" column="1" bodyfile="src/test/test_histo.cpp" bodystart="118" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_histo_double_scott_1a6a3721be1eb2e1d7779f040e5c3beec2" prot="public" static="yes" mutable="no">
+        <type><ref refid="structhisto_1_1_histo" kindref="compound">Histo</ref>&lt; double &gt;</type>
+        <definition>Histo&lt; double &gt; HistoDoubleScott::h</definition>
+        <argsstring></argsstring>
+        <name>h</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/test/test_histo.cpp" line="119" column="1" bodyfile="src/test/test_histo.cpp" bodystart="119" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Test the constructor with just double data and Scott method to generate breaks. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="6">
+        <label>HistoDoubleScott</label>
+        <link refid="struct_histo_double_scott"/>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>Test</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="8">
+        <label>HistoDoubleScott</label>
+        <link refid="struct_histo_double_scott"/>
+        <childnode refid="9" relation="public-inheritance">
+        </childnode>
+        <childnode refid="10" relation="usage">
+          <edgelabel>h</edgelabel>
+        </childnode>
+      </node>
+      <node id="9">
+        <label>Test</label>
+      </node>
+      <node id="10">
+        <label>histo::Histo&lt; double &gt;</label>
+        <link refid="structhisto_1_1_histo"/>
+      </node>
+    </collaborationgraph>
+    <location file="src/test/test_histo.cpp" line="117" column="1" bodyfile="src/test/test_histo.cpp" bodystart="117" bodyend="120"/>
+    <listofallmembers>
+      <member refid="struct_histo_double_scott_1aabfbc45db6cccfc61a487aea369b6055" prot="public" virt="non-virtual"><scope>HistoDoubleScott</scope><name>data</name></member>
+      <member refid="struct_histo_double_scott_1a6a3721be1eb2e1d7779f040e5c3beec2" prot="public" virt="non-virtual"><scope>HistoDoubleScott</scope><name>h</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

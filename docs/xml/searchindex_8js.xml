@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="searchindex_8js" kind="file" language="C++">
+    <compoundname>searchindex.js</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">Search.setIndex({objects:{},terms:{help:0,scott:0,preciss:0,find:[],paramet:0,xml:[],content:0,onli:0,&quot;const&quot;:0,struct:0,fix:0,except:0,should:0,input:0,bin:0,count:0,&quot;return&quot;:0,greater:0,&quot;void&quot;:0,&quot;break&quot;:0,cannot:[],increas:0,specif:0,setcount:0,method:0,preci_integ:0,vector:0,each:0,output:[],resiz:0,page:0,input_rang:0,upper:0,set:0,interv:0,see:0,home:[],index:0,goe:0,neg:0,max_integer_:0,typenam:0,between:0,&quot;public&quot;:0,refer:0,doxygenclass:[],resetcount:0,depend:0,valu:0,fillcount:0,search:0,doxygen:[],equal:0,constructor:0,first:0,rang:0,modul:0,inspir:0,number:0,header:0,&quot;long&quot;:0,size:0,differ:0,indexfromvalu:0,from:0,associ:0,doubl:0,been:0,call:0,low:0,type:0,&quot;function&quot;:0,generatebreaksfromrangeandbin:0,histogram:0,warn:[],exce:0,templat:0,hold:0,than:0,must:0,std:0,second:0,project:[],calcul:0,limit:0,can:0,histo:0,repository_loc:[],creat:0,&quot;int&quot;:0,tabl:0,accept:0,preci:0,decreas:0,have:0,input_break:0,unsign:0,check:0,fill:0,welcom:0,zero:0,min:0,when:0,reset:0,member:0,take:0,indic:0,you:0,document:0,simpl:0,breaks_method:0,doxygenstruct:[],phc:[],max:0,befor:0,pair:0,data:0,&quot;class&quot;:[],directori:[],doc:[],thi:0},objtypes:{},titles:[&quot;Welcome<sp/>to<sp/>histo-header&amp;#8217;s<sp/>documentation!&quot;],objnames:{},filenames:[&quot;index&quot;]})</highlight></codeline>
+    </programlisting>
+    <location file="src/docs/sphinx/_build/html/searchindex.js"/>
+  </compounddef>
+</doxygen>

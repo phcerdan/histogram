@@ -1,54 +1,116 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.6.1">
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.8.14">
   <compound refid="structhisto_1_1_histo" kind="struct"><name>histo::Histo</name>
-    <member refid="structhisto_1_1_histo_1aae8bee662fbf5b3f00e2b5bc8e304036" kind="variable"><name>range</name></member>
-    <member refid="structhisto_1_1_histo_1a742cff9dfd900b400959621fa72eb0bb" kind="variable"><name>breaks</name></member>
-    <member refid="structhisto_1_1_histo_1af5eab179e063fbe3769d0c9ab823fa0d" kind="variable"><name>counts</name></member>
-    <member refid="structhisto_1_1_histo_1ae3fb763b191bb6ce8997be0b09f1f10e" kind="function"><name>Histo</name></member>
-    <member refid="structhisto_1_1_histo_1a7065d3edf9a7db33a93930b5bf7ae44d" kind="function"><name>Histo</name></member>
-    <member refid="structhisto_1_1_histo_1a7d313fd5714037fe2fde6108b30db86a" kind="function"><name>Histo</name></member>
-    <member refid="structhisto_1_1_histo_1adb33e8e9c73bde47027926f5c7315545" kind="function"><name>Histo</name></member>
-    <member refid="structhisto_1_1_histo_1a858c655679d179ba3697a70cdbbee206" kind="function"><name>IndexFromValue</name></member>
-    <member refid="structhisto_1_1_histo_1a59b9327bd63469648ca27cd666adab79" kind="function"><name>ResetCounts</name></member>
-    <member refid="structhisto_1_1_histo_1a24f8c6d3b739d1199674198f49aebd28" kind="function"><name>FillCounts</name></member>
-    <member refid="group___counts_manipulation_1ga61ba4ed541dbfedfce4c20b7895e8303" kind="function"><name>Increase</name></member>
-    <member refid="group___counts_manipulation_1gadd9866333da884f97a91ff1bc28ee834" kind="function"><name>Decrease</name></member>
-    <member refid="group___counts_manipulation_1gaae55ca251a6c64f214ce6bd0a1772d44" kind="function"><name>SetCount</name></member>
-    <member refid="structhisto_1_1_histo_1a5d18b9007600d7099525118e6dbb7050" kind="function"><name>CheckIfMonotonicallyIncreasing</name></member>
-    <member refid="structhisto_1_1_histo_1a9d5a8a65b7ae5b506b9d981bac09a076" kind="function"><name>CalculateBreaks</name></member>
-    <member refid="structhisto_1_1_histo_1a87967485300c01adf01b9313c936a819" kind="function"><name>CheckBreaksAreEquidistant</name></member>
-    <member refid="structhisto_1_1_histo_1aec7b3023731689a91aed67b4e45725b0" kind="function"><name>BalanceBreaksWithRange</name></member>
-    <member refid="structhisto_1_1_histo_1a4820a2a15fcb5b2d2e031c57d9bb2b85" kind="function"><name>CheckAndUpdateDiff</name></member>
-    <member refid="structhisto_1_1_histo_1af6cd7072634213a849dfabf63f85d574" kind="function"><name>ShiftBreaks</name></member>
-    <member refid="structhisto_1_1_histo_1aac6662925483de617f8eedab2b0f086d" kind="function"><name>ShrinkOrExpandBreaks</name></member>
-    <member refid="structhisto_1_1_histo_1ae0c080f5ded1c4aebb4bfe0a2cced99a" kind="function"><name>ScottMethod</name></member>
+    <member refid="structhisto_1_1_histo_1a244cec4f3976642b93c8896d53c87cca" kind="variable"><name>range</name></member>
+    <member refid="structhisto_1_1_histo_1abd8ee6df9a51c901fba647137b29f010" kind="variable"><name>breaks</name></member>
+    <member refid="structhisto_1_1_histo_1a9810584945cb6dc4f1ecf407c5dc31ed" kind="variable"><name>bins</name></member>
+    <member refid="structhisto_1_1_histo_1a3c079c7931896ee4076eb02a64577102" kind="variable"><name>counts</name></member>
+    <member refid="structhisto_1_1_histo_1a875e8d55903de1bb8dbfa07916a2edb6" kind="variable"><name>name</name></member>
+    <member refid="structhisto_1_1_histo_1aa62aa57468a562734669bc6ed21576f1" kind="function"><name>Histo</name></member>
+    <member refid="structhisto_1_1_histo_1afe514992fddc1f5c125a4b4404f652ee" kind="function"><name>Histo</name></member>
+    <member refid="structhisto_1_1_histo_1ab8316b6aee95725b5e626bf9df417e25" kind="function"><name>Histo</name></member>
+    <member refid="structhisto_1_1_histo_1a7ca35fc27bc1ae74cddfc3312f1d4870" kind="function"><name>Histo</name></member>
+    <member refid="structhisto_1_1_histo_1a48c6811bf8c3b49c6dcb20ed53bc4204" kind="function"><name>ComputeBinCenters</name></member>
+    <member refid="structhisto_1_1_histo_1aa057f60c880b0a9fa353408dd0d92fb2" kind="function"><name>PrintBreaksAndCounts</name></member>
+    <member refid="structhisto_1_1_histo_1a3eb196cb85a95c183ec273c1cb1f4f3e" kind="function"><name>PrintCentersAndCounts</name></member>
+    <member refid="structhisto_1_1_histo_1a158f842f4524fec42e5d53f45fef2792" kind="function"><name>PrintCenters</name></member>
+    <member refid="structhisto_1_1_histo_1af23e2103d5aec11b45a504cc9666fdc6" kind="function"><name>PrintBreaks</name></member>
+    <member refid="structhisto_1_1_histo_1ac4e4143968479c108cc17144c34cd5fa" kind="function"><name>PrintCounts</name></member>
+    <member refid="structhisto_1_1_histo_1a3bd599e56850d23ee616d86787a183bb" kind="function"><name>IndexFromValue</name></member>
+    <member refid="structhisto_1_1_histo_1aff4c75a013e42fa1651008db8fedebae" kind="function"><name>ResetCounts</name></member>
+    <member refid="structhisto_1_1_histo_1a52b1779ba9fb88218f08b8a608123ee6" kind="function"><name>FillCounts</name></member>
+    <member refid="group___counts_manipulation_1gabb93ac73019f3ea5c67cf08e95f50b8c" kind="function"><name>Increase</name></member>
+    <member refid="group___counts_manipulation_1ga834163fd3a5f651aa2775d27dc88cd62" kind="function"><name>Decrease</name></member>
+    <member refid="group___counts_manipulation_1gacb5ae1981d575408b39fbf965d9aa9ab" kind="function"><name>SetCount</name></member>
+    <member refid="structhisto_1_1_histo_1a4b0035e80a9804be7ead94b73a396de6" kind="function"><name>CheckIfMonotonicallyIncreasing</name></member>
+    <member refid="structhisto_1_1_histo_1ae2e4451f0ebc9064a3b18fbd236fd609" kind="function"><name>CalculateBreaks</name></member>
+    <member refid="structhisto_1_1_histo_1a048d032108cbfc907bb0fcd62fce4d3f" kind="function"><name>CheckBreaksAreEquidistant</name></member>
+    <member refid="structhisto_1_1_histo_1a49305dca39c6c5796ac7b85f83d91ef1" kind="function"><name>BalanceBreaksWithRange</name></member>
+    <member refid="structhisto_1_1_histo_1ace367d4e0efb8df06a65f530ca14225f" kind="function"><name>CheckAndUpdateDiff</name></member>
+    <member refid="structhisto_1_1_histo_1a72ab13ed2646af0d3f25bde6e299925d" kind="function"><name>ShiftBreaks</name></member>
+    <member refid="structhisto_1_1_histo_1ab8f8e5423d29176e1171fe640f997dd7" kind="function"><name>ShrinkOrExpandBreaks</name></member>
+    <member refid="structhisto_1_1_histo_1afb254f6a501586b63048810c33d889b8" kind="function"><name>ScottMethod</name></member>
   </compound>
   <compound refid="classhisto_1_1histo__error" kind="class"><name>histo::histo_error</name>
     <member refid="classhisto_1_1histo__error_1ae4a9c52c6c031ea03210e9e585778827" kind="function"><name>histo_error</name></member>
   </compound>
+  <compound refid="struct_histo_double_scott" kind="struct"><name>HistoDoubleScott</name>
+    <member refid="struct_histo_double_scott_1aabfbc45db6cccfc61a487aea369b6055" kind="variable"><name>data</name></member>
+    <member refid="struct_histo_double_scott_1a6a3721be1eb2e1d7779f040e5c3beec2" kind="variable"><name>h</name></member>
+  </compound>
+  <compound refid="struct_histo_int_input_breaks" kind="struct"><name>HistoIntInputBreaks</name>
+    <member refid="struct_histo_int_input_breaks_1a0b82a55706d0c665c602fc544f714d0a" kind="variable"><name>data</name></member>
+    <member refid="struct_histo_int_input_breaks_1a25e9598a531fe1417b76c498d6441d93" kind="variable"><name>h</name></member>
+  </compound>
+  <compound refid="struct_histo_long_double_input_range" kind="struct"><name>HistoLongDoubleInputRange</name>
+    <member refid="struct_histo_long_double_input_range_1ad4f78646d5538e551e5eaab80518d604" kind="variable"><name>data</name></member>
+    <member refid="struct_histo_long_double_input_range_1aa9767fa2e1fc2e7df22770753db0dc18" kind="variable"><name>h</name></member>
+  </compound>
   <compound refid="namespacehisto" kind="namespace"><name>histo</name>
     <member refid="group__breaks__methods_1ga132dcd8240c4bb268ed00b1e4fa3ebab" kind="enum"><name>breaks_method</name></member>
     <member refid="group__breaks__methods_1gga132dcd8240c4bb268ed00b1e4fa3ebabae05f2a05e4a163aac88bf64dc92cb36e" kind="enumvalue"><name>Scott</name></member>
-    <member refid="group___generate_breaks_1ga853c19bd3a41d2c20e32828507ab04eb" kind="function"><name>GenerateBreaksFromRangeAndBins</name></member>
-    <member refid="group___generate_breaks_1gaf937f2bdf0ef388ea4a3aeb6e29effb2" kind="function"><name>GenerateBreaksFromRangeAndBins</name></member>
-    <member refid="namespacehisto_1a6fdcb336cae7bfe66ad7963f3ce49c66" kind="function"><name>variance_welford</name></member>
-    <member refid="namespacehisto_1aa9dc1974bd94dd4af223b30e7c1c33b1" kind="function"><name>isequalthan</name></member>
+    <member refid="group___generate_breaks_1gac6f613c7fc034ff9576ffbf746f8e67f" kind="function"><name>GenerateBreaksFromRangeAndBins</name></member>
+    <member refid="group___generate_breaks_1gacc2263aece190147683fa46a82317afb" kind="function"><name>GenerateBreaksFromRangeAndBins</name></member>
+    <member refid="group___generate_breaks_1gace16ecd63ec3fcf1badf6dbd6aa0f374" kind="function"><name>GenerateBreaksFromRangeAndWidth</name></member>
+    <member refid="group___generate_breaks_1gad2a12e8a018170cb031a5f12b56e6beb" kind="function"><name>GenerateBreaksFromRangeAndWidth</name></member>
+    <member refid="namespacehisto_1aacd741c87edf32bcefe2431641ffcafd" kind="function"><name>variance_welford</name></member>
+    <member refid="namespacehisto_1a613305b715d9b5a7c53bde8ded34b995" kind="function"><name>isequalthan</name></member>
+    <member refid="namespacehisto_1ae92c03faf593b0ff7ed5c29a204fda53" kind="function"><name>NormalizeByArea</name></member>
+    <member refid="namespacehisto_1a4d51058aed513c8dba8aa0de051e5a3d" kind="function"><name>chart_from_histogram</name></member>
+    <member refid="namespacehisto_1a5342d3dc614b6be561dc5b8e6384f445" kind="function"><name>visualize_histo</name></member>
   </compound>
-  <compound refid="histo-header_8h" kind="file"><name>histo-header.h</name>
+  <compound refid="namespacestd" kind="namespace"><name>std</name>
+  </compound>
+  <compound refid="namespacetesting" kind="namespace"><name>testing</name>
+  </compound>
+  <compound refid="histo_8hpp" kind="file"><name>histo.hpp</name>
+  </compound>
+  <compound refid="visualize__histo_8hpp" kind="file"><name>visualize_histo.hpp</name>
+  </compound>
+  <compound refid="_r_e_a_d_m_e_8md" kind="file"><name>README.md</name>
+  </compound>
+  <compound refid="test__histo_8cpp" kind="file"><name>test_histo.cpp</name>
+    <member refid="test__histo_8cpp_1af59783448e75cddb0d724fe38601c083" kind="variable"><name>generator</name></member>
+    <member refid="test__histo_8cpp_1a139d5592a714a87210b78d1f84ae882f" kind="function"><name>TEST</name></member>
+    <member refid="test__histo_8cpp_1a8f488a5f60346ed6e715597e7fadb977" kind="function"><name>TEST</name></member>
+    <member refid="test__histo_8cpp_1a55dcdc085680405125c04707c0f39576" kind="function"><name>TEST</name></member>
+    <member refid="test__histo_8cpp_1acce6be1087c7063df0e7f4b689349266" kind="function"><name>TEST</name></member>
+    <member refid="test__histo_8cpp_1a7949ef72982519f456768a7d9d281786" kind="function"><name>TEST_F</name></member>
+    <member refid="test__histo_8cpp_1a64bfd5cb2bb3b111de81c31d3350ba7f" kind="function"><name>TEST_F</name></member>
+    <member refid="test__histo_8cpp_1a3c51f3b305d908fe8da3719f742867a5" kind="function"><name>TEST_F</name></member>
+    <member refid="test__histo_8cpp_1a616f6fdf43ce7c69b2ea47fd843df742" kind="function"><name>TEST_F</name></member>
+    <member refid="test__histo_8cpp_1a4b0d00016f795dc77193c30033b2768e" kind="function"><name>TEST_F</name></member>
+    <member refid="test__histo_8cpp_1a333629c3b89171401e433d020692d9e5" kind="function"><name>TEST_F</name></member>
+    <member refid="test__histo_8cpp_1ac0a5f6db5c42b0c67b17675a230b6121" kind="function"><name>cosined</name></member>
+    <member refid="test__histo_8cpp_1ac709e13a07bf54f500567454a30dfe23" kind="function"><name>TEST</name></member>
+    <member refid="test__histo_8cpp_1a5d1f6b599b5b995e49b21710cfad7e79" kind="function"><name>TEST</name></member>
+    <member refid="test__histo_8cpp_1a552e84f5478c2f036fa644107cd91880" kind="function"><name>TEST</name></member>
+    <member refid="test__histo_8cpp_1a4585b5064c805779eae174786b9cdd49" kind="function"><name>TEST</name></member>
+  </compound>
+  <compound refid="test__visualize__histo_8cpp" kind="file"><name>test_visualize_histo.cpp</name>
+    <member refid="test__visualize__histo_8cpp_1ac92cf6ad3c8b67b0e57c955461782ae9" kind="function"><name>TEST</name></member>
   </compound>
   <compound refid="group__breaks__methods" kind="group"><name>breaks_methods</name>
     <member refid="group__breaks__methods_1ga132dcd8240c4bb268ed00b1e4fa3ebab" kind="enum"><name>breaks_method</name></member>
     <member refid="group__breaks__methods_1gga132dcd8240c4bb268ed00b1e4fa3ebabae05f2a05e4a163aac88bf64dc92cb36e" kind="enumvalue"><name>Scott</name></member>
   </compound>
   <compound refid="group___generate_breaks" kind="group"><name>GenerateBreaks</name>
-    <member refid="group___generate_breaks_1ga853c19bd3a41d2c20e32828507ab04eb" kind="function"><name>GenerateBreaksFromRangeAndBins</name></member>
-    <member refid="group___generate_breaks_1gaf937f2bdf0ef388ea4a3aeb6e29effb2" kind="function"><name>GenerateBreaksFromRangeAndBins</name></member>
+    <member refid="group___generate_breaks_1gac6f613c7fc034ff9576ffbf746f8e67f" kind="function"><name>GenerateBreaksFromRangeAndBins</name></member>
+    <member refid="group___generate_breaks_1gacc2263aece190147683fa46a82317afb" kind="function"><name>GenerateBreaksFromRangeAndBins</name></member>
+    <member refid="group___generate_breaks_1gace16ecd63ec3fcf1badf6dbd6aa0f374" kind="function"><name>GenerateBreaksFromRangeAndWidth</name></member>
+    <member refid="group___generate_breaks_1gad2a12e8a018170cb031a5f12b56e6beb" kind="function"><name>GenerateBreaksFromRangeAndWidth</name></member>
   </compound>
   <compound refid="group___counts_manipulation" kind="group"><name>CountsManipulation</name>
-    <member refid="group___counts_manipulation_1ga61ba4ed541dbfedfce4c20b7895e8303" kind="function"><name>Increase</name></member>
-    <member refid="group___counts_manipulation_1gadd9866333da884f97a91ff1bc28ee834" kind="function"><name>Decrease</name></member>
-    <member refid="group___counts_manipulation_1gaae55ca251a6c64f214ce6bd0a1772d44" kind="function"><name>SetCount</name></member>
+    <member refid="group___counts_manipulation_1gabb93ac73019f3ea5c67cf08e95f50b8c" kind="function"><name>Increase</name></member>
+    <member refid="group___counts_manipulation_1ga834163fd3a5f651aa2775d27dc88cd62" kind="function"><name>Decrease</name></member>
+    <member refid="group___counts_manipulation_1gacb5ae1981d575408b39fbf965d9aa9ab" kind="function"><name>SetCount</name></member>
   </compound>
-  <compound refid="dir_4da4b4dfa19e6c33d63e063865b34b23" kind="dir"><name>/home/phc/repository_local/histo-header/src/</name>
+  <compound refid="md_src__r_e_a_d_m_e" kind="page"><name>md_src_README</name>
+  </compound>
+  <compound refid="dir_b0856f6b0d80ccb263b2f415c91f9e17" kind="dir"><name>src/include</name>
+  </compound>
+  <compound refid="dir_68267d1309a1af8e8297ef4c3efbcdba" kind="dir"><name>src</name>
+  </compound>
+  <compound refid="dir_120ed4da3e3217b1e7fc0b4f48568e79" kind="dir"><name>src/test</name>
   </compound>
 </doxygenindex>

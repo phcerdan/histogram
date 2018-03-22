@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="functions__3_8js" kind="file" language="C++">
+    <compoundname>functions_3.js</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">var<sp/>searchData=</highlight></codeline>
+<codeline><highlight class="normal">[</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>[&apos;generatebreaksfromrangeandbins&apos;,[&apos;GenerateBreaksFromRangeAndBins&apos;,[&apos;../group___generate_breaks.html#gac6f613c7fc034ff9576ffbf746f8e67f&apos;,1,&apos;histo::GenerateBreaksFromRangeAndBins(const<sp/>PRECI<sp/>&amp;amp;low,<sp/>const<sp/>PRECI<sp/>&amp;amp;upper,<sp/>const<sp/>unsigned<sp/>long<sp/>int<sp/>&amp;amp;bins)&apos;],[&apos;../group___generate_breaks.html#gacc2263aece190147683fa46a82317afb&apos;,1,&apos;histo::GenerateBreaksFromRangeAndBins(const<sp/>std::pair&amp;lt;<sp/>PRECI,<sp/>PRECI<sp/>&amp;gt;<sp/>&amp;amp;range_low_upper,<sp/>const<sp/>unsigned<sp/>long<sp/>int<sp/>&amp;amp;bins)&apos;]]],</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>[&apos;generatebreaksfromrangeandwidth&apos;,[&apos;GenerateBreaksFromRangeAndWidth&apos;,[&apos;../group___generate_breaks.html#gace16ecd63ec3fcf1badf6dbd6aa0f374&apos;,1,&apos;histo::GenerateBreaksFromRangeAndWidth(const<sp/>PRECI<sp/>&amp;amp;low,<sp/>const<sp/>PRECI<sp/>&amp;amp;upper,<sp/>const<sp/>PRECI<sp/>&amp;amp;width)&apos;],[&apos;../group___generate_breaks.html#gad2a12e8a018170cb031a5f12b56e6beb&apos;,1,&apos;histo::GenerateBreaksFromRangeAndWidth(const<sp/>std::pair&amp;lt;<sp/>PRECI,<sp/>PRECI<sp/>&amp;gt;<sp/>&amp;amp;range_low_upper,<sp/>const<sp/>PRECI<sp/>&amp;amp;width)&apos;]]]</highlight></codeline>
+<codeline><highlight class="normal">];</highlight></codeline>
+    </programlisting>
+    <location file="src/docs/html/search/functions_3.js"/>
+  </compounddef>
+</doxygen>

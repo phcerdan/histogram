@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="functions__5_8js" kind="file" language="C++">
+    <compoundname>functions_5.js</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">var<sp/>searchData=</highlight></codeline>
+<codeline><highlight class="normal">[</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>[&apos;increase&apos;,[&apos;Increase&apos;,[&apos;../group___counts_manipulation.html#gabb93ac73019f3ea5c67cf08e95f50b8c&apos;,1,&apos;histo::Histo&apos;]]],</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>[&apos;indexfromvalue&apos;,[&apos;IndexFromValue&apos;,[&apos;../structhisto_1_1_histo.html#a3bd599e56850d23ee616d86787a183bb&apos;,1,&apos;histo::Histo&apos;]]],</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>[&apos;isequalthan&apos;,[&apos;isequalthan&apos;,[&apos;../namespacehisto.html#a613305b715d9b5a7c53bde8ded34b995&apos;,1,&apos;histo&apos;]]]</highlight></codeline>
+<codeline><highlight class="normal">];</highlight></codeline>
+    </programlisting>
+    <location file="src/docs/html/search/functions_5.js"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="all__8_8js" kind="file" language="C++">
+    <compoundname>all_8.js</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">var<sp/>searchData=</highlight></codeline>
+<codeline><highlight class="normal">[</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>[&apos;printbreaksandcounts&apos;,[&apos;PrintBreaksAndCounts&apos;,[&apos;../structhisto_1_1_histo.html#aa057f60c880b0a9fa353408dd0d92fb2&apos;,1,&apos;histo::Histo&apos;]]],</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>[&apos;printcentersandcounts&apos;,[&apos;PrintCentersAndCounts&apos;,[&apos;../structhisto_1_1_histo.html#a3eb196cb85a95c183ec273c1cb1f4f3e&apos;,1,&apos;histo::Histo&apos;]]]</highlight></codeline>
+<codeline><highlight class="normal">];</highlight></codeline>
+    </programlisting>
+    <location file="src/docs/html/search/all_8.js"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,573 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="searchtools_8js" kind="file" language="C++">
+    <compoundname>searchtools.js</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">/*</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/>searchtools.js_t</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/>~~~~~~~~~~~~~~~~</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/>Sphinx<sp/>JavaScript<sp/>utilties<sp/>for<sp/>the<sp/>full-text<sp/>search.</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/>:copyright:<sp/>Copyright<sp/>2007-2011<sp/>by<sp/>the<sp/>Sphinx<sp/>team,<sp/>see<sp/>AUTHORS.</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/>:license:<sp/>BSD,<sp/>see<sp/>LICENSE<sp/>for<sp/>details.</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/**</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/>helper<sp/>function<sp/>to<sp/>return<sp/>a<sp/>node<sp/>containing<sp/>the</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/>search<sp/>summary<sp/>for<sp/>a<sp/>given<sp/>text.<sp/>keywords<sp/>is<sp/>a<sp/>list</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/>of<sp/>stemmed<sp/>words,<sp/>hlwords<sp/>is<sp/>the<sp/>list<sp/>of<sp/>normal,<sp/>unstemmed</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/>words.<sp/>the<sp/>first<sp/>one<sp/>is<sp/>used<sp/>to<sp/>find<sp/>the<sp/>occurance,<sp/>the</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/>latter<sp/>for<sp/>highlighting<sp/>it.</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">jQuery.makeSearchSummary<sp/>=<sp/>function(text,<sp/>keywords,<sp/>hlwords)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>var<sp/>textLower<sp/>=<sp/>text.toLowerCase();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>var<sp/>start<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>$.each(keywords,<sp/>function()<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>var<sp/>i<sp/>=<sp/>textLower.indexOf(this.toLowerCase());</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(i<sp/>&gt;<sp/>-1)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>start<sp/>=<sp/>i;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>});</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>start<sp/>=<sp/>Math.max(start<sp/>-<sp/>120,<sp/>0);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>var<sp/>excerpt<sp/>=<sp/>((start<sp/>&gt;<sp/>0)<sp/>?<sp/>&apos;...&apos;<sp/>:<sp/>&apos;&apos;)<sp/>+</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>$.trim(text.substr(start,<sp/>240))<sp/>+</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>((start<sp/>+<sp/>240<sp/>-<sp/>text.length)<sp/>?<sp/>&apos;...&apos;<sp/>:<sp/>&apos;&apos;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>var<sp/>rv<sp/>=<sp/>$(&apos;&lt;div<sp/>class=&quot;context&quot;&gt;&lt;/div&gt;&apos;).text(excerpt);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>$.each(hlwords,<sp/>function()<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>rv<sp/>=<sp/>rv.highlightText(this,<sp/>&apos;highlighted&apos;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>});</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>return<sp/>rv;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/**</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/>Porter<sp/>Stemmer</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">var<sp/>Stemmer<sp/>=<sp/>function()<sp/>{</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/>var<sp/>step2list<sp/>=<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ational:<sp/>&apos;ate&apos;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>tional:<sp/>&apos;tion&apos;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>enci:<sp/>&apos;ence&apos;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>anci:<sp/>&apos;ance&apos;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>izer:<sp/>&apos;ize&apos;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>bli:<sp/>&apos;ble&apos;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>alli:<sp/>&apos;al&apos;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>entli:<sp/>&apos;ent&apos;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>eli:<sp/>&apos;e&apos;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ousli:<sp/>&apos;ous&apos;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ization:<sp/>&apos;ize&apos;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ation:<sp/>&apos;ate&apos;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ator:<sp/>&apos;ate&apos;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>alism:<sp/>&apos;al&apos;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>iveness:<sp/>&apos;ive&apos;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>fulness:<sp/>&apos;ful&apos;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ousness:<sp/>&apos;ous&apos;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>aliti:<sp/>&apos;al&apos;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>iviti:<sp/>&apos;ive&apos;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>biliti:<sp/>&apos;ble&apos;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>logi:<sp/>&apos;log&apos;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/>var<sp/>step3list<sp/>=<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>icate:<sp/>&apos;ic&apos;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ative:<sp/>&apos;&apos;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>alize:<sp/>&apos;al&apos;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>iciti:<sp/>&apos;ic&apos;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ical:<sp/>&apos;ic&apos;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ful:<sp/>&apos;&apos;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>ness:<sp/>&apos;&apos;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>};</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/>var<sp/>c<sp/>=<sp/>&quot;[^aeiou]&quot;;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>consonant</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>var<sp/>v<sp/>=<sp/>&quot;[aeiouy]&quot;;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>vowel</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>var<sp/>C<sp/>=<sp/>c<sp/>+<sp/>&quot;[^aeiouy]*&quot;;<sp/><sp/><sp/><sp/>//<sp/>consonant<sp/>sequence</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>var<sp/>V<sp/>=<sp/>v<sp/>+<sp/>&quot;[aeiou]*&quot;;<sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>vowel<sp/>sequence</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/>var<sp/>mgr0<sp/>=<sp/>&quot;^(&quot;<sp/>+<sp/>C<sp/>+<sp/>&quot;)?&quot;<sp/>+<sp/>V<sp/>+<sp/>C;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>[C]VC...<sp/>is<sp/>m&gt;0</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>var<sp/>meq1<sp/>=<sp/>&quot;^(&quot;<sp/>+<sp/>C<sp/>+<sp/>&quot;)?&quot;<sp/>+<sp/>V<sp/>+<sp/>C<sp/>+<sp/>&quot;(&quot;<sp/>+<sp/>V<sp/>+<sp/>&quot;)?$&quot;;<sp/><sp/><sp/><sp/>//<sp/>[C]VC[V]<sp/>is<sp/>m=1</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>var<sp/>mgr1<sp/>=<sp/>&quot;^(&quot;<sp/>+<sp/>C<sp/>+<sp/>&quot;)?&quot;<sp/>+<sp/>V<sp/>+<sp/>C<sp/>+<sp/>V<sp/>+<sp/>C;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>[C]VCVC...<sp/>is<sp/>m&gt;1</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>var<sp/>s_v<sp/><sp/><sp/>=<sp/>&quot;^(&quot;<sp/>+<sp/>C<sp/>+<sp/>&quot;)?&quot;<sp/>+<sp/>v;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>vowel<sp/>in<sp/>stem</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/>this.stemWord<sp/>=<sp/>function<sp/>(w)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>var<sp/>stem;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>var<sp/>suffix;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>var<sp/>firstch;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>var<sp/>origword<sp/>=<sp/>w;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(w.length<sp/>&lt;<sp/>3)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>w;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>var<sp/>re;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>var<sp/>re2;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>var<sp/>re3;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>var<sp/>re4;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>firstch<sp/>=<sp/>w.substr(0,1);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(firstch<sp/>==<sp/>&quot;y&quot;)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>w<sp/>=<sp/>firstch.toUpperCase()<sp/>+<sp/>w.substr(1);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Step<sp/>1a</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>re<sp/>=<sp/>/^(.+?)(ss|i)es$/;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>re2<sp/>=<sp/>/^(.+?)([^s])s$/;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(re.test(w))</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>w<sp/>=<sp/>w.replace(re,&quot;$1$2&quot;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>else<sp/>if<sp/>(re2.test(w))</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>w<sp/>=<sp/>w.replace(re2,&quot;$1$2&quot;);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Step<sp/>1b</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>re<sp/>=<sp/>/^(.+?)eed$/;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>re2<sp/>=<sp/>/^(.+?)(ed|ing)$/;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(re.test(w))<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>var<sp/>fp<sp/>=<sp/>re.exec(w);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>re<sp/>=<sp/>new<sp/>RegExp(mgr0);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(re.test(fp[1]))<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>re<sp/>=<sp/>/.$/;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>w<sp/>=<sp/>w.replace(re,&quot;&quot;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>else<sp/>if<sp/>(re2.test(w))<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>var<sp/>fp<sp/>=<sp/>re2.exec(w);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>stem<sp/>=<sp/>fp[1];</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>re2<sp/>=<sp/>new<sp/>RegExp(s_v);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(re2.test(stem))<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>w<sp/>=<sp/>stem;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>re2<sp/>=<sp/>/(at|bl|iz)$/;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>re3<sp/>=<sp/>new<sp/>RegExp(&quot;([^aeiouylsz])\\1$&quot;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>re4<sp/>=<sp/>new<sp/>RegExp(&quot;^&quot;<sp/>+<sp/>C<sp/>+<sp/>v<sp/>+<sp/>&quot;[^aeiouwxy]$&quot;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(re2.test(w))</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>w<sp/>=<sp/>w<sp/>+<sp/>&quot;e&quot;;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>else<sp/>if<sp/>(re3.test(w))<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>re<sp/>=<sp/>/.$/;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>w<sp/>=<sp/>w.replace(re,&quot;&quot;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>else<sp/>if<sp/>(re4.test(w))</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>w<sp/>=<sp/>w<sp/>+<sp/>&quot;e&quot;;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Step<sp/>1c</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>re<sp/>=<sp/>/^(.+?)y$/;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(re.test(w))<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>var<sp/>fp<sp/>=<sp/>re.exec(w);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>stem<sp/>=<sp/>fp[1];</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>re<sp/>=<sp/>new<sp/>RegExp(s_v);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(re.test(stem))</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>w<sp/>=<sp/>stem<sp/>+<sp/>&quot;i&quot;;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Step<sp/>2</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>re<sp/>=<sp/>/^(.+?)(ational|tional|enci|anci|izer|bli|alli|entli|eli|ousli|ization|ation|ator|alism|iveness|fulness|ousness|aliti|iviti|biliti|logi)$/;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(re.test(w))<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>var<sp/>fp<sp/>=<sp/>re.exec(w);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>stem<sp/>=<sp/>fp[1];</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>suffix<sp/>=<sp/>fp[2];</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>re<sp/>=<sp/>new<sp/>RegExp(mgr0);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(re.test(stem))</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>w<sp/>=<sp/>stem<sp/>+<sp/>step2list[suffix];</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Step<sp/>3</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>re<sp/>=<sp/>/^(.+?)(icate|ative|alize|iciti|ical|ful|ness)$/;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(re.test(w))<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>var<sp/>fp<sp/>=<sp/>re.exec(w);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>stem<sp/>=<sp/>fp[1];</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>suffix<sp/>=<sp/>fp[2];</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>re<sp/>=<sp/>new<sp/>RegExp(mgr0);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(re.test(stem))</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>w<sp/>=<sp/>stem<sp/>+<sp/>step3list[suffix];</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Step<sp/>4</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>re<sp/>=<sp/>/^(.+?)(al|ance|ence|er|ic|able|ible|ant|ement|ment|ent|ou|ism|ate|iti|ous|ive|ize)$/;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>re2<sp/>=<sp/>/^(.+?)(s|t)(ion)$/;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(re.test(w))<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>var<sp/>fp<sp/>=<sp/>re.exec(w);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>stem<sp/>=<sp/>fp[1];</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>re<sp/>=<sp/>new<sp/>RegExp(mgr1);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(re.test(stem))</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>w<sp/>=<sp/>stem;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>else<sp/>if<sp/>(re2.test(w))<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>var<sp/>fp<sp/>=<sp/>re2.exec(w);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>stem<sp/>=<sp/>fp[1]<sp/>+<sp/>fp[2];</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>re2<sp/>=<sp/>new<sp/>RegExp(mgr1);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(re2.test(stem))</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>w<sp/>=<sp/>stem;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Step<sp/>5</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>re<sp/>=<sp/>/^(.+?)e$/;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(re.test(w))<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>var<sp/>fp<sp/>=<sp/>re.exec(w);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>stem<sp/>=<sp/>fp[1];</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>re<sp/>=<sp/>new<sp/>RegExp(mgr1);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>re2<sp/>=<sp/>new<sp/>RegExp(meq1);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>re3<sp/>=<sp/>new<sp/>RegExp(&quot;^&quot;<sp/>+<sp/>C<sp/>+<sp/>v<sp/>+<sp/>&quot;[^aeiouwxy]$&quot;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(re.test(stem)<sp/>||<sp/>(re2.test(stem)<sp/>&amp;&amp;<sp/>!(re3.test(stem))))</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>w<sp/>=<sp/>stem;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>re<sp/>=<sp/>/ll$/;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>re2<sp/>=<sp/>new<sp/>RegExp(mgr1);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(re.test(w)<sp/>&amp;&amp;<sp/>re2.test(w))<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>re<sp/>=<sp/>/.$/;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>w<sp/>=<sp/>w.replace(re,&quot;&quot;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>and<sp/>turn<sp/>initial<sp/>Y<sp/>back<sp/>to<sp/>y</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(firstch<sp/>==<sp/>&quot;y&quot;)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>w<sp/>=<sp/>firstch.toLowerCase()<sp/>+<sp/>w.substr(1);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>w;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">/**</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*<sp/>Search<sp/>Module</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">var<sp/>Search<sp/>=<sp/>{</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/>_index<sp/>:<sp/>null,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>_queued_query<sp/>:<sp/>null,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>_pulse_status<sp/>:<sp/>-1,</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/>init<sp/>:<sp/>function()<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>var<sp/>params<sp/>=<sp/>$.getQueryParameters();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(params.q)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>var<sp/>query<sp/>=<sp/>params.q[0];</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>$(&apos;input[name=&quot;q&quot;]&apos;)[0].value<sp/>=<sp/>query;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this.performSearch(query);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>},</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/>loadIndex<sp/>:<sp/>function(url)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>$.ajax({type:<sp/>&quot;GET&quot;,<sp/>url:<sp/>url,<sp/>data:<sp/>null,<sp/>success:<sp/>null,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dataType:<sp/>&quot;script&quot;,<sp/>cache:<sp/>true});</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>},</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/>setIndex<sp/>:<sp/>function(index)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>var<sp/>q;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>this._index<sp/>=<sp/>index;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>((q<sp/>=<sp/>this._queued_query)<sp/>!==<sp/>null)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>this._queued_query<sp/>=<sp/>null;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>Search.query(q);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>},</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/>hasIndex<sp/>:<sp/>function()<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>this._index<sp/>!==<sp/>null;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>},</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/>deferQuery<sp/>:<sp/>function(query)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>this._queued_query<sp/>=<sp/>query;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>},</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/>stopPulse<sp/>:<sp/>function()<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>this._pulse_status<sp/>=<sp/>0;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>},</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/>startPulse<sp/>:<sp/>function()<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(this._pulse_status<sp/>&gt;=<sp/>0)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>function<sp/>pulse()<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>Search._pulse_status<sp/>=<sp/>(Search._pulse_status<sp/>+<sp/>1)<sp/>%<sp/>4;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>var<sp/>dotString<sp/>=<sp/>&apos;&apos;;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>for<sp/>(var<sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>Search._pulse_status;<sp/>i++)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dotString<sp/>+=<sp/>&apos;.&apos;;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>Search.dots.text(dotString);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(Search._pulse_status<sp/>&gt;<sp/>-1)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>window.setTimeout(pulse,<sp/>500);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>pulse();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>},</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/>/**</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>*<sp/>perform<sp/>a<sp/>search<sp/>for<sp/>something</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>performSearch<sp/>:<sp/>function(query)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>create<sp/>the<sp/>required<sp/>interface<sp/>elements</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>this.out<sp/>=<sp/>$(&apos;#search-results&apos;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>this.title<sp/>=<sp/>$(&apos;&lt;h2&gt;&apos;<sp/>+<sp/>_(&apos;Searching&apos;)<sp/>+<sp/>&apos;&lt;/h2&gt;&apos;).appendTo(this.out);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>this.dots<sp/>=<sp/>$(&apos;&lt;span&gt;&lt;/span&gt;&apos;).appendTo(this.title);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>this.status<sp/>=<sp/>$(&apos;&lt;p<sp/>style=&quot;display:<sp/>none&quot;&gt;&lt;/p&gt;&apos;).appendTo(this.out);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>this.output<sp/>=<sp/>$(&apos;&lt;ul<sp/>class=&quot;search&quot;/&gt;&apos;).appendTo(this.out);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>$(&apos;#search-progress&apos;).text(_(&apos;Preparing<sp/>search...&apos;));</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>this.startPulse();</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>index<sp/>already<sp/>loaded,<sp/>the<sp/>browser<sp/>was<sp/>quick!</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(this.hasIndex())</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>this.query(query);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>else</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>this.deferQuery(query);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>},</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/>query<sp/>:<sp/>function(query)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>var<sp/>stopwords<sp/>=<sp/>[&quot;and&quot;,&quot;then&quot;,&quot;into&quot;,&quot;it&quot;,&quot;as&quot;,&quot;are&quot;,&quot;in&quot;,&quot;if&quot;,&quot;for&quot;,&quot;no&quot;,&quot;there&quot;,&quot;their&quot;,&quot;was&quot;,&quot;is&quot;,&quot;be&quot;,&quot;to&quot;,&quot;that&quot;,&quot;but&quot;,&quot;they&quot;,&quot;not&quot;,&quot;such&quot;,&quot;with&quot;,&quot;by&quot;,&quot;a&quot;,&quot;on&quot;,&quot;these&quot;,&quot;of&quot;,&quot;will&quot;,&quot;this&quot;,&quot;near&quot;,&quot;the&quot;,&quot;or&quot;,&quot;at&quot;];</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>Stem<sp/>the<sp/>searchterms<sp/>and<sp/>add<sp/>them<sp/>to<sp/>the<sp/>correct<sp/>list</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>var<sp/>stemmer<sp/>=<sp/>new<sp/>Stemmer();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>var<sp/>searchterms<sp/>=<sp/>[];</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>var<sp/>excluded<sp/>=<sp/>[];</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>var<sp/>hlterms<sp/>=<sp/>[];</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>var<sp/>tmp<sp/>=<sp/>query.split(/\s+/);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>var<sp/>objectterms<sp/>=<sp/>[];</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>for<sp/>(var<sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>tmp.length;<sp/>i++)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(tmp[i]<sp/>!=<sp/>&quot;&quot;)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>objectterms.push(tmp[i].toLowerCase());</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>($u.indexOf(stopwords,<sp/>tmp[i])<sp/>!=<sp/>-1<sp/>||<sp/>tmp[i].match(/^\d+$/)<sp/>||</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tmp[i]<sp/>==<sp/>&quot;&quot;)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>skip<sp/>this<sp/>&quot;word&quot;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>continue;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>stem<sp/>the<sp/>word</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>var<sp/>word<sp/>=<sp/>stemmer.stemWord(tmp[i]).toLowerCase();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>select<sp/>the<sp/>correct<sp/>list</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(word[0]<sp/>==<sp/>&apos;-&apos;)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>var<sp/>toAppend<sp/>=<sp/>excluded;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>word<sp/>=<sp/>word.substr(1);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>var<sp/>toAppend<sp/>=<sp/>searchterms;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>hlterms.push(tmp[i].toLowerCase());</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>only<sp/>add<sp/>if<sp/>not<sp/>already<sp/>in<sp/>the<sp/>list</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(!$.contains(toAppend,<sp/>word))</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>toAppend.push(word);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>var<sp/>highlightstring<sp/>=<sp/>&apos;?highlight=&apos;<sp/>+<sp/>$.urlencode(hlterms.join(&quot;<sp/>&quot;));</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>console.debug(&apos;SEARCH:<sp/>searching<sp/>for:&apos;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>console.info(&apos;required:<sp/>&apos;,<sp/>searchterms);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>console.info(&apos;excluded:<sp/>&apos;,<sp/>excluded);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>prepare<sp/>search</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>var<sp/>filenames<sp/>=<sp/>this._index.filenames;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>var<sp/>titles<sp/>=<sp/>this._index.titles;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>var<sp/>terms<sp/>=<sp/>this._index.terms;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>var<sp/>fileMap<sp/>=<sp/>{};</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>var<sp/>files<sp/>=<sp/>null;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>different<sp/>result<sp/>priorities</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>var<sp/>importantResults<sp/>=<sp/>[];</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>var<sp/>objectResults<sp/>=<sp/>[];</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>var<sp/>regularResults<sp/>=<sp/>[];</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>var<sp/>unimportantResults<sp/>=<sp/>[];</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>$(&apos;#search-progress&apos;).empty();</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>lookup<sp/>as<sp/>object</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>for<sp/>(var<sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>objectterms.length;<sp/>i++)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>var<sp/>others<sp/>=<sp/>[].concat(objectterms.slice(0,i),</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>objectterms.slice(i+1,<sp/>objectterms.length))</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>var<sp/>results<sp/>=<sp/>this.performObjectSearch(objectterms[i],<sp/>others);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>Assume<sp/>first<sp/>word<sp/>is<sp/>most<sp/>likely<sp/>to<sp/>be<sp/>the<sp/>object,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>other<sp/>words<sp/>more<sp/>likely<sp/>to<sp/>be<sp/>in<sp/>description.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>Therefore<sp/>put<sp/>matches<sp/>for<sp/>earlier<sp/>words<sp/>first.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>(Results<sp/>are<sp/>eventually<sp/>used<sp/>in<sp/>reverse<sp/>order).</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>objectResults<sp/>=<sp/>results[0].concat(objectResults);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>importantResults<sp/>=<sp/>results[1].concat(importantResults);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>unimportantResults<sp/>=<sp/>results[2].concat(unimportantResults);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>perform<sp/>the<sp/>search<sp/>on<sp/>the<sp/>required<sp/>terms</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>for<sp/>(var<sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>searchterms.length;<sp/>i++)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>var<sp/>word<sp/>=<sp/>searchterms[i];</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>no<sp/>match<sp/>but<sp/>word<sp/>was<sp/>a<sp/>required<sp/>one</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>((files<sp/>=<sp/>terms[word])<sp/>==<sp/>null)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>break;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(files.length<sp/>==<sp/>undefined)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>files<sp/>=<sp/>[files];</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>create<sp/>the<sp/>mapping</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>for<sp/>(var<sp/>j<sp/>=<sp/>0;<sp/>j<sp/>&lt;<sp/>files.length;<sp/>j++)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>var<sp/>file<sp/>=<sp/>files[j];</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(file<sp/>in<sp/>fileMap)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fileMap[file].push(word);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>else</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fileMap[file]<sp/>=<sp/>[word];</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>now<sp/>check<sp/>if<sp/>the<sp/>files<sp/>don&apos;t<sp/>contain<sp/>excluded<sp/>terms</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>for<sp/>(var<sp/>file<sp/>in<sp/>fileMap)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>var<sp/>valid<sp/>=<sp/>true;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>check<sp/>if<sp/>all<sp/>requirements<sp/>are<sp/>matched</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(fileMap[file].length<sp/>!=<sp/>searchterms.length)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>continue;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>ensure<sp/>that<sp/>none<sp/>of<sp/>the<sp/>excluded<sp/>terms<sp/>is<sp/>in<sp/>the</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>search<sp/>result.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>for<sp/>(var<sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>excluded.length;<sp/>i++)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(terms[excluded[i]]<sp/>==<sp/>file<sp/>||</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>$.contains(terms[excluded[i]]<sp/>||<sp/>[],<sp/>file))<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>valid<sp/>=<sp/>false;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>break;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>if<sp/>we<sp/>have<sp/>still<sp/>a<sp/>valid<sp/>result<sp/>we<sp/>can<sp/>add<sp/>it</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>to<sp/>the<sp/>result<sp/>list</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(valid)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>regularResults.push([filenames[file],<sp/>titles[file],<sp/>&apos;&apos;,<sp/>null]);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>delete<sp/>unused<sp/>variables<sp/>in<sp/>order<sp/>to<sp/>not<sp/>waste</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>memory<sp/>until<sp/>list<sp/>is<sp/>retrieved<sp/>completely</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>delete<sp/>filenames,<sp/>titles,<sp/>terms;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>now<sp/>sort<sp/>the<sp/>regular<sp/>results<sp/>descending<sp/>by<sp/>title</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>regularResults.sort(function(a,<sp/>b)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>var<sp/>left<sp/>=<sp/>a[1].toLowerCase();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>var<sp/>right<sp/>=<sp/>b[1].toLowerCase();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>(left<sp/>&gt;<sp/>right)<sp/>?<sp/>-1<sp/>:<sp/>((left<sp/>&lt;<sp/>right)<sp/>?<sp/>1<sp/>:<sp/>0);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>});</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>combine<sp/>all<sp/>results</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>var<sp/>results<sp/>=<sp/>unimportantResults.concat(regularResults)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>.concat(objectResults).concat(importantResults);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>print<sp/>the<sp/>results</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>var<sp/>resultCount<sp/>=<sp/>results.length;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>function<sp/>displayNextItem()<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>results<sp/>left,<sp/>load<sp/>the<sp/>summary<sp/>and<sp/>display<sp/>it</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(results.length)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>var<sp/>item<sp/>=<sp/>results.pop();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>var<sp/>listItem<sp/>=<sp/>$(&apos;&lt;li<sp/>style=&quot;display:none&quot;&gt;&lt;/li&gt;&apos;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(DOCUMENTATION_OPTIONS.FILE_SUFFIX<sp/>==<sp/>&apos;&apos;)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>dirhtml<sp/>builder</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>var<sp/>dirname<sp/>=<sp/>item[0]<sp/>+<sp/>&apos;/&apos;;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(dirname.match(/\/index\/$/))<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dirname<sp/>=<sp/>dirname.substring(0,<sp/>dirname.length-6);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/>else<sp/>if<sp/>(dirname<sp/>==<sp/>&apos;index/&apos;)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dirname<sp/>=<sp/>&apos;&apos;;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>listItem.append($(&apos;&lt;a/&gt;&apos;).attr(&apos;href&apos;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>DOCUMENTATION_OPTIONS.URL_ROOT<sp/>+<sp/>dirname<sp/>+</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>highlightstring<sp/>+<sp/>item[2]).html(item[1]));</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/>else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>normal<sp/>html<sp/>builders</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>listItem.append($(&apos;&lt;a/&gt;&apos;).attr(&apos;href&apos;,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>item[0]<sp/>+<sp/>DOCUMENTATION_OPTIONS.FILE_SUFFIX<sp/>+</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>highlightstring<sp/>+<sp/>item[2]).html(item[1]));</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(item[3])<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>listItem.append($(&apos;&lt;span&gt;<sp/>(&apos;<sp/>+<sp/>item[3]<sp/>+<sp/>&apos;)&lt;/span&gt;&apos;));</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Search.output.append(listItem);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>listItem.slideDown(5,<sp/>function()<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>displayNextItem();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>});</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/>else<sp/>if<sp/>(DOCUMENTATION_OPTIONS.HAS_SOURCE)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>$.get(DOCUMENTATION_OPTIONS.URL_ROOT<sp/>+<sp/>&apos;_sources/&apos;<sp/>+</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>item[0]<sp/>+<sp/>&apos;.txt&apos;,<sp/>function(data)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(data<sp/>!=<sp/>&apos;&apos;)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>listItem.append($.makeSearchSummary(data,<sp/>searchterms,<sp/>hlterms));</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Search.output.append(listItem);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>listItem.slideDown(5,<sp/>function()<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>displayNextItem();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>});</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>},<sp/>&quot;text&quot;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/>else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>no<sp/>source<sp/>available,<sp/>just<sp/>display<sp/>title</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Search.output.append(listItem);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>listItem.slideDown(5,<sp/>function()<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>displayNextItem();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>});</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>search<sp/>finished,<sp/>update<sp/>title<sp/>and<sp/>status<sp/>message</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Search.stopPulse();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Search.title.text(_(&apos;Search<sp/>Results&apos;));</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(!resultCount)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Search.status.text(_(&apos;Your<sp/>search<sp/>did<sp/>not<sp/>match<sp/>any<sp/>documents.<sp/>Please<sp/>make<sp/>sure<sp/>that<sp/>all<sp/>words<sp/>are<sp/>spelled<sp/>correctly<sp/>and<sp/>that<sp/>you\&apos;ve<sp/>selected<sp/>enough<sp/>categories.&apos;));</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>else</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Search.status.text(_(&apos;Search<sp/>finished,<sp/>found<sp/>%s<sp/>page(s)<sp/>matching<sp/>the<sp/>search<sp/>query.&apos;).replace(&apos;%s&apos;,<sp/>resultCount));</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Search.status.fadeIn(500);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>displayNextItem();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>},</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/>performObjectSearch<sp/>:<sp/>function(object,<sp/>otherterms)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>var<sp/>filenames<sp/>=<sp/>this._index.filenames;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>var<sp/>objects<sp/>=<sp/>this._index.objects;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>var<sp/>objnames<sp/>=<sp/>this._index.objnames;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>var<sp/>titles<sp/>=<sp/>this._index.titles;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>var<sp/>importantResults<sp/>=<sp/>[];</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>var<sp/>objectResults<sp/>=<sp/>[];</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>var<sp/>unimportantResults<sp/>=<sp/>[];</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>for<sp/>(var<sp/>prefix<sp/>in<sp/>objects)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>for<sp/>(var<sp/>name<sp/>in<sp/>objects[prefix])<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>var<sp/>fullname<sp/>=<sp/>(prefix<sp/>?<sp/>prefix<sp/>+<sp/>&apos;.&apos;<sp/>:<sp/>&apos;&apos;)<sp/>+<sp/>name;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(fullname.toLowerCase().indexOf(object)<sp/>&gt;<sp/>-1)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>var<sp/>match<sp/>=<sp/>objects[prefix][name];</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>var<sp/>objname<sp/>=<sp/>objnames[match[1]][2];</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>var<sp/>title<sp/>=<sp/>titles[match[0]];</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>If<sp/>more<sp/>than<sp/>one<sp/>term<sp/>searched<sp/>for,<sp/>we<sp/>require<sp/>other<sp/>words<sp/>to<sp/>be</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>found<sp/>in<sp/>the<sp/>name/title/description</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(otherterms.length<sp/>&gt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>var<sp/>haystack<sp/>=<sp/>(prefix<sp/>+<sp/>&apos;<sp/>&apos;<sp/>+<sp/>name<sp/>+<sp/>&apos;<sp/>&apos;<sp/>+</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>objname<sp/>+<sp/>&apos;<sp/>&apos;<sp/>+<sp/>title).toLowerCase();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>var<sp/>allfound<sp/>=<sp/>true;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>for<sp/>(var<sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>otherterms.length;<sp/>i++)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(haystack.indexOf(otherterms[i])<sp/>==<sp/>-1)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>allfound<sp/>=<sp/>false;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>break;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(!allfound)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>continue;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>var<sp/>descr<sp/>=<sp/>objname<sp/>+<sp/>_(&apos;,<sp/>in<sp/>&apos;)<sp/>+<sp/>title;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>anchor<sp/>=<sp/>match[3];</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(anchor<sp/>==<sp/>&apos;&apos;)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>anchor<sp/>=<sp/>fullname;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>else<sp/>if<sp/>(anchor<sp/>==<sp/>&apos;-&apos;)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>anchor<sp/>=<sp/>objnames[match[1]][1]<sp/>+<sp/>&apos;-&apos;<sp/>+<sp/>fullname;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>result<sp/>=<sp/>[filenames[match[0]],<sp/>fullname,<sp/>&apos;#&apos;+anchor,<sp/>descr];</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>switch<sp/>(match[2])<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>case<sp/>1:<sp/>objectResults.push(result);<sp/>break;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>case<sp/>0:<sp/>importantResults.push(result);<sp/>break;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>case<sp/>2:<sp/>unimportantResults.push(result);<sp/>break;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>sort<sp/>results<sp/>descending</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>objectResults.sort(function(a,<sp/>b)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>(a[1]<sp/>&gt;<sp/>b[1])<sp/>?<sp/>-1<sp/>:<sp/>((a[1]<sp/>&lt;<sp/>b[1])<sp/>?<sp/>1<sp/>:<sp/>0);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>});</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>importantResults.sort(function(a,<sp/>b)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>(a[1]<sp/>&gt;<sp/>b[1])<sp/>?<sp/>-1<sp/>:<sp/>((a[1]<sp/>&lt;<sp/>b[1])<sp/>?<sp/>1<sp/>:<sp/>0);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>});</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>unimportantResults.sort(function(a,<sp/>b)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>(a[1]<sp/>&gt;<sp/>b[1])<sp/>?<sp/>-1<sp/>:<sp/>((a[1]<sp/>&lt;<sp/>b[1])<sp/>?<sp/>1<sp/>:<sp/>0);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>});</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>return<sp/>[importantResults,<sp/>objectResults,<sp/>unimportantResults]</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">$(document).ready(function()<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>Search.init();</highlight></codeline>
+<codeline><highlight class="normal">});</highlight></codeline>
+    </programlisting>
+    <location file="src/docs/sphinx/_build/html/_static/searchtools.js"/>
+  </compounddef>
+</doxygen>

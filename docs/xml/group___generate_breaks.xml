@@ -1,29 +1,26 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.6.1">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
   <compounddef id="group___generate_breaks" kind="group">
     <compoundname>GenerateBreaks</compoundname>
     <title>Generate breaks from data, range, and/or bins.</title>
       <sectiondef kind="func">
-      <memberdef kind="function" id="group___generate_breaks_1ga853c19bd3a41d2c20e32828507ab04eb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="group___generate_breaks_1gac6f613c7fc034ff9576ffbf746f8e67f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
-          <param>
-            <type>typename T</type>
-          </param>
           <param>
             <type>typename PRECI</type>
             <defval>double</defval>
           </param>
         </templateparamlist>
-        <type>std::vector&lt; T &gt;</type>
-        <definition>std::vector&lt;T&gt; histo::GenerateBreaksFromRangeAndBins</definition>
-        <argsstring>(const T &amp;low, const T &amp;upper, const unsigned long int &amp;bins)</argsstring>
+        <type>std::vector&lt; PRECI &gt;</type>
+        <definition>std::vector&lt;PRECI&gt; histo::GenerateBreaksFromRangeAndBins</definition>
+        <argsstring>(const PRECI &amp;low, const PRECI &amp;upper, const unsigned long int &amp;bins)</argsstring>
         <name>GenerateBreaksFromRangeAndBins</name>
         <param>
-          <type>const T &amp;</type>
+          <type>const PRECI &amp;</type>
           <declname>low</declname>
         </param>
         <param>
-          <type>const T &amp;</type>
+          <type>const PRECI &amp;</type>
           <declname>upper</declname>
         </param>
         <param>
@@ -33,19 +30,12 @@
         <briefdescription>
 <para>Help functions to manually creating breaks from input range (low, upper) and desired number of bins. </para>        </briefdescription>
         <detaileddescription>
-<para><parameterlist kind="templateparam"><parameteritem>
-<parameternamelist>
-<parametername>T</parametername>
-</parameternamelist>
-<parameterdescription>
-<para>Input data type. </para></parameterdescription>
-</parameteritem>
-<parameteritem>
+<para>You can use this function to force breaks in the place you want. It is specially useful if you want to store integers. For example, image your data is unsigned, [0,...,10] You can choose breaks in a way that the middle of the bins are unsigned: GenerateBreaksFromRangeAndBins( min - 0.5, max + 0.5, max + 1) If you use PrintCenter, you will the expected histo.</para><para><parameterlist kind="templateparam"><parameteritem>
 <parameternamelist>
 <parametername>PRECI</parametername>
 </parameternamelist>
 <parameterdescription>
-<para>It should be equal to T, except when T is int. </para></parameterdescription>
+<para>is the type of the breaks, should be greater or as precise as T. </para></parameterdescription>
 </parameteritem>
 </parameterlist>
 <parameterlist kind="param"><parameteritem>
@@ -74,24 +64,21 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/phc/repository_local/histo-header/src/histo-header.h" line="55" bodyfile="/home/phc/repository_local/histo-header/src/histo-header.h" bodystart="55" bodyend="62"/>
+        <location file="src/include/histo.hpp" line="63" column="1" bodyfile="src/include/histo.hpp" bodystart="63" bodyend="71"/>
       </memberdef>
-      <memberdef kind="function" id="group___generate_breaks_1gaf937f2bdf0ef388ea4a3aeb6e29effb2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="group___generate_breaks_1gacc2263aece190147683fa46a82317afb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <templateparamlist>
-          <param>
-            <type>typename T</type>
-          </param>
           <param>
             <type>typename PRECI</type>
             <defval>double</defval>
           </param>
         </templateparamlist>
-        <type>std::vector&lt; T &gt;</type>
-        <definition>std::vector&lt;T&gt; histo::GenerateBreaksFromRangeAndBins</definition>
-        <argsstring>(const std::pair&lt; T, T &gt; &amp;range_low_upper, const unsigned long int &amp;bins)</argsstring>
+        <type>std::vector&lt; PRECI &gt;</type>
+        <definition>std::vector&lt;PRECI&gt; histo::GenerateBreaksFromRangeAndBins</definition>
+        <argsstring>(const std::pair&lt; PRECI, PRECI &gt; &amp;range_low_upper, const unsigned long int &amp;bins)</argsstring>
         <name>GenerateBreaksFromRangeAndBins</name>
         <param>
-          <type>const std::pair&lt; T, T &gt; &amp;</type>
+          <type>const std::pair&lt; PRECI, PRECI &gt; &amp;</type>
           <declname>range_low_upper</declname>
         </param>
         <param>
@@ -101,11 +88,101 @@
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para><simplesect kind="see"><para><ref refid="group___generate_breaks_1ga853c19bd3a41d2c20e32828507ab04eb" kindref="member">GenerateBreaksFromRangeAndBins()</ref> </para></simplesect>
+<para><simplesect kind="see"><para><ref refid="group___generate_breaks_1gac6f613c7fc034ff9576ffbf746f8e67f" kindref="member">GenerateBreaksFromRangeAndBins()</ref> </para></simplesect>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/phc/repository_local/histo-header/src/histo-header.h" line="66" bodyfile="/home/phc/repository_local/histo-header/src/histo-header.h" bodystart="66" bodyend="70"/>
+        <location file="src/include/histo.hpp" line="74" column="1" bodyfile="src/include/histo.hpp" bodystart="74" bodyend="79"/>
+      </memberdef>
+      <memberdef kind="function" id="group___generate_breaks_1gace16ecd63ec3fcf1badf6dbd6aa0f374" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename PRECI</type>
+            <defval>double</defval>
+          </param>
+        </templateparamlist>
+        <type>std::vector&lt; PRECI &gt;</type>
+        <definition>std::vector&lt;PRECI&gt; histo::GenerateBreaksFromRangeAndWidth</definition>
+        <argsstring>(const PRECI &amp;low, const PRECI &amp;upper, const PRECI &amp;width)</argsstring>
+        <name>GenerateBreaksFromRangeAndWidth</name>
+        <param>
+          <type>const PRECI &amp;</type>
+          <declname>low</declname>
+        </param>
+        <param>
+          <type>const PRECI &amp;</type>
+          <declname>upper</declname>
+        </param>
+        <param>
+          <type>const PRECI &amp;</type>
+          <declname>width</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>breaks with a fixed width covering [low, upper + width] range</para><para>Note that breaks.back() can be greater than upper. upper &lt;= breaks.back() &lt; upper + width <parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>PRECI</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>precision for breaks. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>low</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>lower range: breaks[0] = low </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>upper</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>upper range: upper &lt;= breaks.back() &lt; upper + width </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>width</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>between breaks <ndash/>fixed<ndash/>.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>breaks with a fixed width covering [low, upper + width] range </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/include/histo.hpp" line="95" column="1" bodyfile="src/include/histo.hpp" bodystart="95" bodyend="105"/>
+      </memberdef>
+      <memberdef kind="function" id="group___generate_breaks_1gad2a12e8a018170cb031a5f12b56e6beb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename PRECI</type>
+            <defval>double</defval>
+          </param>
+        </templateparamlist>
+        <type>std::vector&lt; PRECI &gt;</type>
+        <definition>std::vector&lt;PRECI&gt; histo::GenerateBreaksFromRangeAndWidth</definition>
+        <argsstring>(const std::pair&lt; PRECI, PRECI &gt; &amp;range_low_upper, const PRECI &amp;width)</argsstring>
+        <name>GenerateBreaksFromRangeAndWidth</name>
+        <param>
+          <type>const std::pair&lt; PRECI, PRECI &gt; &amp;</type>
+          <declname>range_low_upper</declname>
+        </param>
+        <param>
+          <type>const PRECI &amp;</type>
+          <declname>width</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="see"><para><ref refid="group___generate_breaks_1gace16ecd63ec3fcf1badf6dbd6aa0f374" kindref="member">GenerateBreaksFromRangeAndWidth()</ref> </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/include/histo.hpp" line="109" column="1" bodyfile="src/include/histo.hpp" bodystart="109" bodyend="114"/>
       </memberdef>
       </sectiondef>
     <briefdescription>

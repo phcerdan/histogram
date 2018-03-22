@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="classes__0_8js" kind="file" language="C++">
+    <compoundname>classes_0.js</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">var<sp/>searchData=</highlight></codeline>
+<codeline><highlight class="normal">[</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>[&apos;histo&apos;,[&apos;Histo&apos;,[&apos;../structhisto_1_1_histo.html&apos;,1,&apos;histo&apos;]]],</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>[&apos;histo_3c_20double_20_3e&apos;,[&apos;Histo&amp;lt;<sp/>double<sp/>&amp;gt;&apos;,[&apos;../structhisto_1_1_histo.html&apos;,1,&apos;histo&apos;]]],</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>[&apos;histo_3c_20long_20double_20_3e&apos;,[&apos;Histo&amp;lt;<sp/>long<sp/>double<sp/>&amp;gt;&apos;,[&apos;../structhisto_1_1_histo.html&apos;,1,&apos;histo&apos;]]],</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>[&apos;histo_5ferror&apos;,[&apos;histo_error&apos;,[&apos;../classhisto_1_1histo__error.html&apos;,1,&apos;histo&apos;]]],</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>[&apos;histodoublescott&apos;,[&apos;HistoDoubleScott&apos;,[&apos;../struct_histo_double_scott.html&apos;,1,&apos;&apos;]]],</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>[&apos;histointinputbreaks&apos;,[&apos;HistoIntInputBreaks&apos;,[&apos;../struct_histo_int_input_breaks.html&apos;,1,&apos;&apos;]]],</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>[&apos;histolongdoubleinputrange&apos;,[&apos;HistoLongDoubleInputRange&apos;,[&apos;../struct_histo_long_double_input_range.html&apos;,1,&apos;&apos;]]]</highlight></codeline>
+<codeline><highlight class="normal">];</highlight></codeline>
+    </programlisting>
+    <location file="src/docs/html/search/classes_0.js"/>
+  </compounddef>
+</doxygen>

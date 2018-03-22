@@ -1,0 +1,140 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="dynsections_8js" kind="file" language="C++">
+    <compoundname>dynsections.js</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">/*</highlight></codeline>
+<codeline><highlight class="normal"><sp/>@licstart<sp/><sp/>The<sp/>following<sp/>is<sp/>the<sp/>entire<sp/>license<sp/>notice<sp/>for<sp/>the</highlight></codeline>
+<codeline><highlight class="normal"><sp/>JavaScript<sp/>code<sp/>in<sp/>this<sp/>file.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/>Copyright<sp/>(C)<sp/>1997-2017<sp/>by<sp/>Dimitri<sp/>van<sp/>Heesch</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/>This<sp/>program<sp/>is<sp/>free<sp/>software;<sp/>you<sp/>can<sp/>redistribute<sp/>it<sp/>and/or<sp/>modify</highlight></codeline>
+<codeline><highlight class="normal"><sp/>it<sp/>under<sp/>the<sp/>terms<sp/>of<sp/>the<sp/>GNU<sp/>General<sp/>Public<sp/>License<sp/>as<sp/>published<sp/>by</highlight></codeline>
+<codeline><highlight class="normal"><sp/>the<sp/>Free<sp/>Software<sp/>Foundation;<sp/>either<sp/>version<sp/>2<sp/>of<sp/>the<sp/>License,<sp/>or</highlight></codeline>
+<codeline><highlight class="normal"><sp/>(at<sp/>your<sp/>option)<sp/>any<sp/>later<sp/>version.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/>This<sp/>program<sp/>is<sp/>distributed<sp/>in<sp/>the<sp/>hope<sp/>that<sp/>it<sp/>will<sp/>be<sp/>useful,</highlight></codeline>
+<codeline><highlight class="normal"><sp/>but<sp/>WITHOUT<sp/>ANY<sp/>WARRANTY;<sp/>without<sp/>even<sp/>the<sp/>implied<sp/>warranty<sp/>of</highlight></codeline>
+<codeline><highlight class="normal"><sp/>MERCHANTABILITY<sp/>or<sp/>FITNESS<sp/>FOR<sp/>A<sp/>PARTICULAR<sp/>PURPOSE.<sp/><sp/>See<sp/>the</highlight></codeline>
+<codeline><highlight class="normal"><sp/>GNU<sp/>General<sp/>Public<sp/>License<sp/>for<sp/>more<sp/>details.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/>You<sp/>should<sp/>have<sp/>received<sp/>a<sp/>copy<sp/>of<sp/>the<sp/>GNU<sp/>General<sp/>Public<sp/>License<sp/>along</highlight></codeline>
+<codeline><highlight class="normal"><sp/>with<sp/>this<sp/>program;<sp/>if<sp/>not,<sp/>write<sp/>to<sp/>the<sp/>Free<sp/>Software<sp/>Foundation,<sp/>Inc.,</highlight></codeline>
+<codeline><highlight class="normal"><sp/>51<sp/>Franklin<sp/>Street,<sp/>Fifth<sp/>Floor,<sp/>Boston,<sp/>MA<sp/>02110-1301<sp/>USA.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/>@licend<sp/><sp/>The<sp/>above<sp/>is<sp/>the<sp/>entire<sp/>license<sp/>notice</highlight></codeline>
+<codeline><highlight class="normal"><sp/>for<sp/>the<sp/>JavaScript<sp/>code<sp/>in<sp/>this<sp/>file</highlight></codeline>
+<codeline><highlight class="normal"><sp/>*/</highlight></codeline>
+<codeline><highlight class="normal">function<sp/>toggleVisibility(linkObj)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/>var<sp/>base<sp/>=<sp/>$(linkObj).attr(&apos;id&apos;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/>var<sp/>summary<sp/>=<sp/>$(&apos;#&apos;+base+&apos;-summary&apos;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/>var<sp/>content<sp/>=<sp/>$(&apos;#&apos;+base+&apos;-content&apos;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/>var<sp/>trigger<sp/>=<sp/>$(&apos;#&apos;+base+&apos;-trigger&apos;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/>var<sp/>src=$(trigger).attr(&apos;src&apos;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/>if<sp/>(content.is(&apos;:visible&apos;)===true)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>content.hide();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>summary.show();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>$(linkObj).addClass(&apos;closed&apos;).removeClass(&apos;opened&apos;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>$(trigger).attr(&apos;src&apos;,src.substring(0,src.length-8)+&apos;closed.png&apos;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/>}<sp/>else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>content.show();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>summary.hide();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>$(linkObj).removeClass(&apos;closed&apos;).addClass(&apos;opened&apos;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/>$(trigger).attr(&apos;src&apos;,src.substring(0,src.length-10)+&apos;open.png&apos;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/>return<sp/>false;</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">function<sp/>updateStripes()</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>$(&apos;table.directory<sp/>tr&apos;).</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/>removeClass(&apos;even&apos;).filter(&apos;:visible:even&apos;).addClass(&apos;even&apos;);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">function<sp/>toggleLevel(level)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>$(&apos;table.directory<sp/>tr&apos;).each(function()<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>var<sp/>l<sp/>=<sp/>this.id.split(&apos;_&apos;).length-1;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>var<sp/>i<sp/>=<sp/>$(&apos;#img&apos;+this.id.substring(3));</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>var<sp/>a<sp/>=<sp/>$(&apos;#arr&apos;+this.id.substring(3));</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>if<sp/>(l&lt;level+1)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>i.removeClass(&apos;iconfopen<sp/>iconfclosed&apos;).addClass(&apos;iconfopen&apos;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>a.html(&apos;&amp;#9660;&apos;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>$(this).show();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/>else<sp/>if<sp/>(l==level+1)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>i.removeClass(&apos;iconfclosed<sp/>iconfopen&apos;).addClass(&apos;iconfclosed&apos;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>a.html(&apos;&amp;#9654;&apos;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>$(this).show();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/>else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>$(this).hide();</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>});</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>updateStripes();</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">function<sp/>toggleFolder(id)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>//<sp/>the<sp/>clicked<sp/>row</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>var<sp/>currentRow<sp/>=<sp/>$(&apos;#row_&apos;+id);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/>//<sp/>all<sp/>rows<sp/>after<sp/>the<sp/>clicked<sp/>row</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>var<sp/>rows<sp/>=<sp/>currentRow.nextAll(&quot;tr&quot;);</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/>var<sp/>re<sp/>=<sp/>new<sp/>RegExp(&apos;^row_&apos;+id+&apos;\\d+_$&apos;,<sp/>&quot;i&quot;);<sp/>//only<sp/>one<sp/>sub</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/>//<sp/>only<sp/>match<sp/>elements<sp/>AFTER<sp/>this<sp/>one<sp/>(can&apos;t<sp/>hide<sp/>elements<sp/>before)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>var<sp/>childRows<sp/>=<sp/>rows.filter(function()<sp/>{<sp/>return<sp/>this.id.match(re);<sp/>});</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/>//<sp/>first<sp/>row<sp/>is<sp/>visible<sp/>we<sp/>are<sp/>HIDING</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>if<sp/>(childRows.filter(&apos;:first&apos;).is(&apos;:visible&apos;)===true)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>replace<sp/>down<sp/>arrow<sp/>by<sp/>right<sp/>arrow<sp/>for<sp/>current<sp/>row</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>var<sp/>currentRowSpans<sp/>=<sp/>currentRow.find(&quot;span&quot;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>currentRowSpans.filter(&quot;.iconfopen&quot;).removeClass(&quot;iconfopen&quot;).addClass(&quot;iconfclosed&quot;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>currentRowSpans.filter(&quot;.arrow&quot;).html(&apos;&amp;#9654;&apos;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>rows.filter(&quot;[id^=row_&quot;+id+&quot;]&quot;).hide();<sp/>//<sp/>hide<sp/>all<sp/>children</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}<sp/>else<sp/>{<sp/>//<sp/>we<sp/>are<sp/>SHOWING</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>replace<sp/>right<sp/>arrow<sp/>by<sp/>down<sp/>arrow<sp/>for<sp/>current<sp/>row</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>var<sp/>currentRowSpans<sp/>=<sp/>currentRow.find(&quot;span&quot;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>currentRowSpans.filter(&quot;.iconfclosed&quot;).removeClass(&quot;iconfclosed&quot;).addClass(&quot;iconfopen&quot;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>currentRowSpans.filter(&quot;.arrow&quot;).html(&apos;&amp;#9660;&apos;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>//<sp/>replace<sp/>down<sp/>arrows<sp/>by<sp/>right<sp/>arrows<sp/>for<sp/>child<sp/>rows</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>var<sp/>childRowsSpans<sp/>=<sp/>childRows.find(&quot;span&quot;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>childRowsSpans.filter(&quot;.iconfopen&quot;).removeClass(&quot;iconfopen&quot;).addClass(&quot;iconfclosed&quot;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>childRowsSpans.filter(&quot;.arrow&quot;).html(&apos;&amp;#9654;&apos;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>childRows.show();<sp/>//show<sp/>all<sp/>children</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>updateStripes();</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">function<sp/>toggleInherit(id)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>var<sp/>rows<sp/>=<sp/>$(&apos;tr.inherit.&apos;+id);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>var<sp/>img<sp/>=<sp/>$(&apos;tr.inherit_header.&apos;+id+&apos;<sp/>img&apos;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>var<sp/>src<sp/>=<sp/>$(img).attr(&apos;src&apos;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>if<sp/>(rows.filter(&apos;:first&apos;).is(&apos;:visible&apos;)===true)<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>rows.css(&apos;display&apos;,&apos;none&apos;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>$(img).attr(&apos;src&apos;,src.substring(0,src.length-8)+&apos;closed.png&apos;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}<sp/>else<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>rows.css(&apos;display&apos;,&apos;table-row&apos;);<sp/>//<sp/>using<sp/>show()<sp/>causes<sp/>jump<sp/>in<sp/>firefox</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>$(img).attr(&apos;src&apos;,src.substring(0,src.length-10)+&apos;open.png&apos;);</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal">/*<sp/>@license-end<sp/>*/</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">$(document).ready(function()<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>$(&apos;.code,.codeRef&apos;).each(function()<sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>$(this).data(&apos;powertip&apos;,$(&apos;#&apos;+$(this).attr(&apos;href&apos;).replace(/.*\//,&apos;&apos;).replace(/[^a-z_A-Z0-9]/g,&apos;_&apos;)).html());</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>$(this).powerTip({<sp/>placement:<sp/>&apos;s&apos;,<sp/>smartPlacement:<sp/>true,<sp/>mouseOnToPopup:<sp/>true<sp/>});</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>});</highlight></codeline>
+<codeline><highlight class="normal">});</highlight></codeline>
+    </programlisting>
+    <location file="src/docs/html/dynsections.js"/>
+  </compounddef>
+</doxygen>

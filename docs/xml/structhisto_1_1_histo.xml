@@ -1,25 +1,26 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.6.1">
-  <compounddef id="structhisto_1_1_histo" kind="struct" prot="public">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="structhisto_1_1_histo" kind="struct" language="C++" prot="public">
     <compoundname>histo::Histo</compoundname>
-    <includes refid="histo-header_8h" local="no">histo-header.h</includes>
+    <includes refid="histo_8hpp" local="no">histo.hpp</includes>
     <templateparamlist>
       <param>
-        <type>typename T</type>
-      </param>
-      <param>
-        <type>typename PRECI</type>
+        <type>typename</type>
+        <declname>PRECI</declname>
+        <defname>PRECI</defname>
         <defval>double</defval>
       </param>
       <param>
-        <type>typename PRECI_INTEGER</type>
+        <type>typename</type>
+        <declname>PRECI_INTEGER</declname>
+        <defname>PRECI_INTEGER</defname>
         <defval>unsigned long int</defval>
       </param>
     </templateparamlist>
       <sectiondef kind="public-attrib">
-      <memberdef kind="variable" id="structhisto_1_1_histo_1aae8bee662fbf5b3f00e2b5bc8e304036" prot="public" static="no" mutable="no">
-        <type>std::pair&lt; T, T &gt;</type>
-        <definition>std::pair&lt;T,T&gt; histo::Histo&lt; T, PRECI, PRECI_INTEGER &gt;::range</definition>
+      <memberdef kind="variable" id="structhisto_1_1_histo_1a244cec4f3976642b93c8896d53c87cca" prot="public" static="no" mutable="no">
+        <type>std::pair&lt; PRECI, PRECI &gt;</type>
+        <definition>std::pair&lt;PRECI,PRECI&gt; histo::Histo&lt; PRECI, PRECI_INTEGER &gt;::range</definition>
         <argsstring></argsstring>
         <name>range</name>
         <briefdescription>
@@ -28,11 +29,11 @@
 <para>Low and upper limit for breaks. </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/phc/repository_local/histo-header/src/histo-header.h" line="129" bodyfile="/home/phc/repository_local/histo-header/src/histo-header.h" bodystart="129" bodyend="-1"/>
+        <location file="src/include/histo.hpp" line="173" column="1" bodyfile="src/include/histo.hpp" bodystart="173" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="structhisto_1_1_histo_1a742cff9dfd900b400959621fa72eb0bb" prot="public" static="no" mutable="no">
-        <type>std::vector&lt; T &gt;</type>
-        <definition>std::vector&lt;T&gt; histo::Histo&lt; T, PRECI, PRECI_INTEGER &gt;::breaks</definition>
+      <memberdef kind="variable" id="structhisto_1_1_histo_1abd8ee6df9a51c901fba647137b29f010" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; PRECI &gt;</type>
+        <definition>std::vector&lt;PRECI&gt; histo::Histo&lt; PRECI, PRECI_INTEGER &gt;::breaks</definition>
         <argsstring></argsstring>
         <name>breaks</name>
         <briefdescription>
@@ -41,27 +42,54 @@
 <para>Value of the breaks between bins, [low,...,upper]. size.breaks = size.counts + 1. </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/phc/repository_local/histo-header/src/histo-header.h" line="132" bodyfile="/home/phc/repository_local/histo-header/src/histo-header.h" bodystart="132" bodyend="-1"/>
+        <location file="src/include/histo.hpp" line="176" column="1" bodyfile="src/include/histo.hpp" bodystart="176" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="structhisto_1_1_histo_1af5eab179e063fbe3769d0c9ab823fa0d" prot="public" static="no" mutable="no">
+      <memberdef kind="variable" id="structhisto_1_1_histo_1a9810584945cb6dc4f1ecf407c5dc31ed" prot="public" static="no" mutable="no">
+        <type>unsigned long int</type>
+        <definition>unsigned long int histo::Histo&lt; PRECI, PRECI_INTEGER &gt;::bins</definition>
+        <argsstring></argsstring>
+        <name>bins</name>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>breaks.size() - 1 </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/include/histo.hpp" line="178" column="1" bodyfile="src/include/histo.hpp" bodystart="178" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhisto_1_1_histo_1a3c079c7931896ee4076eb02a64577102" prot="public" static="no" mutable="no">
         <type>std::vector&lt; PRECI_INTEGER &gt;</type>
-        <definition>std::vector&lt;PRECI_INTEGER&gt; histo::Histo&lt; T, PRECI, PRECI_INTEGER &gt;::counts</definition>
+        <definition>std::vector&lt;PRECI_INTEGER&gt; histo::Histo&lt; PRECI, PRECI_INTEGER &gt;::counts</definition>
         <argsstring></argsstring>
         <name>counts</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para>breaks.size() int vector holding the counts for each breaks interval. </para>        </detaileddescription>
+<para>int vector holding the counts for each breaks interval. </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/phc/repository_local/histo-header/src/histo-header.h" line="136" bodyfile="/home/phc/repository_local/histo-header/src/histo-header.h" bodystart="134" bodyend="-1"/>
+        <location file="src/include/histo.hpp" line="180" column="1" bodyfile="src/include/histo.hpp" bodystart="180" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structhisto_1_1_histo_1a875e8d55903de1bb8dbfa07916a2edb6" prot="public" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string histo::Histo&lt; PRECI, PRECI_INTEGER &gt;::name</definition>
+        <argsstring></argsstring>
+        <name>name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>name/description of the histogram </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/include/histo.hpp" line="182" column="1" bodyfile="src/include/histo.hpp" bodystart="182" bodyend="-1"/>
       </memberdef>
       </sectiondef>
       <sectiondef kind="public-func">
-      <memberdef kind="function" id="structhisto_1_1_histo_1ae3fb763b191bb6ce8997be0b09f1f10e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+      <memberdef kind="function" id="structhisto_1_1_histo_1aa62aa57468a562734669bc6ed21576f1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type></type>
-        <definition>histo::Histo&lt; T, PRECI, PRECI_INTEGER &gt;::Histo</definition>
-        <argsstring>()</argsstring>
+        <definition>histo::Histo&lt; PRECI, PRECI_INTEGER &gt;::Histo</definition>
+        <argsstring>()=default</argsstring>
         <name>Histo</name>
         <briefdescription>
         </briefdescription>
@@ -69,21 +97,26 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/phc/repository_local/histo-header/src/histo-header.h" line="139"/>
+        <location file="src/include/histo.hpp" line="185" column="1"/>
       </memberdef>
-      <memberdef kind="function" id="structhisto_1_1_histo_1a7065d3edf9a7db33a93930b5bf7ae44d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="structhisto_1_1_histo_1afe514992fddc1f5c125a4b4404f652ee" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename TData</type>
+          </param>
+        </templateparamlist>
         <type></type>
-        <definition>histo::Histo&lt; T, PRECI, PRECI_INTEGER &gt;::Histo</definition>
-        <argsstring>(const std::vector&lt; T &gt; &amp;data, histo::breaks_method method=Scott)</argsstring>
+        <definition>histo::Histo&lt; PRECI, PRECI_INTEGER &gt;::Histo</definition>
+        <argsstring>(const std::vector&lt; TData &gt; &amp;data, histo::breaks_method method=Scott)</argsstring>
         <name>Histo</name>
         <param>
-          <type>const std::vector&lt; T &gt; &amp;</type>
+          <type>const std::vector&lt; TData &gt; &amp;</type>
           <declname>data</declname>
         </param>
         <param>
           <type><ref refid="group__breaks__methods_1ga132dcd8240c4bb268ed00b1e4fa3ebab" kindref="member">histo::breaks_method</ref></type>
           <declname>method</declname>
-          <defval>Scott</defval>
+          <defval><ref refid="group__breaks__methods_1gga132dcd8240c4bb268ed00b1e4fa3ebabae05f2a05e4a163aac88bf64dc92cb36e" kindref="member">Scott</ref></defval>
         </param>
         <briefdescription>
 <para>Constructor that takes range as the min, and max values of data. </para>        </briefdescription>
@@ -107,25 +140,30 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/phc/repository_local/histo-header/src/histo-header.h" line="148" bodyfile="/home/phc/repository_local/histo-header/src/histo-header.h" bodystart="147" bodyend="155"/>
+        <location file="src/include/histo.hpp" line="194" column="1" bodyfile="src/include/histo.hpp" bodystart="194" bodyend="203"/>
       </memberdef>
-      <memberdef kind="function" id="structhisto_1_1_histo_1a7d313fd5714037fe2fde6108b30db86a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="structhisto_1_1_histo_1ab8316b6aee95725b5e626bf9df417e25" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename TData</type>
+          </param>
+        </templateparamlist>
         <type></type>
-        <definition>histo::Histo&lt; T, PRECI, PRECI_INTEGER &gt;::Histo</definition>
-        <argsstring>(const std::vector&lt; T &gt; &amp;data, const std::pair&lt; T, T &gt; &amp;input_range, histo::breaks_method method=Scott)</argsstring>
+        <definition>histo::Histo&lt; PRECI, PRECI_INTEGER &gt;::Histo</definition>
+        <argsstring>(const std::vector&lt; TData &gt; &amp;data, const std::pair&lt; PRECI, PRECI &gt; &amp;input_range, histo::breaks_method method=Scott)</argsstring>
         <name>Histo</name>
         <param>
-          <type>const std::vector&lt; T &gt; &amp;</type>
+          <type>const std::vector&lt; TData &gt; &amp;</type>
           <declname>data</declname>
         </param>
         <param>
-          <type>const std::pair&lt; T, T &gt; &amp;</type>
+          <type>const std::pair&lt; PRECI, PRECI &gt; &amp;</type>
           <declname>input_range</declname>
         </param>
         <param>
           <type><ref refid="group__breaks__methods_1ga132dcd8240c4bb268ed00b1e4fa3ebab" kindref="member">histo::breaks_method</ref></type>
           <declname>method</declname>
-          <defval>Scott</defval>
+          <defval><ref refid="group__breaks__methods_1gga132dcd8240c4bb268ed00b1e4fa3ebabae05f2a05e4a163aac88bf64dc92cb36e" kindref="member">Scott</ref></defval>
         </param>
         <briefdescription>
 <para>Constructor with fixed input range. </para>        </briefdescription>
@@ -156,25 +194,30 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/phc/repository_local/histo-header/src/histo-header.h" line="163" bodyfile="/home/phc/repository_local/histo-header/src/histo-header.h" bodystart="163" bodyend="169"/>
+        <location file="src/include/histo.hpp" line="212" column="1" bodyfile="src/include/histo.hpp" bodystart="212" bodyend="219"/>
       </memberdef>
-      <memberdef kind="function" id="structhisto_1_1_histo_1adb33e8e9c73bde47027926f5c7315545" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="structhisto_1_1_histo_1a7ca35fc27bc1ae74cddfc3312f1d4870" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename TData</type>
+          </param>
+        </templateparamlist>
         <type></type>
-        <definition>histo::Histo&lt; T, PRECI, PRECI_INTEGER &gt;::Histo</definition>
-        <argsstring>(const std::vector&lt; T &gt; &amp;data, const std::vector&lt; T &gt; &amp;input_breaks)</argsstring>
+        <definition>histo::Histo&lt; PRECI, PRECI_INTEGER &gt;::Histo</definition>
+        <argsstring>(const std::vector&lt; TData &gt; &amp;data, const std::vector&lt; PRECI &gt; &amp;input_breaks)</argsstring>
         <name>Histo</name>
         <param>
-          <type>const std::vector&lt; T &gt; &amp;</type>
+          <type>const std::vector&lt; TData &gt; &amp;</type>
           <declname>data</declname>
         </param>
         <param>
-          <type>const std::vector&lt; T &gt; &amp;</type>
+          <type>const std::vector&lt; PRECI &gt; &amp;</type>
           <declname>input_breaks</declname>
         </param>
         <briefdescription>
 <para>Constructor that accepts a vector of breaks. You can use. </para>        </briefdescription>
         <detaileddescription>
-<para><simplesect kind="see"><para><ref refid="group___generate_breaks_1ga853c19bd3a41d2c20e32828507ab04eb" kindref="member">histo::GenerateBreaksFromRangeAndBins</ref> to help you creating the vector from specific number of bins and <ref refid="structhisto_1_1_histo_1aae8bee662fbf5b3f00e2b5bc8e304036" kindref="member">range</ref>.</para></simplesect>
+<para><simplesect kind="see"><para><ref refid="group___generate_breaks_1gac6f613c7fc034ff9576ffbf746f8e67f" kindref="member">histo::GenerateBreaksFromRangeAndBins</ref> to help you creating the vector from specific number of <ref refid="structhisto_1_1_histo_1a9810584945cb6dc4f1ecf407c5dc31ed" kindref="member">bins</ref> and <ref refid="structhisto_1_1_histo_1a244cec4f3976642b93c8896d53c87cca" kindref="member">range</ref>.</para></simplesect>
 <parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername>data</parametername>
@@ -193,21 +236,140 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/phc/repository_local/histo-header/src/histo-header.h" line="178" bodyfile="/home/phc/repository_local/histo-header/src/histo-header.h" bodystart="178" bodyend="184"/>
+        <location file="src/include/histo.hpp" line="229" column="1" bodyfile="src/include/histo.hpp" bodystart="229" bodyend="237"/>
       </memberdef>
-      <memberdef kind="function" id="structhisto_1_1_histo_1a858c655679d179ba3697a70cdbbee206" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="structhisto_1_1_histo_1a48c6811bf8c3b49c6dcb20ed53bc4204" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::vector&lt; PRECI &gt;</type>
+        <definition>std::vector&lt;PRECI&gt; histo::Histo&lt; PRECI, PRECI_INTEGER &gt;::ComputeBinCenters</definition>
+        <argsstring>() const</argsstring>
+        <name>ComputeBinCenters</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/include/histo.hpp" line="240" column="1" bodyfile="src/include/histo.hpp" bodystart="240" bodyend="247"/>
+      </memberdef>
+      <memberdef kind="function" id="structhisto_1_1_histo_1aa057f60c880b0a9fa353408dd0d92fb2" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void histo::Histo&lt; PRECI, PRECI_INTEGER &gt;::PrintBreaksAndCounts</definition>
+        <argsstring>(std::ostream &amp;os) const</argsstring>
+        <name>PrintBreaksAndCounts</name>
+        <param>
+          <type>std::ostream &amp;</type>
+          <declname>os</declname>
+        </param>
+        <briefdescription>
+<para>print to input std::ostream breaks and counts </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>os</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>input ostream, std::cout, std::ofstream, etc. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/include/histo.hpp" line="253" column="1" bodyfile="src/include/histo.hpp" bodystart="253" bodyend="266"/>
+      </memberdef>
+      <memberdef kind="function" id="structhisto_1_1_histo_1a3eb196cb85a95c183ec273c1cb1f4f3e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void histo::Histo&lt; PRECI, PRECI_INTEGER &gt;::PrintCentersAndCounts</definition>
+        <argsstring>(std::ostream &amp;os) const</argsstring>
+        <name>PrintCentersAndCounts</name>
+        <param>
+          <type>std::ostream &amp;</type>
+          <declname>os</declname>
+        </param>
+        <briefdescription>
+<para>print to input std::ostream center of bins and counts </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>os</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>input ostream, std::cout, std::ofstream, etc. </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/include/histo.hpp" line="273" column="1" bodyfile="src/include/histo.hpp" bodystart="273" bodyend="281"/>
+      </memberdef>
+      <memberdef kind="function" id="structhisto_1_1_histo_1a158f842f4524fec42e5d53f45fef2792" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void histo::Histo&lt; PRECI, PRECI_INTEGER &gt;::PrintCenters</definition>
+        <argsstring>(std::ostream &amp;os) const</argsstring>
+        <name>PrintCenters</name>
+        <param>
+          <type>std::ostream &amp;</type>
+          <declname>os</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/include/histo.hpp" line="283" column="1" bodyfile="src/include/histo.hpp" bodystart="283" bodyend="293"/>
+      </memberdef>
+      <memberdef kind="function" id="structhisto_1_1_histo_1af23e2103d5aec11b45a504cc9666fdc6" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void histo::Histo&lt; PRECI, PRECI_INTEGER &gt;::PrintBreaks</definition>
+        <argsstring>(std::ostream &amp;os) const</argsstring>
+        <name>PrintBreaks</name>
+        <param>
+          <type>std::ostream &amp;</type>
+          <declname>os</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/include/histo.hpp" line="295" column="1" bodyfile="src/include/histo.hpp" bodystart="295" bodyend="302"/>
+      </memberdef>
+      <memberdef kind="function" id="structhisto_1_1_histo_1ac4e4143968479c108cc17144c34cd5fa" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void histo::Histo&lt; PRECI, PRECI_INTEGER &gt;::PrintCounts</definition>
+        <argsstring>(std::ostream &amp;os) const</argsstring>
+        <name>PrintCounts</name>
+        <param>
+          <type>std::ostream &amp;</type>
+          <declname>os</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/include/histo.hpp" line="304" column="1" bodyfile="src/include/histo.hpp" bodystart="304" bodyend="311"/>
+      </memberdef>
+      <memberdef kind="function" id="structhisto_1_1_histo_1a3bd599e56850d23ee616d86787a183bb" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename TData</type>
+          </param>
+        </templateparamlist>
         <type>unsigned long int</type>
-        <definition>unsigned long int histo::Histo&lt; T, PRECI, PRECI_INTEGER &gt;::IndexFromValue</definition>
-        <argsstring>(const T &amp;value)</argsstring>
+        <definition>unsigned long int histo::Histo&lt; PRECI, PRECI_INTEGER &gt;::IndexFromValue</definition>
+        <argsstring>(const TData &amp;value) const</argsstring>
         <name>IndexFromValue</name>
         <param>
-          <type>const T &amp;</type>
+          <type>const TData &amp;</type>
           <declname>value</declname>
         </param>
         <briefdescription>
 <para>Return the index of. </para>        </briefdescription>
         <detaileddescription>
-<para><simplesect kind="see"><para><ref refid="structhisto_1_1_histo_1af5eab179e063fbe3769d0c9ab823fa0d" kindref="member">counts</ref> associated to the input value</para></simplesect>
+<para><simplesect kind="see"><para><ref refid="structhisto_1_1_histo_1a3c079c7931896ee4076eb02a64577102" kindref="member">counts</ref> associated to the input value</para></simplesect>
 <parameterlist kind="param"><parameteritem>
 <parameternamelist>
 <parametername>value</parametername>
@@ -220,11 +382,11 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/phc/repository_local/histo-header/src/histo-header.h" line="193" bodyfile="/home/phc/repository_local/histo-header/src/histo-header.h" bodystart="193" bodyend="206"/>
+        <location file="src/include/histo.hpp" line="319" column="1" bodyfile="src/include/histo.hpp" bodystart="319" bodyend="335"/>
       </memberdef>
-      <memberdef kind="function" id="structhisto_1_1_histo_1a59b9327bd63469648ca27cd666adab79" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="structhisto_1_1_histo_1aff4c75a013e42fa1651008db8fedebae" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
-        <definition>void histo::Histo&lt; T, PRECI, PRECI_INTEGER &gt;::ResetCounts</definition>
+        <definition>void histo::Histo&lt; PRECI, PRECI_INTEGER &gt;::ResetCounts</definition>
         <argsstring>()</argsstring>
         <name>ResetCounts</name>
         <briefdescription>
@@ -233,15 +395,20 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/phc/repository_local/histo-header/src/histo-header.h" line="209" bodyfile="/home/phc/repository_local/histo-header/src/histo-header.h" bodystart="209" bodyend="214"/>
+        <location file="src/include/histo.hpp" line="338" column="1" bodyfile="src/include/histo.hpp" bodystart="338" bodyend="343"/>
       </memberdef>
-      <memberdef kind="function" id="structhisto_1_1_histo_1a24f8c6d3b739d1199674198f49aebd28" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="structhisto_1_1_histo_1a52b1779ba9fb88218f08b8a608123ee6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename TData</type>
+          </param>
+        </templateparamlist>
         <type>std::vector&lt; PRECI_INTEGER &gt; &amp;</type>
-        <definition>std::vector&lt;PRECI_INTEGER&gt;&amp; histo::Histo&lt; T, PRECI, PRECI_INTEGER &gt;::FillCounts</definition>
-        <argsstring>(const std::vector&lt; T &gt; &amp;data)</argsstring>
+        <definition>std::vector&lt;PRECI_INTEGER&gt;&amp; histo::Histo&lt; PRECI, PRECI_INTEGER &gt;::FillCounts</definition>
+        <argsstring>(const std::vector&lt; TData &gt; &amp;data)</argsstring>
         <name>FillCounts</name>
         <param>
-          <type>const std::vector&lt; T &gt; &amp;</type>
+          <type>const std::vector&lt; TData &gt; &amp;</type>
           <declname>data</declname>
         </param>
         <briefdescription>
@@ -256,15 +423,15 @@
 </parameteritem>
 </parameterlist>
 <simplesect kind="return"><para>Reference to the data member </para></simplesect>
-<simplesect kind="see"><para><ref refid="structhisto_1_1_histo_1af5eab179e063fbe3769d0c9ab823fa0d" kindref="member">counts</ref> </para></simplesect>
+<simplesect kind="see"><para><ref refid="structhisto_1_1_histo_1a3c079c7931896ee4076eb02a64577102" kindref="member">counts</ref> </para></simplesect>
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/phc/repository_local/histo-header/src/histo-header.h" line="223" bodyfile="/home/phc/repository_local/histo-header/src/histo-header.h" bodystart="223" bodyend="228"/>
+        <location file="src/include/histo.hpp" line="353" column="1" bodyfile="src/include/histo.hpp" bodystart="353" bodyend="358"/>
       </memberdef>
-      <memberdef kind="function" id="group___counts_manipulation_1ga61ba4ed541dbfedfce4c20b7895e8303" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="group___counts_manipulation_1gabb93ac73019f3ea5c67cf08e95f50b8c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
-        <definition>void histo::Histo&lt; T, PRECI, PRECI_INTEGER &gt;::Increase</definition>
+        <definition>void histo::Histo&lt; PRECI, PRECI_INTEGER &gt;::Increase</definition>
         <argsstring>(const unsigned long int &amp;index)</argsstring>
         <name>Increase</name>
         <param>
@@ -272,7 +439,7 @@
           <declname>index</declname>
         </param>
         <briefdescription>
-<para>Increase count by one, checking if exceeds max_integer_. </para>        </briefdescription>
+<para>Increase count by one, checking if exceeds std::numeric_limits&lt;PRECI_INTEGER&gt;::max(). </para>        </briefdescription>
         <detaileddescription>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
@@ -285,11 +452,11 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/phc/repository_local/histo-header/src/histo-header.h" line="235" bodyfile="/home/phc/repository_local/histo-header/src/histo-header.h" bodystart="235" bodyend="240"/>
+        <location file="src/include/histo.hpp" line="367" column="1" bodyfile="src/include/histo.hpp" bodystart="367" bodyend="372"/>
       </memberdef>
-      <memberdef kind="function" id="group___counts_manipulation_1gadd9866333da884f97a91ff1bc28ee834" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="group___counts_manipulation_1ga834163fd3a5f651aa2775d27dc88cd62" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
-        <definition>void histo::Histo&lt; T, PRECI, PRECI_INTEGER &gt;::Decrease</definition>
+        <definition>void histo::Histo&lt; PRECI, PRECI_INTEGER &gt;::Decrease</definition>
         <argsstring>(const unsigned long int &amp;index)</argsstring>
         <name>Decrease</name>
         <param>
@@ -310,23 +477,23 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/phc/repository_local/histo-header/src/histo-header.h" line="245" bodyfile="/home/phc/repository_local/histo-header/src/histo-header.h" bodystart="245" bodyend="250"/>
+        <location file="src/include/histo.hpp" line="377" column="1" bodyfile="src/include/histo.hpp" bodystart="377" bodyend="382"/>
       </memberdef>
-      <memberdef kind="function" id="group___counts_manipulation_1gaae55ca251a6c64f214ce6bd0a1772d44" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="group___counts_manipulation_1gacb5ae1981d575408b39fbf965d9aa9ab" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
-        <definition>void histo::Histo&lt; T, PRECI, PRECI_INTEGER &gt;::SetCount</definition>
-        <argsstring>(const unsigned long int &amp;index, const long double &amp;v)</argsstring>
+        <definition>void histo::Histo&lt; PRECI, PRECI_INTEGER &gt;::SetCount</definition>
+        <argsstring>(const unsigned long int &amp;index, const PRECI_INTEGER &amp;v)</argsstring>
         <name>SetCount</name>
         <param>
           <type>const unsigned long int &amp;</type>
           <declname>index</declname>
         </param>
         <param>
-          <type>const long double &amp;</type>
+          <type>const PRECI_INTEGER &amp;</type>
           <declname>v</declname>
         </param>
         <briefdescription>
-<para>Set count value. Checks for negative or greater than max_integer_. </para>        </briefdescription>
+<para>Set count value. Checks for index being out of bounds. </para>        </briefdescription>
         <detaileddescription>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
@@ -346,38 +513,43 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/phc/repository_local/histo-header/src/histo-header.h" line="256" bodyfile="/home/phc/repository_local/histo-header/src/histo-header.h" bodystart="256" bodyend="261"/>
+        <location file="src/include/histo.hpp" line="388" column="1" bodyfile="src/include/histo.hpp" bodystart="388" bodyend="393"/>
       </memberdef>
       </sectiondef>
-      <sectiondef kind="private-func">
-      <memberdef kind="function" id="structhisto_1_1_histo_1a5d18b9007600d7099525118e6dbb7050" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="structhisto_1_1_histo_1a4b0035e80a9804be7ead94b73a396de6" prot="protected" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
-        <definition>bool histo::Histo&lt; T, PRECI, PRECI_INTEGER &gt;::CheckIfMonotonicallyIncreasing</definition>
-        <argsstring>(const std::vector&lt; T &gt; &amp;input_breaks)</argsstring>
+        <definition>bool histo::Histo&lt; PRECI, PRECI_INTEGER &gt;::CheckIfMonotonicallyIncreasing</definition>
+        <argsstring>(const std::vector&lt; PRECI &gt; &amp;input_breaks) const</argsstring>
         <name>CheckIfMonotonicallyIncreasing</name>
         <param>
-          <type>const std::vector&lt; T &gt; &amp;</type>
+          <type>const std::vector&lt; PRECI &gt; &amp;</type>
           <declname>input_breaks</declname>
         </param>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
-<para>Max integer for the current PRECI_INTEGER type </para>        </detaileddescription>
+        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/phc/repository_local/histo-header/src/histo-header.h" line="269" bodyfile="/home/phc/repository_local/histo-header/src/histo-header.h" bodystart="269" bodyend="278"/>
+        <location file="src/include/histo.hpp" line="397" column="1" bodyfile="src/include/histo.hpp" bodystart="397" bodyend="406"/>
       </memberdef>
-      <memberdef kind="function" id="structhisto_1_1_histo_1a9d5a8a65b7ae5b506b9d981bac09a076" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>std::vector&lt; T &gt; &amp;</type>
-        <definition>std::vector&lt;T&gt;&amp; histo::Histo&lt; T, PRECI, PRECI_INTEGER &gt;::CalculateBreaks</definition>
-        <argsstring>(const std::vector&lt; T &gt; &amp;data, const std::pair&lt; T, T &gt; &amp;rang, histo::breaks_method method)</argsstring>
+      <memberdef kind="function" id="structhisto_1_1_histo_1ae2e4451f0ebc9064a3b18fbd236fd609" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename TData</type>
+          </param>
+        </templateparamlist>
+        <type>std::vector&lt; PRECI &gt; &amp;</type>
+        <definition>std::vector&lt;PRECI&gt;&amp; histo::Histo&lt; PRECI, PRECI_INTEGER &gt;::CalculateBreaks</definition>
+        <argsstring>(const std::vector&lt; TData &gt; &amp;data, const std::pair&lt; PRECI, PRECI &gt; &amp;rang, histo::breaks_method method)</argsstring>
         <name>CalculateBreaks</name>
         <param>
-          <type>const std::vector&lt; T &gt; &amp;</type>
+          <type>const std::vector&lt; TData &gt; &amp;</type>
           <declname>data</declname>
         </param>
         <param>
-          <type>const std::pair&lt; T, T &gt; &amp;</type>
+          <type>const std::pair&lt; PRECI, PRECI &gt; &amp;</type>
           <declname>rang</declname>
         </param>
         <param>
@@ -413,15 +585,15 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/phc/repository_local/histo-header/src/histo-header.h" line="289" bodyfile="/home/phc/repository_local/histo-header/src/histo-header.h" bodystart="289" bodyend="297"/>
+        <location file="src/include/histo.hpp" line="418" column="1" bodyfile="src/include/histo.hpp" bodystart="418" bodyend="427"/>
       </memberdef>
-      <memberdef kind="function" id="structhisto_1_1_histo_1a87967485300c01adf01b9313c936a819" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="structhisto_1_1_histo_1a048d032108cbfc907bb0fcd62fce4d3f" prot="protected" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
-        <definition>bool histo::Histo&lt; T, PRECI, PRECI_INTEGER &gt;::CheckBreaksAreEquidistant</definition>
-        <argsstring>(const std::vector&lt; T &gt; &amp;input_breaks)</argsstring>
+        <definition>bool histo::Histo&lt; PRECI, PRECI_INTEGER &gt;::CheckBreaksAreEquidistant</definition>
+        <argsstring>(const std::vector&lt; PRECI &gt; &amp;input_breaks) const</argsstring>
         <name>CheckBreaksAreEquidistant</name>
         <param>
-          <type>const std::vector&lt; T &gt; &amp;</type>
+          <type>const std::vector&lt; PRECI &gt; &amp;</type>
           <declname>input_breaks</declname>
         </param>
         <briefdescription>
@@ -430,19 +602,19 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/phc/repository_local/histo-header/src/histo-header.h" line="299" bodyfile="/home/phc/repository_local/histo-header/src/histo-header.h" bodystart="299" bodyend="307"/>
+        <location file="src/include/histo.hpp" line="429" column="1" bodyfile="src/include/histo.hpp" bodystart="429" bodyend="440"/>
       </memberdef>
-      <memberdef kind="function" id="structhisto_1_1_histo_1aec7b3023731689a91aed67b4e45725b0" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="structhisto_1_1_histo_1a49305dca39c6c5796ac7b85f83d91ef1" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type>bool</type>
-        <definition>bool histo::Histo&lt; T, PRECI, PRECI_INTEGER &gt;::BalanceBreaksWithRange</definition>
-        <argsstring>(std::vector&lt; T &gt; &amp;input_breaks, std::pair&lt; T, T &gt; input_range)</argsstring>
+        <definition>bool histo::Histo&lt; PRECI, PRECI_INTEGER &gt;::BalanceBreaksWithRange</definition>
+        <argsstring>(std::vector&lt; PRECI &gt; &amp;input_breaks, std::pair&lt; PRECI, PRECI &gt; input_range)</argsstring>
         <name>BalanceBreaksWithRange</name>
         <param>
-          <type>std::vector&lt; T &gt; &amp;</type>
+          <type>std::vector&lt; PRECI &gt; &amp;</type>
           <declname>input_breaks</declname>
         </param>
         <param>
-          <type>std::pair&lt; T, T &gt;</type>
+          <type>std::pair&lt; PRECI, PRECI &gt;</type>
           <declname>input_range</declname>
         </param>
         <briefdescription>
@@ -451,15 +623,15 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/phc/repository_local/histo-header/src/histo-header.h" line="309" bodyfile="/home/phc/repository_local/histo-header/src/histo-header.h" bodystart="309" bodyend="358"/>
+        <location file="src/include/histo.hpp" line="442" column="1" bodyfile="src/include/histo.hpp" bodystart="442" bodyend="494"/>
       </memberdef>
-      <memberdef kind="function" id="structhisto_1_1_histo_1a4820a2a15fcb5b2d2e031c57d9bb2b85" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="structhisto_1_1_histo_1ace367d4e0efb8df06a65f530ca14225f" prot="protected" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
-        <definition>void histo::Histo&lt; T, PRECI, PRECI_INTEGER &gt;::CheckAndUpdateDiff</definition>
-        <argsstring>(T &amp;diff, bool &amp;diff_isZero, const T &amp;rhs, const T &amp;lhs)</argsstring>
+        <definition>void histo::Histo&lt; PRECI, PRECI_INTEGER &gt;::CheckAndUpdateDiff</definition>
+        <argsstring>(PRECI &amp;diff, bool &amp;diff_isZero, const PRECI &amp;rhs, const PRECI &amp;lhs) const</argsstring>
         <name>CheckAndUpdateDiff</name>
         <param>
-          <type>T &amp;</type>
+          <type>PRECI &amp;</type>
           <declname>diff</declname>
         </param>
         <param>
@@ -467,11 +639,11 @@
           <declname>diff_isZero</declname>
         </param>
         <param>
-          <type>const T &amp;</type>
+          <type>const PRECI &amp;</type>
           <declname>rhs</declname>
         </param>
         <param>
-          <type>const T &amp;</type>
+          <type>const PRECI &amp;</type>
           <declname>lhs</declname>
         </param>
         <briefdescription>
@@ -480,19 +652,19 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/phc/repository_local/histo-header/src/histo-header.h" line="360" bodyfile="/home/phc/repository_local/histo-header/src/histo-header.h" bodystart="360" bodyend="363"/>
+        <location file="src/include/histo.hpp" line="496" column="1" bodyfile="src/include/histo.hpp" bodystart="496" bodyend="500"/>
       </memberdef>
-      <memberdef kind="function" id="structhisto_1_1_histo_1af6cd7072634213a849dfabf63f85d574" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="structhisto_1_1_histo_1a72ab13ed2646af0d3f25bde6e299925d" prot="protected" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
-        <definition>void histo::Histo&lt; T, PRECI, PRECI_INTEGER &gt;::ShiftBreaks</definition>
-        <argsstring>(std::vector&lt; T &gt; &amp;input_breaks, const T &amp;d)</argsstring>
+        <definition>void histo::Histo&lt; PRECI, PRECI_INTEGER &gt;::ShiftBreaks</definition>
+        <argsstring>(std::vector&lt; PRECI &gt; &amp;input_breaks, const PRECI &amp;d) const</argsstring>
         <name>ShiftBreaks</name>
         <param>
-          <type>std::vector&lt; T &gt; &amp;</type>
+          <type>std::vector&lt; PRECI &gt; &amp;</type>
           <declname>input_breaks</declname>
         </param>
         <param>
-          <type>const T &amp;</type>
+          <type>const PRECI &amp;</type>
           <declname>d</declname>
         </param>
         <briefdescription>
@@ -501,19 +673,19 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/phc/repository_local/histo-header/src/histo-header.h" line="364" bodyfile="/home/phc/repository_local/histo-header/src/histo-header.h" bodystart="364" bodyend="368"/>
+        <location file="src/include/histo.hpp" line="501" column="1" bodyfile="src/include/histo.hpp" bodystart="501" bodyend="505"/>
       </memberdef>
-      <memberdef kind="function" id="structhisto_1_1_histo_1aac6662925483de617f8eedab2b0f086d" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+      <memberdef kind="function" id="structhisto_1_1_histo_1ab8f8e5423d29176e1171fe640f997dd7" prot="protected" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
         <type>void</type>
-        <definition>void histo::Histo&lt; T, PRECI, PRECI_INTEGER &gt;::ShrinkOrExpandBreaks</definition>
-        <argsstring>(std::vector&lt; T &gt; &amp;input_breaks, const T &amp;d)</argsstring>
+        <definition>void histo::Histo&lt; PRECI, PRECI_INTEGER &gt;::ShrinkOrExpandBreaks</definition>
+        <argsstring>(std::vector&lt; PRECI &gt; &amp;input_breaks, const PRECI &amp;d) const</argsstring>
         <name>ShrinkOrExpandBreaks</name>
         <param>
-          <type>std::vector&lt; T &gt; &amp;</type>
+          <type>std::vector&lt; PRECI &gt; &amp;</type>
           <declname>input_breaks</declname>
         </param>
         <param>
-          <type>const T &amp;</type>
+          <type>const PRECI &amp;</type>
           <declname>d</declname>
         </param>
         <briefdescription>
@@ -522,23 +694,28 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/phc/repository_local/histo-header/src/histo-header.h" line="369" bodyfile="/home/phc/repository_local/histo-header/src/histo-header.h" bodystart="369" bodyend="375"/>
+        <location file="src/include/histo.hpp" line="506" column="1" bodyfile="src/include/histo.hpp" bodystart="506" bodyend="512"/>
       </memberdef>
-      <memberdef kind="function" id="structhisto_1_1_histo_1ae0c080f5ded1c4aebb4bfe0a2cced99a" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
-        <type>std::vector&lt; T &gt; &amp;</type>
-        <definition>std::vector&lt;T&gt;&amp; histo::Histo&lt; T, PRECI, PRECI_INTEGER &gt;::ScottMethod</definition>
-        <argsstring>(const std::vector&lt; T &gt; &amp;data, const std::pair&lt; T, T &gt; &amp;rang)</argsstring>
+      <memberdef kind="function" id="structhisto_1_1_histo_1afb254f6a501586b63048810c33d889b8" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename TData</type>
+          </param>
+        </templateparamlist>
+        <type>std::vector&lt; PRECI &gt; &amp;</type>
+        <definition>std::vector&lt;PRECI&gt;&amp; histo::Histo&lt; PRECI, PRECI_INTEGER &gt;::ScottMethod</definition>
+        <argsstring>(const std::vector&lt; TData &gt; &amp;data, const std::pair&lt; PRECI, PRECI &gt; &amp;rang)</argsstring>
         <name>ScottMethod</name>
         <param>
-          <type>const std::vector&lt; T &gt; &amp;</type>
+          <type>const std::vector&lt; TData &gt; &amp;</type>
           <declname>data</declname>
         </param>
         <param>
-          <type>const std::pair&lt; T, T &gt; &amp;</type>
+          <type>const std::pair&lt; PRECI, PRECI &gt; &amp;</type>
           <declname>rang</declname>
         </param>
         <briefdescription>
-<para>Scott Method to calculate optimal breaks. Calculate variance from <ref refid="namespacehisto_1a6fdcb336cae7bfe66ad7963f3ce49c66" kindref="member">variance_welford</ref>. </para>        </briefdescription>
+<para>Scott Method to calculate optimal breaks. Calculate variance from <ref refid="namespacehisto_1aacd741c87edf32bcefe2431641ffcafd" kindref="member">variance_welford</ref>. </para>        </briefdescription>
         <detaileddescription>
 <para><parameterlist kind="param"><parameteritem>
 <parameternamelist>
@@ -559,7 +736,7 @@
 </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/phc/repository_local/histo-header/src/histo-header.h" line="385" bodyfile="/home/phc/repository_local/histo-header/src/histo-header.h" bodystart="385" bodyend="405"/>
+        <location file="src/include/histo.hpp" line="523" column="1" bodyfile="src/include/histo.hpp" bodystart="523" bodyend="545"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -588,29 +765,37 @@
 </parameteritem>
 </parameterlist>
 </para>    </detaileddescription>
-    <location file="/home/phc/repository_local/histo-header/src/histo-header.h" line="125" bodyfile="/home/phc/repository_local/histo-header/src/histo-header.h" bodystart="125" bodyend="406"/>
+    <location file="src/include/histo.hpp" line="169" column="1" bodyfile="src/include/histo.hpp" bodystart="169" bodyend="546"/>
     <listofallmembers>
-      <member refid="structhisto_1_1_histo_1aec7b3023731689a91aed67b4e45725b0" prot="private" virt="non-virtual"><scope>histo::Histo</scope><name>BalanceBreaksWithRange</name></member>
-      <member refid="structhisto_1_1_histo_1a742cff9dfd900b400959621fa72eb0bb" prot="public" virt="non-virtual"><scope>histo::Histo</scope><name>breaks</name></member>
-      <member refid="structhisto_1_1_histo_1a9d5a8a65b7ae5b506b9d981bac09a076" prot="private" virt="non-virtual"><scope>histo::Histo</scope><name>CalculateBreaks</name></member>
-      <member refid="structhisto_1_1_histo_1a4820a2a15fcb5b2d2e031c57d9bb2b85" prot="private" virt="non-virtual"><scope>histo::Histo</scope><name>CheckAndUpdateDiff</name></member>
-      <member refid="structhisto_1_1_histo_1a87967485300c01adf01b9313c936a819" prot="private" virt="non-virtual"><scope>histo::Histo</scope><name>CheckBreaksAreEquidistant</name></member>
-      <member refid="structhisto_1_1_histo_1a5d18b9007600d7099525118e6dbb7050" prot="private" virt="non-virtual"><scope>histo::Histo</scope><name>CheckIfMonotonicallyIncreasing</name></member>
-      <member refid="structhisto_1_1_histo_1af5eab179e063fbe3769d0c9ab823fa0d" prot="public" virt="non-virtual"><scope>histo::Histo</scope><name>counts</name></member>
-      <member refid="group___counts_manipulation_1gadd9866333da884f97a91ff1bc28ee834" prot="public" virt="non-virtual"><scope>histo::Histo</scope><name>Decrease</name></member>
-      <member refid="structhisto_1_1_histo_1a24f8c6d3b739d1199674198f49aebd28" prot="public" virt="non-virtual"><scope>histo::Histo</scope><name>FillCounts</name></member>
-      <member refid="structhisto_1_1_histo_1ae3fb763b191bb6ce8997be0b09f1f10e" prot="public" virt="non-virtual"><scope>histo::Histo</scope><name>Histo</name></member>
-      <member refid="structhisto_1_1_histo_1a7065d3edf9a7db33a93930b5bf7ae44d" prot="public" virt="non-virtual"><scope>histo::Histo</scope><name>Histo</name></member>
-      <member refid="structhisto_1_1_histo_1a7d313fd5714037fe2fde6108b30db86a" prot="public" virt="non-virtual"><scope>histo::Histo</scope><name>Histo</name></member>
-      <member refid="structhisto_1_1_histo_1adb33e8e9c73bde47027926f5c7315545" prot="public" virt="non-virtual"><scope>histo::Histo</scope><name>Histo</name></member>
-      <member refid="group___counts_manipulation_1ga61ba4ed541dbfedfce4c20b7895e8303" prot="public" virt="non-virtual"><scope>histo::Histo</scope><name>Increase</name></member>
-      <member refid="structhisto_1_1_histo_1a858c655679d179ba3697a70cdbbee206" prot="public" virt="non-virtual"><scope>histo::Histo</scope><name>IndexFromValue</name></member>
-      <member refid="structhisto_1_1_histo_1aae8bee662fbf5b3f00e2b5bc8e304036" prot="public" virt="non-virtual"><scope>histo::Histo</scope><name>range</name></member>
-      <member refid="structhisto_1_1_histo_1a59b9327bd63469648ca27cd666adab79" prot="public" virt="non-virtual"><scope>histo::Histo</scope><name>ResetCounts</name></member>
-      <member refid="structhisto_1_1_histo_1ae0c080f5ded1c4aebb4bfe0a2cced99a" prot="private" virt="non-virtual"><scope>histo::Histo</scope><name>ScottMethod</name></member>
-      <member refid="group___counts_manipulation_1gaae55ca251a6c64f214ce6bd0a1772d44" prot="public" virt="non-virtual"><scope>histo::Histo</scope><name>SetCount</name></member>
-      <member refid="structhisto_1_1_histo_1af6cd7072634213a849dfabf63f85d574" prot="private" virt="non-virtual"><scope>histo::Histo</scope><name>ShiftBreaks</name></member>
-      <member refid="structhisto_1_1_histo_1aac6662925483de617f8eedab2b0f086d" prot="private" virt="non-virtual"><scope>histo::Histo</scope><name>ShrinkOrExpandBreaks</name></member>
+      <member refid="structhisto_1_1_histo_1a49305dca39c6c5796ac7b85f83d91ef1" prot="protected" virt="non-virtual"><scope>histo::Histo</scope><name>BalanceBreaksWithRange</name></member>
+      <member refid="structhisto_1_1_histo_1a9810584945cb6dc4f1ecf407c5dc31ed" prot="public" virt="non-virtual"><scope>histo::Histo</scope><name>bins</name></member>
+      <member refid="structhisto_1_1_histo_1abd8ee6df9a51c901fba647137b29f010" prot="public" virt="non-virtual"><scope>histo::Histo</scope><name>breaks</name></member>
+      <member refid="structhisto_1_1_histo_1ae2e4451f0ebc9064a3b18fbd236fd609" prot="protected" virt="non-virtual"><scope>histo::Histo</scope><name>CalculateBreaks</name></member>
+      <member refid="structhisto_1_1_histo_1ace367d4e0efb8df06a65f530ca14225f" prot="protected" virt="non-virtual"><scope>histo::Histo</scope><name>CheckAndUpdateDiff</name></member>
+      <member refid="structhisto_1_1_histo_1a048d032108cbfc907bb0fcd62fce4d3f" prot="protected" virt="non-virtual"><scope>histo::Histo</scope><name>CheckBreaksAreEquidistant</name></member>
+      <member refid="structhisto_1_1_histo_1a4b0035e80a9804be7ead94b73a396de6" prot="protected" virt="non-virtual"><scope>histo::Histo</scope><name>CheckIfMonotonicallyIncreasing</name></member>
+      <member refid="structhisto_1_1_histo_1a48c6811bf8c3b49c6dcb20ed53bc4204" prot="public" virt="non-virtual"><scope>histo::Histo</scope><name>ComputeBinCenters</name></member>
+      <member refid="structhisto_1_1_histo_1a3c079c7931896ee4076eb02a64577102" prot="public" virt="non-virtual"><scope>histo::Histo</scope><name>counts</name></member>
+      <member refid="group___counts_manipulation_1ga834163fd3a5f651aa2775d27dc88cd62" prot="public" virt="non-virtual"><scope>histo::Histo</scope><name>Decrease</name></member>
+      <member refid="structhisto_1_1_histo_1a52b1779ba9fb88218f08b8a608123ee6" prot="public" virt="non-virtual"><scope>histo::Histo</scope><name>FillCounts</name></member>
+      <member refid="structhisto_1_1_histo_1aa62aa57468a562734669bc6ed21576f1" prot="public" virt="non-virtual"><scope>histo::Histo</scope><name>Histo</name></member>
+      <member refid="structhisto_1_1_histo_1afe514992fddc1f5c125a4b4404f652ee" prot="public" virt="non-virtual"><scope>histo::Histo</scope><name>Histo</name></member>
+      <member refid="structhisto_1_1_histo_1ab8316b6aee95725b5e626bf9df417e25" prot="public" virt="non-virtual"><scope>histo::Histo</scope><name>Histo</name></member>
+      <member refid="structhisto_1_1_histo_1a7ca35fc27bc1ae74cddfc3312f1d4870" prot="public" virt="non-virtual"><scope>histo::Histo</scope><name>Histo</name></member>
+      <member refid="group___counts_manipulation_1gabb93ac73019f3ea5c67cf08e95f50b8c" prot="public" virt="non-virtual"><scope>histo::Histo</scope><name>Increase</name></member>
+      <member refid="structhisto_1_1_histo_1a3bd599e56850d23ee616d86787a183bb" prot="public" virt="non-virtual"><scope>histo::Histo</scope><name>IndexFromValue</name></member>
+      <member refid="structhisto_1_1_histo_1a875e8d55903de1bb8dbfa07916a2edb6" prot="public" virt="non-virtual"><scope>histo::Histo</scope><name>name</name></member>
+      <member refid="structhisto_1_1_histo_1af23e2103d5aec11b45a504cc9666fdc6" prot="public" virt="non-virtual"><scope>histo::Histo</scope><name>PrintBreaks</name></member>
+      <member refid="structhisto_1_1_histo_1aa057f60c880b0a9fa353408dd0d92fb2" prot="public" virt="non-virtual"><scope>histo::Histo</scope><name>PrintBreaksAndCounts</name></member>
+      <member refid="structhisto_1_1_histo_1a158f842f4524fec42e5d53f45fef2792" prot="public" virt="non-virtual"><scope>histo::Histo</scope><name>PrintCenters</name></member>
+      <member refid="structhisto_1_1_histo_1a3eb196cb85a95c183ec273c1cb1f4f3e" prot="public" virt="non-virtual"><scope>histo::Histo</scope><name>PrintCentersAndCounts</name></member>
+      <member refid="structhisto_1_1_histo_1ac4e4143968479c108cc17144c34cd5fa" prot="public" virt="non-virtual"><scope>histo::Histo</scope><name>PrintCounts</name></member>
+      <member refid="structhisto_1_1_histo_1a244cec4f3976642b93c8896d53c87cca" prot="public" virt="non-virtual"><scope>histo::Histo</scope><name>range</name></member>
+      <member refid="structhisto_1_1_histo_1aff4c75a013e42fa1651008db8fedebae" prot="public" virt="non-virtual"><scope>histo::Histo</scope><name>ResetCounts</name></member>
+      <member refid="structhisto_1_1_histo_1afb254f6a501586b63048810c33d889b8" prot="protected" virt="non-virtual"><scope>histo::Histo</scope><name>ScottMethod</name></member>
+      <member refid="group___counts_manipulation_1gacb5ae1981d575408b39fbf965d9aa9ab" prot="public" virt="non-virtual"><scope>histo::Histo</scope><name>SetCount</name></member>
+      <member refid="structhisto_1_1_histo_1a72ab13ed2646af0d3f25bde6e299925d" prot="protected" virt="non-virtual"><scope>histo::Histo</scope><name>ShiftBreaks</name></member>
+      <member refid="structhisto_1_1_histo_1ab8f8e5423d29176e1171fe640f997dd7" prot="protected" virt="non-virtual"><scope>histo::Histo</scope><name>ShrinkOrExpandBreaks</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

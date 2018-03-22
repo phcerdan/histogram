@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="_r_e_a_d_m_e_8md" kind="file" language="Markdown">
+    <compoundname>README.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">#<sp/>Histogram</highlight></codeline>
+<codeline><highlight class="normal">Histogram<sp/>in<sp/>C++11,<sp/>1D,<sp/>simple<sp/>header-only,<sp/>inspired<sp/>by<sp/>R,<sp/>calculate<sp/>and<sp/>optimize<sp/>breaks<sp/>automatically.<sp/>Accepts<sp/>different<sp/>precissions.</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>Documentation</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">&lt;!--<sp/>[Doxygen<sp/>generated<sp/>Docs](http://phcerdan.github.io/histo-header/docs/html/index.html)<sp/>--&gt;</highlight></codeline>
+<codeline><highlight class="normal">[Doxygen<sp/>generated<sp/>Docs](http://phcerdan.github.io/histogram/docs/html/index.html)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Warning,<sp/>docs<sp/>are<sp/>not<sp/>generated<sp/>automatically<sp/>and<sp/>might<sp/>be<sp/>outdated.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>Downloading</highlight></codeline>
+<codeline><highlight class="normal">You<sp/>can<sp/>use<sp/>the<sp/>header<sp/>as<sp/>is,<sp/>just<sp/>download<sp/>it,<sp/>and<sp/>include<sp/>it<sp/>in<sp/>your<sp/>project.</highlight></codeline>
+<codeline><highlight class="normal">MIT<sp/>License,<sp/>but<sp/>please<sp/>contribute<sp/>back<sp/>if<sp/>you<sp/>add<sp/>any<sp/>extra<sp/>feature!</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>Using<sp/>it.</highlight></codeline>
+<codeline><highlight class="normal">You<sp/>should<sp/>read<sp/>the<sp/>test<sp/>file<sp/>as<sp/>a<sp/>sample<sp/>for<sp/>usage.</highlight></codeline>
+<codeline><highlight class="normal">```cpp</highlight></codeline>
+<codeline><highlight class="normal">vector&lt;double&gt;<sp/>data{1.0,<sp/>1.0,<sp/>2.0,<sp/>3.0,<sp/>19.0,<sp/>0.5,<sp/>14.0};</highlight></codeline>
+<codeline><highlight class="normal">histo::Histo&lt;double&gt;<sp/>h_scott(data);<sp/>//<sp/>Default<sp/>method<sp/>to<sp/>calculate<sp/>Breaks.</highlight></codeline>
+<codeline><highlight class="normal">size_t<sp/>bins<sp/>=<sp/>10;</highlight></codeline>
+<codeline><highlight class="normal">auto<sp/>breaks_with_bins<sp/>=<sp/>histo::GenerateBreaksFromRangeAndBins&lt;double&gt;(0.0,<sp/>20.0,<sp/>bins);</highlight></codeline>
+<codeline><highlight class="normal">double<sp/>width<sp/>=<sp/>1.0;</highlight></codeline>
+<codeline><highlight class="normal">auto<sp/>breaks_with_fixed_width<sp/>=<sp/>histo::GenerateBreaksFromRangeAndWidth&lt;double&gt;(0.0,<sp/>20.0,<sp/>width);</highlight></codeline>
+<codeline><highlight class="normal">histo::Histo&lt;double&gt;<sp/>h_with_bins(data,<sp/>breaks_with_bins);</highlight></codeline>
+<codeline><highlight class="normal">histo::Histo&lt;double&gt;<sp/>h_with_width(data,<sp/>breaks_with_width);</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Each<sp/>histogram<sp/>has<sp/>public<sp/>members:<sp/>`bins`,<sp/>`breaks`,<sp/>`counts`<sp/>and<sp/>`range`.</highlight></codeline>
+<codeline><highlight class="normal">We<sp/>can<sp/>fill<sp/>the<sp/>histogram<sp/>with<sp/>`FillCounts(data)`,<sp/>called<sp/>at<sp/>constructor.</highlight></codeline>
+<codeline><highlight class="normal">The<sp/>data<sp/>is<sp/>not<sp/>stored<sp/>in<sp/>the<sp/>histogram.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">We<sp/>can<sp/>fill<sp/>the<sp/>bins<sp/>with<sp/>more<sp/>data<sp/>to<sp/>an<sp/>existing<sp/>histogram.</highlight></codeline>
+<codeline><highlight class="normal">```cpp</highlight></codeline>
+<codeline><highlight class="normal">vector&lt;double&gt;<sp/>extra_data{7.0,<sp/>13.0};</highlight></codeline>
+<codeline><highlight class="normal">h_with_bins.FillCounts(extra_data);</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">We<sp/>can<sp/>also<sp/>normalize<sp/>the<sp/>histogram<sp/>to<sp/>get<sp/>a<sp/>probability<sp/>density<sp/>function<sp/>from<sp/>it.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```cpp</highlight></codeline>
+<codeline><highlight class="normal">histo::Histo&lt;double,<sp/>unsigned<sp/>int&gt;<sp/>regular_histo(data);</highlight></codeline>
+<codeline><highlight class="normal">histo::Histo&lt;double,<sp/>double&gt;<sp/>normalized_histogram<sp/>=<sp/>histo::NormalizeByArea(regular_histo);</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Optionally,<sp/>we<sp/>can<sp/>use<sp/>VTK<sp/>(vtkChartXY)<sp/>to<sp/>visualize<sp/>the<sp/>histogram.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```cpp</highlight></codeline>
+<codeline><highlight class="normal">vector&lt;double&gt;<sp/>data{0.0,<sp/>1.0,<sp/>1.0,1.0,<sp/>2.0,<sp/>3.0,<sp/>5.0,<sp/>5.0,<sp/>8.0,<sp/>8.0,<sp/><sp/>12.0};</highlight></codeline>
+<codeline><highlight class="normal">Histo&lt;double&gt;<sp/>h(data,<sp/>histo::GenerateBreaksFromRangeAndBins&lt;double&gt;(0.0,15.0,<sp/>5));</highlight></codeline>
+<codeline><highlight class="normal">h.PrintBreaksAndCounts(std::cout);</highlight></codeline>
+<codeline><highlight class="normal">h.name<sp/>=<sp/>&quot;withJustData&quot;;</highlight></codeline>
+<codeline><highlight class="normal">visualize_histo(h,<sp/>vtkChart::LINE);</highlight></codeline>
+<codeline><highlight class="normal">visualize_histo(h,<sp/>vtkChart::BAR);</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">&lt;img<sp/>src=&quot;https://github.com/phcerdan/histogram/blob/gh-pages/readme_images/just_data_line.png&quot;<sp/>alt=&quot;Line&quot;<sp/>width=&quot;640&quot;<sp/>height=&quot;480&quot;&gt;</highlight></codeline>
+<codeline><highlight class="normal">&lt;img<sp/>src=&quot;https://github.com/phcerdan/histogram/blob/gh-pages/readme_images/bar_just_data.png&quot;<sp/>alt=&quot;Bar&quot;<sp/>width=&quot;640&quot;<sp/>height=&quot;480&quot;&gt;</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>Test</highlight></codeline>
+<codeline><highlight class="normal">All<sp/>the<sp/>features<sp/>are<sp/>tested<sp/>using<sp/>gtest.</highlight></codeline>
+    </programlisting>
+    <location file="src/README.md"/>
+  </compounddef>
+</doxygen>

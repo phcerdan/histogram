@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="struct_histo_long_double_input_range" kind="struct" language="C++" prot="public">
+    <compoundname>HistoLongDoubleInputRange</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">Test</basecompoundref>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="struct_histo_long_double_input_range_1ad4f78646d5538e551e5eaab80518d604" prot="public" static="yes" mutable="no">
+        <type>vector&lt; long double &gt;</type>
+        <definition>vector&lt; long double &gt; HistoLongDoubleInputRange::data</definition>
+        <argsstring></argsstring>
+        <name>data</name>
+        <initializer>{-0.8,0.1,0.9}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/test/test_histo.cpp" line="146" column="1" bodyfile="src/test/test_histo.cpp" bodystart="146" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_histo_long_double_input_range_1aa9767fa2e1fc2e7df22770753db0dc18" prot="public" static="yes" mutable="no">
+        <type><ref refid="structhisto_1_1_histo" kindref="compound">Histo</ref>&lt; long double &gt;</type>
+        <definition>Histo&lt; long double &gt; HistoLongDoubleInputRange::h</definition>
+        <argsstring></argsstring>
+        <name>h</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/test/test_histo.cpp" line="147" column="1" bodyfile="src/test/test_histo.cpp" bodystart="147" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Test the constructor with long double, input_range, and specific method to generate breaks. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="16">
+        <label>HistoLongDoubleInputRange</label>
+        <link refid="struct_histo_long_double_input_range"/>
+        <childnode refid="17" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>Test</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="20">
+        <label>histo::Histo&lt; long double &gt;</label>
+        <link refid="structhisto_1_1_histo"/>
+      </node>
+      <node id="18">
+        <label>HistoLongDoubleInputRange</label>
+        <link refid="struct_histo_long_double_input_range"/>
+        <childnode refid="19" relation="public-inheritance">
+        </childnode>
+        <childnode refid="20" relation="usage">
+          <edgelabel>h</edgelabel>
+        </childnode>
+      </node>
+      <node id="19">
+        <label>Test</label>
+      </node>
+    </collaborationgraph>
+    <location file="src/test/test_histo.cpp" line="145" column="1" bodyfile="src/test/test_histo.cpp" bodystart="145" bodyend="148"/>
+    <listofallmembers>
+      <member refid="struct_histo_long_double_input_range_1ad4f78646d5538e551e5eaab80518d604" prot="public" virt="non-virtual"><scope>HistoLongDoubleInputRange</scope><name>data</name></member>
+      <member refid="struct_histo_long_double_input_range_1aa9767fa2e1fc2e7df22770753db0dc18" prot="public" virt="non-virtual"><scope>HistoLongDoubleInputRange</scope><name>h</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

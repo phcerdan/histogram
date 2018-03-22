@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="enumvalues__0_8js" kind="file" language="C++">
+    <compoundname>enumvalues_0.js</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">var<sp/>searchData=</highlight></codeline>
+<codeline><highlight class="normal">[</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>[&apos;scott&apos;,[&apos;Scott&apos;,[&apos;../group__breaks__methods.html#gga132dcd8240c4bb268ed00b1e4fa3ebabae05f2a05e4a163aac88bf64dc92cb36e&apos;,1,&apos;histo&apos;]]]</highlight></codeline>
+<codeline><highlight class="normal">];</highlight></codeline>
+    </programlisting>
+    <location file="src/docs/html/search/enumvalues_0.js"/>
+  </compounddef>
+</doxygen>

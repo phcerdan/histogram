@@ -1,8 +1,9 @@
 <?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.6.1">
-  <compounddef id="classhisto_1_1histo__error" kind="class" prot="public">
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="classhisto_1_1histo__error" kind="class" language="C++" prot="public">
     <compoundname>histo::histo_error</compoundname>
-    <includes refid="histo-header_8h" local="no">histo-header.h</includes>
+    <basecompoundref prot="public" virt="non-virtual">runtime_error</basecompoundref>
+    <includes refid="histo_8hpp" local="no">histo.hpp</includes>
       <sectiondef kind="public-func">
       <memberdef kind="function" id="classhisto_1_1histo__error_1ae4a9c52c6c031ea03210e9e585778827" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
         <type></type>
@@ -19,14 +20,36 @@
 <para>Error constructor from runtime_error </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="/home/phc/repository_local/histo-header/src/histo-header.h" line="77" bodyfile="/home/phc/repository_local/histo-header/src/histo-header.h" bodystart="77" bodyend="77"/>
+        <location file="src/include/histo.hpp" line="121" column="1" bodyfile="src/include/histo.hpp" bodystart="121" bodyend="121"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
 <para>Exception class for <ref refid="structhisto_1_1_histo" kindref="compound">Histo</ref> </para>    </detaileddescription>
-    <location file="/home/phc/repository_local/histo-header/src/histo-header.h" line="74" bodyfile="/home/phc/repository_local/histo-header/src/histo-header.h" bodystart="74" bodyend="78"/>
+    <inheritancegraph>
+      <node id="2">
+        <label>histo::histo_error</label>
+        <link refid="classhisto_1_1histo__error"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>std::runtime_error</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="4">
+        <label>histo::histo_error</label>
+        <link refid="classhisto_1_1histo__error"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>std::runtime_error</label>
+      </node>
+    </collaborationgraph>
+    <location file="src/include/histo.hpp" line="118" column="1" bodyfile="src/include/histo.hpp" bodystart="118" bodyend="122"/>
     <listofallmembers>
       <member refid="classhisto_1_1histo__error_1ae4a9c52c6c031ea03210e9e585778827" prot="public" virt="non-virtual"><scope>histo::histo_error</scope><name>histo_error</name></member>
     </listofallmembers>

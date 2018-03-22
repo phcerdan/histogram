@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="md_src__r_e_a_d_m_e" kind="page">
+    <compoundname>md_src_README</compoundname>
+    <title>Histogram</title>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Histogram in C++11, 1D, simple header-only, inspired by R, calculate and optimize breaks automatically. Accepts different precissions. <heading level="1">Documentation</heading>
+</para><para><ulink url="http://phcerdan.github.io/histogram/docs/html/index.html">Doxygen generated Docs</ulink></para><para>Warning, docs are not generated automatically and might be outdated.</para><para><heading level="1">Downloading</heading>
+</para><para>You can use the header as is, just download it, and include it in your project. MIT License, but please contribute back if you add any extra feature!</para><para><heading level="1">Using it.</heading>
+</para><para>You should read the test file as a sample for usage. <programlisting filename=".cpp"><codeline><highlight class="normal">vector&lt;double&gt;<sp/>data{1.0,<sp/>1.0,<sp/>2.0,<sp/>3.0,<sp/>19.0,<sp/>0.5,<sp/>14.0};</highlight></codeline>
+<codeline><highlight class="normal"><ref refid="structhisto_1_1_histo" kindref="compound">histo::Histo&lt;double&gt;</ref><sp/>h_scott(data);<sp/></highlight><highlight class="comment">//<sp/>Default<sp/>method<sp/>to<sp/>calculate<sp/>Breaks.</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>bins<sp/>=<sp/>10;</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>breaks_with_bins<sp/>=<sp/>histo::GenerateBreaksFromRangeAndBins&lt;double&gt;(0.0,<sp/>20.0,<sp/>bins);</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>width<sp/>=<sp/>1.0;</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>breaks_with_fixed_width<sp/>=<sp/>histo::GenerateBreaksFromRangeAndWidth&lt;double&gt;(0.0,<sp/>20.0,<sp/>width);</highlight></codeline>
+<codeline><highlight class="normal"><ref refid="structhisto_1_1_histo" kindref="compound">histo::Histo&lt;double&gt;</ref><sp/>h_with_bins(data,<sp/>breaks_with_bins);</highlight></codeline>
+<codeline><highlight class="normal"><ref refid="structhisto_1_1_histo" kindref="compound">histo::Histo&lt;double&gt;</ref><sp/>h_with_width(data,<sp/>breaks_with_width);</highlight></codeline>
+</programlisting></para><para>Each histogram has public members: <computeroutput>bins</computeroutput>, <computeroutput>breaks</computeroutput>, <computeroutput>counts</computeroutput> and <computeroutput>range</computeroutput>. We can fill the histogram with <computeroutput>FillCounts(data)</computeroutput>, called at constructor. The data is not stored in the histogram.</para><para>We can fill the bins with more data to an existing histogram. <programlisting filename=".cpp"><codeline><highlight class="normal">vector&lt;double&gt;<sp/>extra_data{7.0,<sp/>13.0};</highlight></codeline>
+<codeline><highlight class="normal">h_with_bins.FillCounts(extra_data);</highlight></codeline>
+</programlisting></para><para>We can also normalize the histogram to get a probability density function from it.</para><para><programlisting filename=".cpp"><codeline><highlight class="normal"><ref refid="structhisto_1_1_histo" kindref="compound">histo::Histo&lt;double, unsigned int&gt;</ref><sp/>regular_histo(data);</highlight></codeline>
+<codeline><highlight class="normal"><ref refid="structhisto_1_1_histo" kindref="compound">histo::Histo&lt;double, double&gt;</ref><sp/>normalized_histogram<sp/>=<sp/><ref refid="namespacehisto_1ae92c03faf593b0ff7ed5c29a204fda53" kindref="member">histo::NormalizeByArea</ref>(regular_histo);</highlight></codeline>
+</programlisting></para><para>Optionally, we can use VTK (vtkChartXY) to visualize the histogram.</para><para><programlisting filename=".cpp"><codeline><highlight class="normal">vector&lt;double&gt;<sp/>data{0.0,<sp/>1.0,<sp/>1.0,1.0,<sp/>2.0,<sp/>3.0,<sp/>5.0,<sp/>5.0,<sp/>8.0,<sp/>8.0,<sp/><sp/>12.0};</highlight></codeline>
+<codeline><highlight class="normal">Histo&lt;double&gt;<sp/>h(data,<sp/>histo::GenerateBreaksFromRangeAndBins&lt;double&gt;(0.0,15.0,<sp/>5));</highlight></codeline>
+<codeline><highlight class="normal">h.PrintBreaksAndCounts(std::cout);</highlight></codeline>
+<codeline><highlight class="normal">h.name<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;withJustData&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline><highlight class="normal"><ref refid="namespacehisto_1a5342d3dc614b6be561dc5b8e6384f445" kindref="member">visualize_histo</ref>(h,<sp/>vtkChart::LINE);</highlight></codeline>
+<codeline><highlight class="normal"><ref refid="namespacehisto_1a5342d3dc614b6be561dc5b8e6384f445" kindref="member">visualize_histo</ref>(h,<sp/>vtkChart::BAR);</highlight></codeline>
+</programlisting></para><para><image type="html" name="just_data_line.png"></image>
+ <image type="html" name="bar_just_data.png"></image>
+</para><para><heading level="1">Test</heading>
+</para><para>All the features are tested using gtest. </para>    </detaileddescription>
+  </compounddef>
+</doxygen>
