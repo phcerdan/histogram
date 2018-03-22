@@ -545,5 +545,36 @@ protected:
     };
 };
 
+/**
+ * Normalize the histogram by area. Useful for probability density functions.
+ * The output histogram has counts with PRECI, instead of PRECI_INTEGER.
+ *
+ * Implemented using:
+ * https://stackoverflow.com/questions/5320677/how-to-normalize-a-histogram-in-matlab
+ *
+ * @tparam PRECI see histo
+ * @tparam PRECI_INTEGER see histo
+ * @param input_histo input histogram to normalize.
+ *
+ * @return histogram normalized with float counts.
+ */
+template <typename PRECI = double, typename PRECI_INTEGER = unsigned long int>
+Histo<PRECI, PRECI> NormalizeByArea(const Histo<PRECI, PRECI_INTEGER> & input_histo)
+{
+   // compute the area of each bin
+   double sum = 0.0;
+   for (size_t i = 0; i != input_histo.bins; ++i){
+      sum += input_histo.counts[i] * std::abs(input_histo.breaks[i+1] - input_histo.breaks[i]);
+   }
+   Histo<PRECI, PRECI> normalized;
+   normalized.bins = input_histo.bins;
+   normalized.breaks = input_histo.breaks;
+   // normalized_counts has different type than input_histo.counts.
+   normalized.counts.resize(input_histo.bins);
+   std::transform(std::begin(input_histo.counts), std::end(input_histo.counts),
+         std::begin(normalized.counts), [&sum](const double &d){ return d / sum;} );
+   return normalized;
+}
+
 } // End of namespace histo
 #endif

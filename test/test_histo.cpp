@@ -199,3 +199,21 @@ TEST(GenerateBreaksFromRangeAndWidth, withGreaterUpper) {
     EXPECT_FLOAT_EQ(breaks[4], 4.0);
     EXPECT_FLOAT_EQ(breaks[5], 5.0);
 }
+
+TEST(NormalizeByArea, withJustData ) {
+    double low = 0.0;
+    double upper = 20.0;
+    double width = 1.0;
+    auto breaks = histo::GenerateBreaksFromRangeAndWidth<double>(low, upper, width);
+    EXPECT_EQ(breaks.size(), 21);
+    vector<double> data{1.0,1.0,2.0, 3.0, 19.0};
+    Histo<double> h(data, breaks);
+    auto h_norm = NormalizeByArea(h);
+    const auto & counts = h_norm.counts;
+    double sum_areas = 2*width + (1 * width) * 3;
+    EXPECT_FLOAT_EQ(counts[0], 0.0);
+    EXPECT_FLOAT_EQ(counts[1], 2.0 / sum_areas);
+    EXPECT_FLOAT_EQ(counts[2], 1.0 / sum_areas);
+    EXPECT_FLOAT_EQ(counts[3], 1.0 / sum_areas);
+    EXPECT_FLOAT_EQ(counts[19], 1.0/ sum_areas);
+}
