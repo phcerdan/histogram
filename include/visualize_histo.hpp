@@ -1,5 +1,7 @@
-/* Copyright (C) 2018 Pablo Hernandez-Cerdan
- * See LICENSE on https://github.com/phcerdan/histo-header */
+/* Copyright (C) 2019 Pablo Hernandez-Cerdan
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 #ifndef VISUALIZE_HISTO_HPP
 #define VISUALIZE_HISTO_HPP
