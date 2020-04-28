@@ -1,3 +1,5 @@
+You might be interested in the modern and more mature [boost::histogram](https://github.com/boostorg/histogram) header only library.
+
 # Histogram
 Histogram in C++11, 1D, simple header-only, inspired by R, calculate and optimize breaks automatically. Accepts different precissions.
 # Documentation
