@@ -19,6 +19,7 @@ calculate and optimize breaks automatically. Accepts different precissions.
 #include <stdexcept>
 #include <utility>
 #include <vector>
+#include <numeric> // std::inner_product
 /** histo namespace in histo.h*/
 namespace histo {
 /** \defgroup breaks_methods breaks_methods */
@@ -581,6 +582,18 @@ struct Histo {
         return this->breaks;
     };
 };
+
+template <typename PRECI = double, typename PRECI_INTEGER = unsigned long int>
+double
+Mean(const Histo<PRECI, PRECI_INTEGER> &input_histo) {
+  const auto bin_centers = input_histo.ComputeBinCenters();
+  // std::transform_reduce, that accepts std::execution::par can be used if c++17
+  // Note that std::execution::par is not widely implemented yet in all compilers
+  // (in 2020, GCC needs extra linking with tbb for example).
+  const double mean = std::inner_product(std::cbegin(bin_centers), std::cend(bin_centers),
+      std::cbegin(input_histo.counts), 0.0) / input_histo.bins;
+  return mean;
+}
 
 /**
  * Normalize the histogram by area. Useful for probability density functions.

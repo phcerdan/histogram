@@ -200,6 +200,20 @@ TEST(GenerateBreaksFromRangeAndWidth, withGreaterUpper) {
     EXPECT_FLOAT_EQ(breaks[5], 5.0);
 }
 
+TEST(Mean, withJustData) {
+  double low = 0.5;
+  double upper = 4.5;
+  double width = 1.0;
+  auto breaks =
+      histo::GenerateBreaksFromRangeAndWidth<double>(low, upper, width);
+  EXPECT_EQ(breaks.size(), 5);
+  vector<double> data{1.0, 1.0, 2.0, 3.0, 4.0};
+  Histo<double> h(data, breaks);
+  h.PrintCentersAndCounts(std::cout);
+  const auto mean = Mean(h);
+  EXPECT_FLOAT_EQ(mean, 2.75);
+}
+
 TEST(NormalizeByArea, withJustData ) {
     double low = 0.0;
     double upper = 20.0;
