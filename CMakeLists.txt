@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.10)
 cmake_policy(SET CMP0022 NEW)
 
 project(histo)
@@ -39,5 +39,6 @@ endif()
 set(ENABLE_GOOGLE_TEST "OFF" CACHE BOOL "Requires Gtest installed")
 
 if(ENABLE_GOOGLE_TEST)
+    enable_testing()
     add_subdirectory(test)
 endif()
