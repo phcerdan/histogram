@@ -436,7 +436,6 @@ struct Histo {
         switch (method) {
         case Scott:
             return ScottMethod(data, rang);
-            break;
         default:
             throw histo_error("CalculateBreaks: No Valid Method selected to "
                               "calculate breaks.");
